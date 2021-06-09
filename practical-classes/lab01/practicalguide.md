@@ -2,21 +2,23 @@
 
 ### Introduction to Python
 
+###### this is an adaptation of the practical guide provided by Professor João Manuel de Oliveira e Silva Rodrigues
+
 
 
 #### Topics
 
 ● Introduction to Python.
-● Interative and script modes.
-● Editing and executing of Python programs.
+● Interactive and script modes.
+● Editing and executing Python programs.
 
 #### Exercises
 
-1. In interative mode, Python's interpreter can be used as a calculator. In a command line window, execute **python3** command to enter Python's interative mode. Write an expression which calculates how many seconds a full day has.
+1. In interactive mode, Python's interpreter can be used as a calculator. In a command-line window, execute the **python3** command to enter Python's interactive mode. Write an expression that calculates how many seconds a full day has.
 
   
 
-2. Using Python's interative mode (**python3**), execute the following instructions:
+2. Using Python's interactive mode (**python3**), execute the following instructions:
 
 ```python
 num = 17
@@ -50,11 +52,11 @@ word * 2
 
    
 
-4. Compute your application grade to Universidade de Aveiro. Use variables to represent high school grades and appliance test scores. Do it in interative mode.
+4. Compute your application grade to Universidade de Aveiro. Use variables to represent high school grades and appliance test scores. Do it in interactive mode.
 
    
 
-5. Copy the Python instructions used in the previous exercise to a file, in order to create a script which can be executed by the Python interpreter. Notice that in script mode the results have to be explicitly printed.
+5. Copy the Python instructions used in the previous exercise to a file, to create a script that can be executed by the Python interpreter. Notice that in script mode the results have to be explicitly printed.
 
    
 
@@ -62,7 +64,7 @@ word * 2
 
    
 
-7. Execute the **welcome.py** program and see what happens. Change the program so that the X is replaced by the value asked to the user.
+7. Execute the **welcome.py** program and see what happens. Change the program so that the X is replaced by the value asked of the user.
 
    
 
