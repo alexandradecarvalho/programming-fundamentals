@@ -1026,11 +1026,92 @@ The command above, **pwd**, prints the name of the current working directory of 
 
 
 
-#### Exercise 4 - To know which is your current directory, execute the command **pwd**
+#### Exercise 4 - Try using a graphic file manager to navigate through the same directories of the last exercise
 
-![](../../img/root.png)
+First, we'll navigate to "/", which in the graphic file manager is called "Computer".
+
+<img src="../../img/root.png" style="zoom:55%; margin-left:0" />
+
+Then, we'll select the "usr" folder.
+
+<img src="../../img/usr.png" style="zoom:55%; margin-left:0" />
+
+Now, we'll select the "local" folder, and then the "src". As we've seen before, it is empty.
+
+<img src="../../img/localsrc.png" style="zoom:55%; margin-left:0" />
+
+To finish, we'll press the "back" button twice, and chose the "bin" folder.
+
+<img src="../../img/localbin.png" style="zoom:55%; margin-left:0" />
 
 
+
+#### Exercise 5 - Create a subdirectory called **practical-classes** and, inside it, a directory called lab01
+
+```bash
+alexis@jarvis:~/Desktop/uni/1ano/1sem/programming-fundamentals$ mkdir practical-classes
+alexis@jarvis:~/Desktop/uni/1ano/1sem/programming-fundamentals$ mkdir practical-classes/lab01
+```
+
+
+
+#### Exercise 6 - Print the content of the downloaded **primeiro.py** file on the screen. Try some other commands from the list above.
+
+```bash
+alexis@jarvis:~/Desktop/uni/1ano/1sem/programming-fundamentals/practical-classes/lab01$ cat primeiro.py 
+l = float(input('largura? '))
+c = float(input('comprimento? '))
+
+a = l * c
+p = l * 2 + c * 2
+
+print('area = ', a, ' perimetro = ', p)
+
+alexis@jarvis:~/Desktop/uni/1ano/1sem/programming-fundamentals/practical-classes/lab01$ cp primeiro.py segundo.py
+
+alexis@jarvis:~/Desktop/uni/1ano/1sem/programming-fundamentals/practical-classes/lab01$ cat segundo.py 
+l = float(input('largura? '))
+c = float(input('comprimento? '))
+
+a = l * c
+p = l * 2 + c * 2
+
+print('area = ', a, ' perimetro = ', p)
+
+alexis@jarvis:~/Desktop/uni/1ano/1sem/programming-fundamentals/practical-classes/lab01$ head primeiro.py 
+l = float(input('largura? '))
+c = float(input('comprimento? '))
+
+a = l * c
+p = l * 2 + c * 2
+
+print('area = ', a, ' perimetro = ', p)
+
+alexis@jarvis:~/Desktop/uni/1ano/1sem/programming-fundamentals/practical-classes/lab01$ tail primeiro.py 
+l = float(input('largura? '))
+c = float(input('comprimento? '))
+
+a = l * c
+p = l * 2 + c * 2
+
+print('area = ', a, ' perimetro = ', p)
+
+alexis@jarvis:~/Desktop/uni/1ano/1sem/programming-fundamentals/practical-classes/lab01$ 
+wc primeiro.py 
+  8  31 135 primeiro.py
+
+alexis@jarvis:~/Desktop/uni/1ano/1sem/programming-fundamentals/practical-classes/lab01$ sort primeiro.py 
+
+
+
+a = l * c
+c = float(input('comprimento? '))
+l = float(input('largura? '))
+p = l * 2 + c * 2
+print('area = ', a, ' perimetro = ', p)
+
+alexis@jarvis:~/Desktop/uni/1ano/1sem/programming-fundamentals/practical-classes/lab01$ 
+```
 
 
 
