@@ -10,6 +10,10 @@ This Curricular Unit provides students the ability to solve small and medium siz
 
 **Lab01: ** [Introduction to Python](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab01)
 
+
+
 [Theoretical Classes](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes):
 
 **Class01: ** [Computers and Programs](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class01)
+
+**Class02: ** [Types, Variables, Operators and Functions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class02)
