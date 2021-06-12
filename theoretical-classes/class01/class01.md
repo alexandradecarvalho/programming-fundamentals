@@ -69,7 +69,7 @@
 
 The two basic steps of program development are the problem analysis and the application implementation
 
-<img src="../img/devstages.png" style="zoom:95%; margin-left:0" />
+<img src="../../img/devstages.png" style="zoom:95%; margin-left:0" />
 
 
 
