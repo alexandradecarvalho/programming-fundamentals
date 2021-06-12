@@ -2,7 +2,7 @@
 
 
 
-In this lab, we will start by exploring some Linux functionalities, with the **[intro-to-linux.md](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab01/intro-to-linux.md)** guide, which is an adaptation of the one provided by the Curricular Unit's Professors. For some of the exercises, it was needed the already provided **primeiro.py** file. The record of intro-to-linux exercises is written in **intro-to-linux-answers.md** file.
+In this lab, we will start by exploring some Linux functionalities, with the **[intro-to-linux.md](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab01/intro-to-linux.md)** guide, which is an adaptation of the one provided by the Curricular Unit's Professors. For some of the exercises, it was needed the already provided **[primeiro.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab01/primeiro.py)** file. The record of intro-to-linux exercises is written in **[intro-to-linux-answers.md](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab01/intro-to-linux-answers.md)** file.
 
 
 
