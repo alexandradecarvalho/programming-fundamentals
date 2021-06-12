@@ -1,5 +1,4 @@
 # Alexandra de Carvalho, 12 jun 2021
-# Please uncomment each function call at the end to run it
 
 # Exercise 5 - Copy the Python instructions used in the previous exercise to a file, to create a script
 def final_grade_calculator():
@@ -119,7 +118,10 @@ def plot_w_three_graphics():
 
     plt.show()
 
-def print_menu():       ## Your menu design here
+
+##################MAIN#####################
+
+def print_menu():
     print(30 * "-" , "MENU" , 30 * "-")
     print("5. Exercise 5")
     print("6. Exercise 6")
