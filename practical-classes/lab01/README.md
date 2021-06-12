@@ -6,5 +6,5 @@ In this lab, we will start by exploring some Linux functionalities, with the **[
 
 
 
-Secondly, this lab provides the **[practicalguide.md](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab01/practicalguide.md)** file, which is the actual practical exercises guide for the lab, provided by one of the Curricular Unit's Professors. For some of the exercises, it was needed the already provided **welcome.py** and the **plot.py** files. The practicalguide exercises' resolution is in **lab01.py** file.
+Secondly, this lab provides the **[practicalguide.md](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab01/practicalguide.md)** file, which is the actual practical exercises guide for the lab, provided by one of the Curricular Unit's Professors. For some of the exercises, it was needed the already provided **welcome.py** and the **plot.py** files. The practicalguide exercises' resolution is in **lab01.md** file (for the first 4 exercises, which were done in interactive mode) and in **lab01.py** file (the rest of the exercises, done in script mode).
 
