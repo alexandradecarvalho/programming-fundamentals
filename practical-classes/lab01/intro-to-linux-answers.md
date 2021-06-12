@@ -1026,5 +1026,11 @@ The command above, **pwd**, prints the name of the current working directory of 
 
 
 
+#### Exercise 4 - To know which is your current directory, execute the command **pwd**
+
+![https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/img/root.png]()
+
+
+
 
 
