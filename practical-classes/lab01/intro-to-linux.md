@@ -55,7 +55,7 @@ Despite the new interaction means, through graphic environments, it is still pos
 
 ##### Exercise 1
 
-Open a terminal window, by clicking on its icon or pressing the Super key + writing "terminal" in the search box. When the prompt comes up in the command line, execute the command **date**. Notice that the response was printed immediately after, in a concise, distraction-free way, and with very few explanations. This behaviour is usual in many UNIX commands and typical of a certain style defended by the system's creators. Simple but effective.
+Open a terminal window, by clicking on its icon or pressing the Super key + writing "terminal" in the search box. When the prompt comes up in the command line, execute the command **date**. Notice that the response was printed immediately after, in a concise, distraction-free way, and with very few explanations. This behavior is usual in many UNIX commands and typical of a certain style defended by the system's creators. Simple but effective.
 
 
 
@@ -63,7 +63,7 @@ Open a terminal window, by clicking on its icon or pressing the Super key + writ
 
 Execute the **cal** command and see the result. Find out in which week-day you were born, passing your month and year of birth as an argument. **Example:** `cal jan 2001`
 UNIX commands always follow the same form: "`command argument1 argument2 ...`". Here, the command is the name of the program to be executed and the arguments are optional sequences of characters, separated by spaces, which can exist, depending on the program.
-In the command line, it is possible to obtain an already written command, using the up and down keys. It is, then, possible to modify it to make a new command, for example, by adding different arguments. Another useful functionality is the autocompletion of commands or arguments when these are already partially written, by pressing the tab key.
+In the command line, it is possible to obtain an already written command, using the up and down keys. It is, then, possible to modify it to make a new command, for example, by adding different arguments. Another useful functionality is the auto-completion of commands or arguments when these are already partially written, by pressing the tab key.
 
 
 
