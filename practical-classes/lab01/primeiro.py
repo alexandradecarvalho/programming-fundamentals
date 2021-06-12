@@ -1,8 +1,8 @@
-l = float(input('largura? '))
-c = float(input('comprimento? '))
+l = float(input('width? '))
+c = float(input('length? '))
 
 a = l * c
 p = l * 2 + c * 2
 
-print('area = ', a, ' perimetro = ', p)
+print('area = ', a, ' perimeter = ', p)
 

@@ -82,31 +82,17 @@ TypeError: can only concatenate str (not "int") to str
 
 ```python
 # please notice these grades are just for the purpose of the exercise - not the real ones!
->>> pt10ano = 14
->>> pt11ano = 14
->>> pt12ano = 13
->>> fil10ano = 14
->>> fil11ano = 14
->>> ing10ano = 14
->>> ing11ano = 15
->>> mat10ano = 13
->>> mat11ano = 13
->>> mat12ano = 16
->>> bio10ano = 15
->>> bio11ano = 15
->>> matexame = 11
->>> fis10ano = 13
->>> fis11ano = 13
->>> bio12ano = 18 
->>> api12ano = 18 
->>> notapt = (pt10ano + pt11ano + pt12ano) / 3
->>> notafil = (fil10ano + fil11ano) / 2
->>> notaing = (ing10ano + ing11ano) / 2
->>> notamat = ((mat10ano + mat11ano + mat12ano) / 3)*0.7 + (matexame * 0.3)
->>> notabio = (bio10ano + bio11ano) / 2
->>> notafis = (fis10ano + fis11ano) / 2
->>> notafinal = notapt + notafil + notaing + notamat + notabio + notafis + bio12ano + api12ano
->>> notafinal = notafinal / 8
->>> notafinal
-14.908333333333333
+>>> biology12_grade = 18 
+>>> informatics12_grade = 20
+>>> portuguese_grade = 17
+>>> philosophy_grade = 16
+>>> english_grade = 20
+>>> mathematics_grade = 15
+>>> mathematics_exam = 12
+>>> biology_grade = 13
+>>> physics_grade = 14
+>>> final_grade = portuguese_grade + philosophy_grade + english_grade + (mathematics_grade * 0.7 + mathematics_exam * 0.3) + biology_grade + physics_grade + biology12_grade + informatics12_grade
+>>> final_grade = final_grade / 8
+>>> final_grade
+16.5125
 ```
