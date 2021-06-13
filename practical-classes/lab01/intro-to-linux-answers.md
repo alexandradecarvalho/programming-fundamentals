@@ -1055,7 +1055,7 @@ alexis@jarvis:~/Desktop/uni/1ano/1sem/programming-fundamentals$ mkdir practical-
 
 
 
-#### Exercise 6 - Print the content of the downloaded **primeiro.py** file on the screen. Try some other commands from the list above.
+#### Exercise 6 - Print the content of the downloaded **[primeiro.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab01/primeiro.py)** file on the screen. Try some other commands from the list above.
 
 ```bash
 alexis@jarvis:~/Desktop/uni/1ano/1sem/programming-fundamentals/practical-classes/lab01$ cat primeiro.py 

@@ -1,4 +1,4 @@
-## Programming Fundamentals, Class 02
+## Class 02 - RESOLVED
 
 ### The Python language
 
@@ -24,6 +24,6 @@
 
 6. A rectangle triangle has legs A and B and hypotenuse C. Write a program that reads the length of the legs and determines the hypotenuse, as well as the angle (in degrees) between leg A and the hypotenuse. We suggest you use the `math` module.
 
-7. The program points.py reads the Cartesian coordinates of two points (x1,y1) and (x2,y2). Complete it to calculate and print the distance between the points.
+7. The program [**points.py**](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab02/points.py) reads the Cartesian coordinates of two points (x1,y1) and (x2,y2). Complete it to calculate and print the distance between the points.
 8. A book costs 20€ to make (PF). Suppose that the cover price of a book is 24,95€ (PC) and that it pays a tax of 23% (IMP). It adds to the value of the book a tax to reward the authors for each copy, of 0,20€ (SPA). `PC = (PF + Profit) * (100% + IMP) + SPA`. For 500 copies, how much would be the book store profit? How much has been collected in taxes? 
 9. If one leaves the house at 6:52 and goes 1 km walking (at the pace of 10 min per km), and then do a quick training of 3 km (at 6 min per km) and goes back home walking, at what time do they arrive home for breakfast?

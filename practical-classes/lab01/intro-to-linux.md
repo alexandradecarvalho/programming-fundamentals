@@ -159,7 +159,7 @@ Furthermore, there are other commands such as cut, paste, tr, etc. All these com
 
 ##### Exercise 6
 
-Download the provided file for lab01, and extract its content for the lab01 directory that you have created in the previous exercise. Print the content of the file **primeiro.py** on the screen. Try some other commands from the list above.
+Download the provided file for lab01, and extract its content for the lab01 directory that you have created in the previous exercise. Print the content of the file **[primeiro.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab01/primeiro.py)** on the screen. Try some other commands from the list above.
 
 
 
@@ -176,10 +176,10 @@ Linux has many instant help mechanisms for most of its commands. Two of the main
 
 ##### Editing
 
-Open the **primeiro.py** program with a text editor. The Linux system includes several text editors to your choosing. However, we recommend *geany*, or *gedit*, or even *gvim* (VI editor), for their friendly graphic interface and automatic syntax highlighting for Python (and other languages as well). It is also possible to launch any editor or program from the command line, through a command such as `geany &`.
+Open the **[primeiro.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab01/primeiro.py)** program with a text editor. The Linux system includes several text editors to your choosing. However, we recommend *geany*, or *gedit*, or even *gvim* (VI editor), for their friendly graphic interface and automatic syntax highlighting for Python (and other languages as well). It is also possible to launch any editor or program from the command line, through a command such as `geany &`.
 
 
 
 ##### Execution
 
-The file you just edited is usually called the "source program". The next step is to execute the developed program. This is done using the command **python3 primeiro.py** in the terminal. If there aren't any errors, the execution's result should show up in the terminal. If there are any syntax or execution errors, these will be shown in the same order as they were detected. In that case, you must try to identify the cause of the first error and edit the program to fix it.
+The file you just edited is usually called the "source program". The next step is to execute the developed program. This is done using the command **python3 [primeiro.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab01/primeiro.py)** in the terminal. If there aren't any errors, the execution's result should show up in the terminal. If there are any syntax or execution errors, these will be shown in the same order as they were detected. In that case, you must try to identify the cause of the first error and edit the program to fix it.

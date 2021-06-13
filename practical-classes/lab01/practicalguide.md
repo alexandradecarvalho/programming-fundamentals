@@ -64,11 +64,11 @@ word * 2
 
    
 
-7. Execute the **welcome.py** program and see what happens. Change the program so that the X is replaced by the value asked of the user.
+7. Execute the **[welcome.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab01/welcome.py)** program and see what happens. Change the program so that the X is replaced by the value asked of the user.
 
    
 
-8. The **plot.py** program makes charts from two functions. Try executing it. You must close the window to end it. Edit the program to understand it. You can print variable values or change some parameters to see what happens. This program uses two extra modules that extend the language with new functions which allow vector operations and chart drawings. We'll use them again later.
+8. The **[plot.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab01/plot.py)** program makes charts from two functions. Try executing it. You must close the window to end it. Edit the program to understand it. You can print variable values or change some parameters to see what happens. This program uses two extra modules that extend the language with new functions which allow vector operations and chart drawings. We'll use them again later.
 
   
 
