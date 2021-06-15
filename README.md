@@ -24,3 +24,5 @@ This Curricular Unit provides students the ability to solve small and medium siz
 
 **Class03: ** [Conditional Instructions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class03)
 
+**Class04: ** [Functions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class04)
+
