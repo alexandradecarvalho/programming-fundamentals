@@ -1,8 +1,7 @@
 # Alexandra de Carvalho, 13 jun 2021
 
-import math
-
 from numpy import arcsin
+import math
 
 # Exercise 1 - Write a program that reads a value1 of temperature in Celsius degrees, converts it into Fahrenheit degrees and prints the result
 def temperature_converter():

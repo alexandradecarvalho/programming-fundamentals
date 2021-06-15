@@ -8,8 +8,8 @@
 
 #### Exercises
 
-1. The **max2.py** program reads two numbers and shows the biggest one. Test it and analyse it. Alter the program to the same as it already does, but using a conditional instruction instead of the pre-defined max function.
-2. Copy the previous program to max3.py and modify this copy to find the biggest out of three numbers. Use conditional instructions. Can you do it with only two comparisons?
+1. The **[max2.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab03/max2.py)** program reads two numbers and shows the biggest one. Test it and analyse it. Alter the program to the same as it already does, but using a conditional instruction instead of the pre-defined max function.
+2. Copy the previous program and modify this copy to find the biggest out of three numbers. Use conditional instructions. Can you do it with only two comparisons?
 3. Write a program that reads an integer and shows a message indicating whether the number is even or odd. Hint: use the operator % to get the remainder of the division by 2.
 
 4. Create a program that asks the number of fuel litres of a supply and determines the price to pay. Consider that the fuel costs 1,40€ per litre and that supplies of over 40 litres have a 10% discount.
