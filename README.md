@@ -14,6 +14,8 @@ This Curricular Unit provides students the ability to solve small and medium siz
 
 **Lab03: ** [Conditional Instructions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/mainpractical-classes/lab03)
 
+**Lab04: ** [Functions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/mainpractical-classes/lab04)
+
 
 
 [Theoretical Classes](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes):

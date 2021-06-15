@@ -89,7 +89,7 @@
 
 * Other functions, like `print`, perform an action but don't return a value. They are called void functions
 
-* The statement `return expression` exits from a function, and returns the result of the expression
+* The statement `return expression` exits from a function and returns the result of the expression
 
 * A `return` statement with no argument, return is the same as `return None`
 
