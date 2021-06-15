@@ -1,0 +1,5 @@
+## Lab 03.
+
+
+
+In this lab, we will answer the questions in **[practicalguide.md](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab03/practicalguide.md)** file, which is the actual practical exercises guide for the lab, provided by one of the Curricular Unit's Professors. For exercise 1, it was needed the already provided **[max2.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab03/max2.py)**, for exercise 5 ut was needed the already provided **[age.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab03/age.py)** file, for exercise 6 the **[imc.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab03/imc.py)** and for exercise 7 the **[kryptonite.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab03/kryptonite.py)**. The practicalguide exercises' resolution is in **[lab03.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab03/lab03.py)** file.

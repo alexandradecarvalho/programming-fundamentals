@@ -14,9 +14,9 @@
 
 4. Create a program that asks the number of fuel litres of a supply and determines the price to pay. Consider that the fuel costs 1,40€ per litre and that supplies of over 40 litres have a 10% discount.
 
-5. Execute the age.py program and test it with several input values. Analyse the source code to understand how it works. Can you detect the semantic error? Which age values produce the "adult" category? Fix the bug. Can you re-write the code with an `if-elif-else` instruction? Try to simplify the code to eliminate redundant conditions.
+5. Execute the **[age.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab03/age.py)** program and test it with several input values. Analyse the source code to understand how it works. Can you detect the semantic error? Which age values produce the "adult" category? Fix the bug. Can you re-write the code with an `if-elif-else` instruction? Try to simplify the code to eliminate redundant conditions.
 
-6. The body mass index (BMI) is a measuring unit, used to evaluate whether or not a person has their ideal weight for their height. The **imc.py** program determines the BMI of the user and classifies it into just two categories. Try the program and analyse it. Modify it to return one out of 4 categories according to the table below. Avoid testing redundant conditions in the program.
+6. The body mass index (BMI) is a measuring unit, used to evaluate whether or not a person has their ideal weight for their height. The **[imc.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab03/imc.py)** program determines the BMI of the user and classifies it into just two categories. Try the program and analyse it. Modify it to return one out of 4 categories according to the table below. Avoid testing redundant conditions in the program.
 
    | BMI (kg/m2):  | <18.5  | [18.5, 25[ | [25, 30[ | 30 ou mais |
    | ------------- | ------ | ---------- | -------- | ---------- |
@@ -28,7 +28,7 @@
 
    <img src="../../img/kryptonite.png">
 
-   The **kryptonite.py**  program should ask the temperature and pressure and return the correspondent stage, but it has many bugs.
+   The [**kryptonite.py**](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab03/kryptonite.py)  program should ask the temperature and pressure and return the correspondent stage, but it has many bugs.
 
    a) Execute `python3 kryptonite.py` and see the syntactic error reported. Detect it and fix it. **Hint**: beware of the brackets.
 
@@ -36,7 +36,7 @@
 
    c) Now you should be able to execute the program, but it still has some semantic errors. For example, at 300K e 100kPa, the stage should be SOLID. Modify the conditional instructions to determine the stage correctly. **Hint**: start by determining the equations of the lines which divide the space.
 
-   d) Adjust the result's string so that the temperature shows up with 1 decimal place and the pressure with 3. **Hint**: use the `str.format`  method. You have some examples in **examplesformat.py**.
+   d) Adjust the result's string so that the temperature shows up with 1 decimal place and the pressure with 3. **Hint**: use the `str.format`  method. You have some examples in [**examplesformat.py**](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab03/examplesformat.py).
 
 8. Write a program that asks for the grades of two evaluation components, CTP and CP, and calculates the final grade (integer) of a Programming Fundamentals student. If any of the components is lower than the minimum threshold, the final grade should be code 66. If the final grade is negative, the program should ask the appeal grades, ATPR and APR, and calculate the new final grade.
 
