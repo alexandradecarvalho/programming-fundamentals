@@ -166,10 +166,12 @@ def repeatNTimes(n):
 
 # Exercise 8d) - Write a function that, given a not-empty list of values, returns the index of the first occurrence of the highest value, without using the functions max, find or index
 def firstHighestValue(input_list):
-    result = 0
+    highest = input_list[0]
     index = 0
+    result = 0
     for elem in input_list:
-        if elem > result:
+        if elem > highest:
+            highest = elem
             result = index
         index += 1
     return result
