@@ -12,9 +12,13 @@ This Curricular Unit provides students the ability to solve small and medium siz
 
 **Lab02: ** [The Python language](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab02)
 
-**Lab03: ** [Conditional Instructions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/mainpractical-classes/lab03)
+**Lab03: ** [Conditional Instructions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab03)
 
-**Lab04: ** [Functions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/mainpractical-classes/lab04)
+**Lab04: ** [Functions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab04)
+
+**Lab05: ** [Iterations](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab05)
+
+**Lab06: ** [Sequences](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab06)
 
 
 
@@ -27,4 +31,8 @@ This Curricular Unit provides students the ability to solve small and medium siz
 **Class03: ** [Conditional Instructions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class03)
 
 **Class04: ** [Functions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class04)
+
+**Class05: ** [The while, for and range Statements](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class05)
+
+**Class06: ** [Lists, Tuples and Strings](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class06)
 

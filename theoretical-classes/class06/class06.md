@@ -1,4 +1,4 @@
-## Programming Fundamentals, Class 05
+## Programming Fundamentals, Class 06
 
 ###### this is an adaptation of the materials provided by Professor João Manuel de Oliveira e Silva Rodrigues
 
