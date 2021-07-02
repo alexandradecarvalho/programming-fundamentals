@@ -20,6 +20,8 @@ This Curricular Unit provides students the ability to solve small and medium siz
 
 **Lab06: ** [Sequences](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab06)
 
+**Lab07: ** [Exceptions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab07)
+
 
 
 [Theoretical Classes](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes):
@@ -35,4 +37,6 @@ This Curricular Unit provides students the ability to solve small and medium siz
 **Class05: ** [The while, for and range Statements](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class05)
 
 **Class06: ** [Lists, Tuples and Strings](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class06)
+
+**Class07: ** [Files, Command-Line Arguments and Exceptions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class07)
 
