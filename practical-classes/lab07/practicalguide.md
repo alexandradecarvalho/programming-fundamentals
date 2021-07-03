@@ -40,7 +40,13 @@
 
    <img src="../../img/lab07ex05a.png">
 
+   
+
    b) Add two arguments `min` and `max` and validate if the inputted value is inside the interval `[min,max]`. If it isn't, the function must warn the user and repeat everything, according to the interaction shown below.
+
+   <img src="../../img/lab07ex05b.png">
+
+   
 
    c) Make the `min` and `max` arguments optional. When omitted, the function must accept any real value (you can use `+- math.inf`).
 

@@ -22,6 +22,8 @@ This Curricular Unit provides students the ability to solve small and medium siz
 
 **Lab07: ** [Exceptions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab07)
 
+**Lab07x: ** [Complementary Exercises](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab07x)
+
 
 
 [Theoretical Classes](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes):
