@@ -199,10 +199,10 @@ def compareFiles(filename1, filename2):
 
 # Test the function in a program that receives the names of the files as arguments
 def ex6():
-    if len(sys.argv)
-
-
-    #print(shorten(text))
+    if len(sys.argv) != 3:
+        print("ERROR: Invalid Arguments during Program Call")
+    else:
+        print("Are {} and {} equal files? {}".format(sys.argv[1], sys.argv[2],compareFiles(sys.argv[1], sys.argv[2])))
 
 
 # Exercise 7 - Write a ispalindrome(s) function that returns a boolean value indicating whether or not the string is a palindrome
