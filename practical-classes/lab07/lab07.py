@@ -1,6 +1,7 @@
 # Alexandra de Carvalho, 02 jul 2021
 
 
+import os
 import turtle
 import math
 import sys
@@ -205,75 +206,17 @@ def ex6():
         print("Are {} and {} equal files? {}".format(sys.argv[1], sys.argv[2],compareFiles(sys.argv[1], sys.argv[2])))
 
 
-# Exercise 7 - Write a ispalindrome(s) function that returns a boolean value indicating whether or not the string is a palindrome
-def isPalindrome(s):
-    while s:
-        if s[0] != s[-1]:
-            return False
-        else:
-            return isPalindrome(s[1:-1])
-    return True
-
-def ex7():
-    s = (input("Insert sentence: "))
-    if isPalindrome(s):
-        print("\"{}\" is palindrome!".format(s))
+# Exercise 7 - Create a function that goes through a directory (with os.listdir) and shows the size of each file
+def directorysFileSizes(dir):
+    try:
+        directorys_content = os.listdir(dir)
+    except FileNotFoundError:
+        print("ERROR: Invalid directory name")
     else:
-        print("\"{}\" is not a palindrome :/".format(s))
+        for item in directorys_content:
 
-
-# Exercise 8a) - Write a function that, given a string, returns another one, made up by all characters of even positions followed by all characters of odd positions of the first string 
-def evenThenOdd(s):
-    return s[::2] + s[1::2]
-    
-# Exercise 8b) - Write a function that, given a string s, returns a similar string but without duplicate adjacent characters
-def noAdjacent(s):
-    result = s[0]
-    index = 1
-    while index < len(s):
-        if s[index] != s[index-1]:
-            result += s[index]
-        index += 1
-    return result
-
-#Exercise 8c) - Write a function that, given a non-negative integer n, returns a list with 1,2,2,3,3,3,4,4,4,... until n repeated n times
-def repeatNTimes(n):
-    result = []
-    current_int = 1
-    while current_int <= n:
-        count = 0
-        while count < current_int:
-            result.append(current_int)
-            count += 1
-        current_int += 1
-    return result
-
-# Exercise 8d) - Write a function that, given a not-empty list of values, returns the index of the first occurrence of the highest value, without using the functions max, find or index
-def firstHighestValue(input_list):
-    highest = input_list[0]
-    index = 0
-    result = 0
-    for elem in input_list:
-        if elem > highest:
-            highest = elem
-            result = index
-        index += 1
-    return result
-
-def ex8():
-    user_string = input("string? ")
-    print("String with even positions then odd positions: \"{}\" \n".format(evenThenOdd(user_string)))
-    print("String with no adjacent equal characters: \"{}\" \n".format(noAdjacent(user_string)))
-    
-    user_input = int(input("number? "))
-    print("List of repeatNTimes: {} \n".format(repeatNTimes(user_input)))
-    
-    user_list = []
-    elem = input("list element? ")
-    while elem != "":
-        user_list += [int(elem)]
-        elem = input("list element? ")
-    print("Highest value is at position {} \n".format(firstHighestValue(user_list)))
+            if not os.path.isfile(item):
+                print(item + ": " + str(os.stat(dir+'/'+item).st_size))
 
 ##################MAIN#####################
 
@@ -286,7 +229,6 @@ def print_menu():
     print("5. Exercise 5")
     print("6. Exercise 6")
     print("7. Exercise 7")
-    print("8. Exercise 8")
     print("0. Exit")
     print(67 * "-")
 
@@ -326,10 +268,8 @@ def main():
             ex6()
         elif choice==7:
             print("Exercise 7: \n")
-            ex7()
-        elif choice==8:
-            print("Exercise 8: \n")
-            ex8()
+            directory_name = input("dir name? ")
+            directorysFileSizes(directory_name)
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
