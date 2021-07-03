@@ -1,124 +1,208 @@
-# Alexandra de Carvalho, 16 jun 2021
+# Alexandra de Carvalho, 02 jul 2021
 
 
-# Exercise 2a) - Create the inputFloatList() function which reads a sequence of numbers inputed by the user and returns them in a list
-def inputFloatList():
-    result = []
-    user_input = input("number? ")
-    while user_input != "":
-        result += [float(user_input)]
-        user_input = input("number? ")
-    return result
+import turtle
+import math
+import sys
 
-# Exercise 2b) - Create the countLower(lst, v) function which calculates and returns the number of lst's elements that are lower than v
-def countLower(lst, v):
-    count = 0
-    for element in lst:
-        if element < v:
-            count += 1
-    return count
 
-# Exercise 2c) - Create the minmax(lst) function which returns the maximum and the minimum values of a list, without using the min and the max functions
-def minmax(lst):
-    minimum = lst[0]
-    maximum = lst[0]
+# Exercise 1 - Create a program that calculates the sum of a list of values, stored in a inputted file with only one value per line
+def sumOfValuesOfAFile():
+    inputted_filename = input("Please, introduce a file.")
+    sum_of_values = 0
+    try:
+        f = open(inputted_filename, 'r')
+    except IOError:
+        print('ERROR: File not found')
+    else:
+        for line in f:
+            try:
+                number = float(line)
+            except ValueError:
+                print('ERROR: file has invalid elements')
+            else:
+                sum_of_values += number
+        f.close()
+        
+        print("Sum of values: {}".format(sum_of_values))
 
-    for element in lst:
-        if element < minimum:
-            minimum = element
-        elif element > maximum:
-            maximum = element
+
+# Exercise 2 - Complete the program turtledraw.py to read the instructions off of a file and use the turtle to draw
+def turtledraw():
+    # Exercise 5 on "How to think...", ch. 11.
+
+    t = turtle.Turtle()
+    filename = 'mystery.txt'
+
+    try:
+        f = open(filename, 'r')
+    except IOError:
+        print('ERROR: File not found')
+    else:
+        for line in f:
+            if line == 'UP\n':
+                t.up()
+            elif line == 'DOWN\n':
+                t.down()
+            else:
+                coordinates = line.split(" ")
+                if len(coordinates) != 2:
+                    print('ERROR: File has invalid instructions')
+                else:
+                    try:
+                        x_value = float(coordinates[0])
+                        y_value = float(coordinates[1])
+                    except ValueError:
+                        print('ERROR: file has invalid instructions')
+                    else:
+                        t.goto(x_value,y_value)
+        f.close()
+
+    # wait 
+    turtle.Screen().exitonclick()
+    turtle.TurtleScreen._RUNNING = True # not to throw Terminator error
+
+
+# Exercise 3a) - Complete the loadFile(fname) function so that, given a file name with the right format, reads its content and returns a list of a tuple (number, name, grade1, grade2, grade3) by student
+def loadFile(fname):
+    lst = []
+
+    try:
+        f = open(fname, 'r')
+    except IOError:
+        print('ERROR: File not found')
+    else:
+        for line in f:
+            if line != "Numero\tNome\tCurso\tRegime\tDataInscricao\tnota1\tnota2\tnota3\n": # ignoring header line
+                line_content_list = line.strip("\n").split("\t")
+                try:
+                    student_number = int(line_content_list[0])
+                    student_grade1 = float(line_content_list[5])
+                    student_grade2 = float(line_content_list[6])
+                    student_grade3 = float(line_content_list[7])
+                except ValueError:
+                    print("ERROR: Invalid values")
+                else:
+                    lst.append(tuple([student_number, line_content_list[1], student_grade1, student_grade2, student_grade3]))
+        f.close()
+    return lst
+
+
+# Exercise 3b) - Create a notaFinal(reg) that, given a tuple with the record of a student, calculates and returns their final grade, the average of the three scores in the record
+def notaFinal(reg):
+    return (reg[2] + reg[3] + reg[4])/3
     
-    return minimum, maximum
 
-# Exercise 2d) - Use the functions above to create a program which reads a list of numbers, determines the average between the maximum and the minimum values and that counts how many numbers are inferior to that value
-def ex2():
-    user_list = inputFloatList()
-    minimum, maximum = minmax(user_list)
-    average = (minimum + maximum) / 2
-    print("The average between the min and max numbers introduced is {}".format(average))
-    print("{} numbers introduced are lower than the average".format(countLower(user_list, average)))
+# Exercise 3c) - Create a printPauta(lst) function that, given a list of student records, shows a table with their names, numbers and final grades, formatted and with the name appearing centered and the number and grade appearing aligned to the right
+def printPauta(lst):
+    print("{:<10}{:^60}{:<10}".format("Number", "Name", "Grade"))
+    for student_record in lst:
+        print("{:<10}{:^60}{:<10.2f}".format(student_record[0], student_record[1], notaFinal(student_record)))
 
 
-# Exercise 3a) - Complete the telToName function so that, given a phone number (and both lists), it can return the right name (or the number if it's not on the list)
-def telToName(tel, telList, nameList):
-    # your code here
-    index = 0
-    for number in telList:
-        if number == tel:
-            return nameList[index]
-        index += 1
-    return tel
-
-# Exercise 3b) - Complete the nameToTels function so that, given part of a name, it can return the list of the matching numbers for names that include the searched part
-def nameToTels(partName, telList, nameList):
-    # your code here
-    tels = []
-    index = 0
-    for name in nameList:
-        if partName in name:
-            tels += [telList[index]]
-        index +=1
-    if tels:
-        return tels
-    return partName 
-
-# Exercise 3c) - Run the program to test these functions
+# Exercise 3d) - Using the functions above, complete the main function to read the file, sort the list with the .sort() method and show the final table
 def ex3():
-    telList = ['975318642', '234000111', '777888333', '911911911']
-    nameList = ['Angelina', 'Brad',      'Claudia',   'Bruna']
-
-    # Test telToName:
-    tel = input("Tel number? ")
-    print( telToName(tel, telList, nameList) )
-    print( telToName('234000111', telList, nameList) == "Brad" )
-    print( telToName('222333444', telList, nameList) == "222333444" )
-
-    # Test nameToTels:
-    name = input("Name? ")
-    print( nameToTels(name, telList, nameList) )
-    print( nameToTels('Clau', telList, nameList) == ['777888333'] )
-    print( nameToTels('Br', telList, nameList) == ['234000111', '911911911'] )
+    filename = 'school.csv'
+    student_records = loadFile(filename)
+    printPauta(student_records)
 
 
-# Exercise 4 - Write a function that, given a list of football teams, generates a list of all matches that can be done
-def footbal_matches(lst):
-    matches = []
-    for team1 in lst:
-        for team2 in lst[-1::-1]:
-            if team1 != team2:
-                matches.append(tuple([team1, team2]))
-    return matches
+# Exercise 4 - Alter the previous program to save the final table in a text file, using the write method or the print function with the file= argument
+def printOrSavePauta(lst, filename="InvalidFilename"):
+    if filename == "InvalidFilename":
+        print("{:<10}{:^60}{:<10}".format("Number", "Name", "Grade"))
+        for student_record in lst:
+            print("{:<10}{:^60}{:<10.2f}".format(student_record[0], student_record[1], notaFinal(student_record)))
+    else:
+        f = open(filename, 'w')
+        f.write("{:<10}{:^60}{:<10}".format("Number", "Name", "Grade"))
+        for student_record in lst:
+            f.write("{:<10}{:^60}{:<10.2f}".format(student_record[0], student_record[1], notaFinal(student_record)))
+        f.close()
+
 
 def ex4():
-    teams_list = ['FCP', 'Belenenses', 'SLB', 'Boavista', 'Olhanense', 'SCP']
-    print(footbal_matches(teams_list))
+    filename = 'school.csv'
+    student_records = loadFile(filename)
+    filename = input("Insert filename: ")
+    if filename:
+        printOrSavePauta(student_records, filename)
+    else:
+        printOrSavePauta(student_records)
 
 
-# Exercise 5 - Write a function that counts how many digits appear in a given string: countDigits("23 mil 456") should return 5
-def countDigits(text):
-    count = 0
-    for letter in text:
-        if letter.isdigit():
-            count += 1
-    return count
+# Exercise 5a) - To deal with the problem of a user inputting a text that generates a ValueError during conversion, create a floatInput(prompt) function that reads and validates user input: it asks for a value, tries to convert it and, if it fails, warns the user and repeats everything
+def floatInput(prompt):
+    repeat = True
+    while repeat:  
+        inputted_number = input(prompt)
+        try:
+            converted_float = float(inputted_number) 
+        except ValueError:
+            print("Not a float!")
+        else:
+            repeat = False
+            print(converted_float)
 
-def ex5():
-    text = input("Insert sentence: ")
-    print("\"{}\" has {} digits".format(text, countDigits(text)))
+
+# Exercise 5b) - Add two arguments min and max, validate if the inputted value is inside the interval [min,max] and warn the user and repeat everything if it isn't
+def isFloatInputInRange(prompt, min, max):
+    repeat = True
+    while repeat:  
+        inputted_number = input(prompt)
+        try:
+            converted_float = float(inputted_number) 
+        except ValueError:
+            print("Not a float!")
+        else:
+            repeat = False
+            if converted_float >= min and converted_float <= max:
+                print(converted_float)
+            else:
+                print("Value should be in [{},{}]".format(min,max))
 
 
-# Exercise 6 - Write a function that, given a name, creates a short version, formed only by the capital letters: shorten("Universidade de Aveiro") = "UA"
-def shorten(text):
-    result = ""
-    for letter in text:
-        if letter.isupper():
-            result += letter
-    return result
+# Exercise 5c) - Make the min and max arguments optional so that, when omitted, the function accepts any real value
+def floatInputOptionallyInRange(prompt, min=-math.inf, max=math.inf):
+    repeat = True
+    while repeat:  
+        inputted_number = input(prompt)
+        try:
+            converted_float = float(inputted_number) 
+        except ValueError:
+            print("Not a float!")
+        else:
+            repeat = False
+            if converted_float >= min and converted_float <= max:
+                print(converted_float)
+            else:
+                print("Value should be in [{},{}]".format(min,max))
+
+
+# Exercise 6 - Write a function compareFiles that verifies whether two given binary mode files are the same, reading and comparing in blocks of 1KiB at a time, and terminating as soon as it finds a difference
+def compareFiles(filename1, filename2):
+    try:
+        f1 = open(filename1, 'rb')
+        f2 = open(filename2, 'rb')
+    except IOError:
+        print("ERROR: Invalid filename(s)!")
+        return None
+    else:
+        while ((kib1 := f1.read(1024)) and (kib2 := f2.read(1024))):
+            if kib1 != kib2:
+                return False
         
+        f1.close()
+        f2.close()
+        return True
+
+
+# Test the function in a program that receives the names of the files as arguments
 def ex6():
-    text = input("Insert sentence: ")
-    print(shorten(text))
+    if len(sys.argv)
+
+
+    #print(shorten(text))
 
 
 # Exercise 7 - Write a ispalindrome(s) function that returns a boolean value indicating whether or not the string is a palindrome
@@ -195,6 +279,7 @@ def ex8():
 
 def print_menu():
     print(30 * "-" , "MENU" , 30 * "-")
+    print("1. Exercise 1")
     print("2. Exercise 2")
     print("3. Exercise 3")
     print("4. Exercise 4")
@@ -213,11 +298,14 @@ def main():
         try:
             choice = int(input("Enter your choice [5-9] or 0 to quit: "))
         except:
-            choice = 222
+            choice = 222    # Invalid option
         
-        if choice==2:     
+        if choice==1:     
+            print("Exercise 1: \n")
+            sumOfValuesOfAFile()
+        elif choice==2:     
             print("Exercise 2: \n")
-            ex2()
+            turtledraw()
         elif choice==3:     
             print("Exercise 3: \n")
             ex3()
@@ -226,7 +314,13 @@ def main():
             ex4()
         elif choice==5:     
             print("Exercise 5: \n")
-            ex5()
+            user_input = input("Min,Max? ").split(",")
+            if len(user_input) != 2:
+                floatInputOptionallyInRange("val? ")
+            else:
+                min = float(user_input[0])
+                max = float(user_input[1])
+                floatInputOptionallyInRange("val? ", min, max)
         elif choice==6:
             print("Exercise 6: \n")
             ex6()

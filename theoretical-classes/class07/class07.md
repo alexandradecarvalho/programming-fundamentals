@@ -99,7 +99,7 @@ while True:
 
 * The `seek(offset)` method changes the current file position to `offset` bytes from the start (an optional argument can specify a different reference point)
 
-```
+```python
 a0 = f.readline()	# read a line
 pos ⁼ f.tell()		# store position
 a1 = f.readline()	# read second line

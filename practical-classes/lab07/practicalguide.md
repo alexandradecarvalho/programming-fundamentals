@@ -32,11 +32,13 @@
 
    d) Using the functions mentioned above, complete the main function to read the file, sort the list with the `.sort()` method and show the final table.
 
-4. Alter the previous program to save the final table in a text file. You can use the `write` method or the `print` function with the `file=` argument. **Hint:** if you make the the `printPauta` function general it can also receive an extra `file` argument so that it can be reused to save in the file. 
+4. Alter the previous program to save the final table in a text file. You can use the `write` method or the `print` function with the `file=` argument. **Hint:** if you turn `printPauta` into a general function it can also receive an extra `file` argument so that it can be reused to save in the file. 
 
 5. When we execute `float(input(...))`, there is the risk of a user inputting a text that will generate a `ValueError` during conversion.
 
    a) To deal with this problem, create a `floatInput(prompt)` function that reads and validates user input: it asks for a value, **tries** to convert it and, if it fails, warns the user and repeats everything, according to the interaction shown below.
+
+   <img src="../../img/lab07ex05a.png">
 
    b) Add two arguments `min` and `max` and validate if the inputted value is inside the interval `[min,max]`. If it isn't, the function must warn the user and repeat everything, according to the interaction shown below.
 
