@@ -1,67 +1,84 @@
 # Alexandra de Carvalho, 02 jul 2021
 
 
-import os
-import turtle
-import math
-import sys
+# Exercise 1 - Complete the genFibonacci(n) function to return a list with the first n Fibonacci numbers, working only for n>=2 
+def genFibonacci(n):
+    """Generate list of first n Fibonacci numbers: [F0 (n=1), F1 (n=2), ..., Fn-1]."""
+    # your code here
+    sequence = [0]
+    
+    n2 = 1
+    n1 = 0
+    
+    index = 1
+    
+    
+    while index < n:
+        index += 1
+        new_value = n2 + n1
+        sequence.append(new_value)
+        n2 = n1
+        n1 = new_value
+
+    return sequence
 
 
-# Exercise 1 - Create a program that calculates the sum of a list of values, stored in a inputted file with only one value per line
-def sumOfValuesOfAFile():
-    inputted_filename = input("Please, introduce a file.")
-    sum_of_values = 0
-    try:
-        f = open(inputted_filename, 'r')
-    except IOError:
-        print('ERROR: File not found')
-    else:
-        for line in f:
-            try:
-                number = float(line)
-            except ValueError:
-                print('ERROR: file has invalid elements')
-            else:
-                sum_of_values += number
-        f.close()
-        
-        print("Sum of values: {}".format(sum_of_values))
+def ex1():
+    # Do tests:
+    lst = genFibonacci(10)
+    print(lst)      #-> [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+    # Check the results we expect.
+    # (If a condition fails, the assert statement raises an AssertionError!)
+
+    assert isinstance(lst, list), "lst should be a list"
+    assert lst == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+    assert genFibonacci(2) == [0, 1]
+    assert genFibonacci(6) == [0, 1, 1, 2, 3, 5]
+
+    # If the program reaches this point...
+    print("All tests passed!")
+
+    # Let the user try it:
+    n = int(input("N? "))
+    print("genFibonacci({}) -> {}".format(n, genFibonacci(n)))
 
 
-# Exercise 2 - Complete the program turtledraw.py to read the instructions off of a file and use the turtle to draw
-def turtledraw():
+# Exercise 2 - Write a function that verifies whether a string contains consecutive equal characters, based on the checkDoubles.py program, and verify it passes the tests, also adding a few more adequate ones
+def containsDoubles(word):
     # Exercise 5 on "How to think...", ch. 11.
 
-    t = turtle.Turtle()
+    #t = turtle.Turtle()
     filename = 'mystery.txt'
 
-    try:
-        f = open(filename, 'r')
-    except IOError:
-        print('ERROR: File not found')
-    else:
-        for line in f:
-            if line == 'UP\n':
-                t.up()
-            elif line == 'DOWN\n':
-                t.down()
-            else:
-                coordinates = line.split(" ")
-                if len(coordinates) != 2:
-                    print('ERROR: File has invalid instructions')
-                else:
-                    try:
-                        x_value = float(coordinates[0])
-                        y_value = float(coordinates[1])
-                    except ValueError:
-                        print('ERROR: file has invalid instructions')
-                    else:
-                        t.goto(x_value,y_value)
-        f.close()
+    #try:
+     #   f = open(filename, 'r')
+    #except IOError:
+     #   print('ERROR: File not found')
+    #else:
+        #for line in f:
+            #if line == 'UP\n':
+            #    t.up()
+            #elif line == 'DOWN\n':
+            #    t.down()
+            #else:
+             #   coordinates = line.split(" ")
+              #  if len(coordinates) != 2:
+               #     print('ERROR: File has invalid instructions')
+                #else:
+                 #   try:
+                  #      x_value = float(coordinates[0])
+                   #     y_value = float(coordinates[1])
+                    #except ValueError:
+                     #   print('ERROR: file has invalid instructions')
+                    #else:
+                     #   t.goto(x_value,y_value)
+        #f.close()
 
     # wait 
-    turtle.Screen().exitonclick()
-    turtle.TurtleScreen._RUNNING = True # not to throw Terminator error
+    #turtle.Screen().exitonclick()
+    #turtle.TurtleScreen._RUNNING = True # not to throw Terminator error
 
 
 # Exercise 3a) - Complete the loadFile(fname) function so that, given a file name with the right format, reads its content and returns a list of a tuple (number, name, grade1, grade2, grade3) by student
@@ -164,20 +181,20 @@ def isFloatInputInRange(prompt, min, max):
 
 
 # Exercise 5c) - Make the min and max arguments optional so that, when omitted, the function accepts any real value
-def floatInputOptionallyInRange(prompt, min=-math.inf, max=math.inf):
-    repeat = True
-    while repeat:  
-        inputted_number = input(prompt)
-        try:
-            converted_float = float(inputted_number) 
-        except ValueError:
-            print("Not a float!")
-        else:
-            repeat = False
-            if converted_float >= min and converted_float <= max:
-                print(converted_float)
-            else:
-                print("Value should be in [{},{}]".format(min,max))
+#def floatInputOptionallyInRange(prompt, min=-math.inf, max=math.inf):
+#    repeat = True
+#    while repeat:  
+#        inputted_number = input(prompt)
+ #       try:
+  #          converted_float = float(inputted_number) 
+   #     except ValueError:
+    #        print("Not a float!")
+     #   else:
+      #      repeat = False
+       #     if converted_float >= min and converted_float <= max:
+        #        print(converted_float)
+         #   else:
+          #      print("Value should be in [{},{}]".format(min,max))
 
 
 # Exercise 6 - Write a function compareFiles that verifies whether two given binary mode files are the same, reading and comparing in blocks of 1KiB at a time, and terminating as soon as it finds a difference
@@ -200,23 +217,25 @@ def compareFiles(filename1, filename2):
 
 # Test the function in a program that receives the names of the files as arguments
 def ex6():
-    if len(sys.argv) != 3:
-        print("ERROR: Invalid Arguments during Program Call")
-    else:
-        print("Are {} and {} equal files? {}".format(sys.argv[1], sys.argv[2],compareFiles(sys.argv[1], sys.argv[2])))
+    pass
+#    if len(sys.argv) != 3:
+#        print("ERROR: Invalid Arguments during Program Call")
+#    else:
+#        print("Are {} and {} equal files? {}".format(sys.argv[1], sys.argv[2],compareFiles(sys.argv[1], sys.argv[2])))
 
 
 # Exercise 7 - Create a function that goes through a directory (with os.listdir) and shows the size of each file
 def directorysFileSizes(dir):
-    try:
-        directorys_content = os.listdir(dir)
-    except FileNotFoundError:
-        print("ERROR: Invalid directory name")
-    else:
-        for item in directorys_content:
-
-            if not os.path.isfile(item):
-                print(item + ": " + str(os.stat(dir+'/'+item).st_size))
+    pass
+#    try:
+#        directorys_content = os.listdir(dir)
+#    except FileNotFoundError:
+#        print("ERROR: Invalid directory name")
+#    else:
+#        for item in directorys_content:
+#
+#            if not os.path.isfile(item):
+#                print(item + ": " + str(os.stat(dir+'/'+item).st_size))
 
 ##################MAIN#####################
 
@@ -244,7 +263,7 @@ def main():
         
         if choice==1:     
             print("Exercise 1: \n")
-            sumOfValuesOfAFile()
+            ex1()
         elif choice==2:     
             print("Exercise 2: \n")
             turtledraw()
@@ -257,12 +276,12 @@ def main():
         elif choice==5:     
             print("Exercise 5: \n")
             user_input = input("Min,Max? ").split(",")
-            if len(user_input) != 2:
-                floatInputOptionallyInRange("val? ")
-            else:
-                min = float(user_input[0])
-                max = float(user_input[1])
-                floatInputOptionallyInRange("val? ", min, max)
+            #if len(user_input) != 2:
+            #    floatInputOptionallyInRange("val? ")
+            #else:
+             #   min = float(user_input[0])
+              #  max = float(user_input[1])
+               # floatInputOptionallyInRange("val? ", min, max)
         elif choice==6:
             print("Exercise 6: \n")
             ex6()
