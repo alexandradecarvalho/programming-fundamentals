@@ -97,28 +97,49 @@ def ex3():
     # But you may need to open them with the argument: encoding="latin1".
 
 
-# Exercise 4 - Alter the previous program to save the final table in a text file, using the write method or the print function with the file= argument
-def printOrSavePauta(lst, filename="InvalidFilename"):
-    if filename == "InvalidFilename":
-        print("{:<10}{:^60}{:<10}".format("Number", "Name", "Grade"))
-        #for student_record in lst:
-            #print("{:<10}{:^60}{:<10.2f}".format(student_record[0], student_record[1], notaFinal(student_record)))
-    else:
-        f = open(filename, 'w')
-        f.write("{:<10}{:^60}{:<10}".format("Number", "Name", "Grade"))
-        #for student_record in lst:
-        #    f.write("{:<10}{:^60}{:<10.2f}".format(student_record[0], student_record[1], notaFinal(student_record)))
-        f.close()
+# Exercise 4 - Complete the findWords.py program to find out the missing word by reading a list of English words from the /usr/share/dict/words file, which usually exists in Linux/Unix systems, and by writing the filterPattern(lst,pattern) to extract, from a list of strings, the one with the given pattern
+def load(fname):
+    with open(fname) as f:
+        lst = []
+        for line in f:
+            word = line.strip()
+            lst.append(word)
+    return lst
 
+def matchesPattern(s, pattern):
+    if len(s) != (word_len:=len(pattern)):
+        return False
+    else:
+        index = 0
+        while index < word_len:
+            if pattern[index] != "?":
+                if s[index].lower() != pattern[index].lower():
+                    return False
+            index += 1
+    return True
+
+def filterPattern(lst, pattern):
+    pass
 
 def ex4():
-    filename = 'school.csv'
-    #student_records = loadFile(filename)
-    filename = input("Insert filename: ")
-    #if filename:
-    #    printOrSavePauta(student_records, filename)
-    #else:
-    #    printOrSavePauta(student_records)
+    assert matchesPattern("secret", "s?c??t") == True
+    assert matchesPattern("socket", "s?c??t") == True
+    assert matchesPattern("soccer", "s?c??t") == False
+    assert matchesPattern("SEcrEt", "?ecr?t") == True, "should be case-insensitive"
+    
+    print("All tests passed!")
+
+    #englishWords = load("/usr/share/dict/words")
+
+    #lst = filterPattern(englishWords, "s?c??t")
+    #print(lst)
+
+    #assert isinstance(lst, list),  "result lst should be a list"
+    #assert "secret" in lst,  "result should contain 'secret'"
+
+    # Solution to "?YS???Y"
+    #lst = filterPattern(englishWords, "?ys???y")
+    #print(lst)
 
 
 # Exercise 5a) - To deal with the problem of a user inputting a text that generates a ValueError during conversion, create a floatInput(prompt) function that reads and validates user input: it asks for a value, tries to convert it and, if it fails, warns the user and repeats everything
