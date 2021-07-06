@@ -22,7 +22,6 @@ def genFibonacci(n):
 
     return sequence
 
-
 def ex1():
     # Do tests:
     lst = genFibonacci(10)
@@ -57,8 +56,6 @@ def containsDoubles(word):
         else:
             return containsDoubles(word[1:])
 
-
-# Exercise 3a) - Complete the loadFile(fname) function so that, given a file name with the right format, reads its content and returns a list of a tuple (number, name, grade1, grade2, grade3) by student
 def ex2():
     # Test function
     assert containsDoubles("pool") == True
@@ -77,36 +74,40 @@ def ex2():
     print("All tests passed!")
 
 
-# Exercise 3b) - Create a notaFinal(reg) that, given a tuple with the record of a student, calculates and returns their final grade, the average of the three scores in the record
-def notaFinal(reg):
-    return (reg[2] + reg[3] + reg[4])/3
-    
+# Exercise 3 - In the checkDoubles.py program, complete the findLinesWithDoubles function to find out the words of a file which have duplicate letters
+def findLinesWithDoubles(fname):
+    words_with_duplicated_sequencial_characters = []
+    try:
+        f = open(fname, 'r')
+    except IOError:
+        print('ERROR: File not found')
+    else:
+        for word in f:
+            if containsDoubles(word):
+                words_with_duplicated_sequencial_characters += [word]
+    return words_with_duplicated_sequencial_characters
 
-# Exercise 3c) - Create a printPauta(lst) function that, given a list of student records, shows a table with their names, numbers and final grades, formatted and with the name appearing centered and the number and grade appearing aligned to the right
-def printPauta(lst):
-    print("{:<10}{:^60}{:<10}".format("Number", "Name", "Grade"))
-    for student_record in lst:
-        print("{:<10}{:^60}{:<10.2f}".format(student_record[0], student_record[1], notaFinal(student_record)))
-
-
-# Exercise 3d) - Using the functions above, complete the main function to read the file, sort the list with the .sort() method and show the final table
 def ex3():
-    filename = 'school.csv'
-    #student_records = loadFile(filename)
-    #printPauta(student_records)
+    # This should show a list of all English words with double letters.
+    lst = findLinesWithDoubles("/usr/share/dict/words")
+    print(lst)
+
+    # You may download files with Portuguese words from:
+    # http://natura.di.uminho.pt/download/sources/Dictionaries/wordlists/LATEST/
+    # But you may need to open them with the argument: encoding="latin1".
 
 
 # Exercise 4 - Alter the previous program to save the final table in a text file, using the write method or the print function with the file= argument
 def printOrSavePauta(lst, filename="InvalidFilename"):
     if filename == "InvalidFilename":
         print("{:<10}{:^60}{:<10}".format("Number", "Name", "Grade"))
-        for student_record in lst:
-            print("{:<10}{:^60}{:<10.2f}".format(student_record[0], student_record[1], notaFinal(student_record)))
+        #for student_record in lst:
+            #print("{:<10}{:^60}{:<10.2f}".format(student_record[0], student_record[1], notaFinal(student_record)))
     else:
         f = open(filename, 'w')
         f.write("{:<10}{:^60}{:<10}".format("Number", "Name", "Grade"))
-        for student_record in lst:
-            f.write("{:<10}{:^60}{:<10.2f}".format(student_record[0], student_record[1], notaFinal(student_record)))
+        #for student_record in lst:
+        #    f.write("{:<10}{:^60}{:<10.2f}".format(student_record[0], student_record[1], notaFinal(student_record)))
         f.close()
 
 
