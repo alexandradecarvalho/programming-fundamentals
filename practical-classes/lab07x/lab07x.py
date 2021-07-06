@@ -47,63 +47,34 @@ def ex1():
 
 # Exercise 2 - Write a function that verifies whether a string contains consecutive equal characters, based on the checkDoubles.py program, and verify it passes the tests, also adding a few more adequate ones
 def containsDoubles(word):
-    # Exercise 5 on "How to think...", ch. 11.
-
-    #t = turtle.Turtle()
-    filename = 'mystery.txt'
-
-    #try:
-     #   f = open(filename, 'r')
-    #except IOError:
-     #   print('ERROR: File not found')
-    #else:
-        #for line in f:
-            #if line == 'UP\n':
-            #    t.up()
-            #elif line == 'DOWN\n':
-            #    t.down()
-            #else:
-             #   coordinates = line.split(" ")
-              #  if len(coordinates) != 2:
-               #     print('ERROR: File has invalid instructions')
-                #else:
-                 #   try:
-                  #      x_value = float(coordinates[0])
-                   #     y_value = float(coordinates[1])
-                    #except ValueError:
-                     #   print('ERROR: file has invalid instructions')
-                    #else:
-                     #   t.goto(x_value,y_value)
-        #f.close()
-
-    # wait 
-    #turtle.Screen().exitonclick()
-    #turtle.TurtleScreen._RUNNING = True # not to throw Terminator error
+    # Define the function containsDoubles here,
+    # so that it passes all the tests below.
+    if len(word) <= 1:
+        return False
+    else:
+        if word[0] == word[1]:
+            return True
+        else:
+            return containsDoubles(word[1:])
 
 
 # Exercise 3a) - Complete the loadFile(fname) function so that, given a file name with the right format, reads its content and returns a list of a tuple (number, name, grade1, grade2, grade3) by student
-def loadFile(fname):
-    lst = []
+def ex2():
+    # Test function
+    assert containsDoubles("pool") == True
+    assert containsDoubles("polo") == False
+    assert containsDoubles("erro") == True
+    assert containsDoubles("connosco") == True
+    assert containsDoubles("banana") == False
 
-    try:
-        f = open(fname, 'r')
-    except IOError:
-        print('ERROR: File not found')
-    else:
-        for line in f:
-            if line != "Numero\tNome\tCurso\tRegime\tDataInscricao\tnota1\tnota2\tnota3\n": # ignoring header line
-                line_content_list = line.strip("\n").split("\t")
-                try:
-                    student_number = int(line_content_list[0])
-                    student_grade1 = float(line_content_list[5])
-                    student_grade2 = float(line_content_list[6])
-                    student_grade3 = float(line_content_list[7])
-                except ValueError:
-                    print("ERROR: Invalid values")
-                else:
-                    lst.append(tuple([student_number, line_content_list[1], student_grade1, student_grade2, student_grade3]))
-        f.close()
-    return lst
+    # Add a few more tests below
+    assert containsDoubles("eel") == True
+    assert containsDoubles("ball") == True
+    assert containsDoubles("bola") == False
+    assert containsDoubles("!!") == True
+
+    # If the program reaches this point...
+    print("All tests passed!")
 
 
 # Exercise 3b) - Create a notaFinal(reg) that, given a tuple with the record of a student, calculates and returns their final grade, the average of the three scores in the record
@@ -121,8 +92,8 @@ def printPauta(lst):
 # Exercise 3d) - Using the functions above, complete the main function to read the file, sort the list with the .sort() method and show the final table
 def ex3():
     filename = 'school.csv'
-    student_records = loadFile(filename)
-    printPauta(student_records)
+    #student_records = loadFile(filename)
+    #printPauta(student_records)
 
 
 # Exercise 4 - Alter the previous program to save the final table in a text file, using the write method or the print function with the file= argument
@@ -141,12 +112,12 @@ def printOrSavePauta(lst, filename="InvalidFilename"):
 
 def ex4():
     filename = 'school.csv'
-    student_records = loadFile(filename)
+    #student_records = loadFile(filename)
     filename = input("Insert filename: ")
-    if filename:
-        printOrSavePauta(student_records, filename)
-    else:
-        printOrSavePauta(student_records)
+    #if filename:
+    #    printOrSavePauta(student_records, filename)
+    #else:
+    #    printOrSavePauta(student_records)
 
 
 # Exercise 5a) - To deal with the problem of a user inputting a text that generates a ValueError during conversion, create a floatInput(prompt) function that reads and validates user input: it asks for a value, tries to convert it and, if it fails, warns the user and repeats everything
@@ -266,7 +237,7 @@ def main():
             ex1()
         elif choice==2:     
             print("Exercise 2: \n")
-            turtledraw()
+            ex2()
         elif choice==3:     
             print("Exercise 3: \n")
             ex3()
