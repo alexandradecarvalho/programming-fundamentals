@@ -119,7 +119,11 @@ def matchesPattern(s, pattern):
     return True
 
 def filterPattern(lst, pattern):
-    pass
+    matching_words = []
+    for word in lst:
+        if matchesPattern(word, pattern):
+            matching_words += [word]
+    return matching_words
 
 def ex4():
     assert matchesPattern("secret", "s?c??t") == True
@@ -129,106 +133,69 @@ def ex4():
     
     print("All tests passed!")
 
-    #englishWords = load("/usr/share/dict/words")
+    englishWords = load("/usr/share/dict/words")
 
-    #lst = filterPattern(englishWords, "s?c??t")
-    #print(lst)
+    lst = filterPattern(englishWords, "s?c??t")
+    print(lst)
 
-    #assert isinstance(lst, list),  "result lst should be a list"
-    #assert "secret" in lst,  "result should contain 'secret'"
+    assert isinstance(lst, list),  "result lst should be a list"
+    assert "secret" in lst,  "result should contain 'secret'"
 
     # Solution to "?YS???Y"
-    #lst = filterPattern(englishWords, "?ys???y")
-    #print(lst)
+    lst = filterPattern(englishWords, "?ys???y")
+    print(lst)
 
 
-# Exercise 5a) - To deal with the problem of a user inputting a text that generates a ValueError during conversion, create a floatInput(prompt) function that reads and validates user input: it asks for a value, tries to convert it and, if it fails, warns the user and repeats everything
-def floatInput(prompt):
-    repeat = True
-    while repeat:  
-        inputted_number = input(prompt)
+# Exercise 5a) - The printTable function must print a table with four columns: name, weight, height and body mass index (BMI) which is calculated by weight/height, with the numeric columns aligned to the right and with a fixed number of decimals
+def printTable(list_of_people):
+    print("\n{:<20}   {:>5}  {:>6}  {:>6}".format("Name","Weight","Height","BMI"))
+    for person in list_of_people:
+        print("{:<20}   {:>6.0f}  {:>6.2f}  {:>6.1f}".format(person[0],person[1],person[2],person[1]/(person[2]**2)))
+    print("\n")
+
+# Exercise 5b) - The inputBetween function must ask for and return a value introduced by the user, but only if is between the established limits, otherwise, it must warn the user and ask for the value again until it falls under the acceptable range
+def inputBetween(prompt, min, max):
+    while True:
+        introduced_value = input(prompt)
         try:
-            converted_float = float(inputted_number) 
+            introduced_value = float(introduced_value)
         except ValueError:
-            print("Not a float!")
+            print("ERROR: Introduced value is not a valid number")
         else:
-            repeat = False
-            print(converted_float)
-
-
-# Exercise 5b) - Add two arguments min and max, validate if the inputted value is inside the interval [min,max] and warn the user and repeat everything if it isn't
-def isFloatInputInRange(prompt, min, max):
-    repeat = True
-    while repeat:  
-        inputted_number = input(prompt)
-        try:
-            converted_float = float(inputted_number) 
-        except ValueError:
-            print("Not a float!")
-        else:
-            repeat = False
-            if converted_float >= min and converted_float <= max:
-                print(converted_float)
+            if introduced_value > min and introduced_value < max:
+                return introduced_value
             else:
-                print("Value should be in [{},{}]".format(min,max))
+                print("Value must be in [{},{}]!".format(min, max))
 
+# Exercise 5c) - The selectTaller must return a list with the records of all people taller than the the given threshold
+def selectTaller(list_of_people, limit):
+    taller_people = []
+    for person in list_of_people:
+        if person[2] > limit:
+            taller_people += [person]
+    return taller_people
 
-# Exercise 5c) - Make the min and max arguments optional so that, when omitted, the function accepts any real value
-#def floatInputOptionallyInRange(prompt, min=-math.inf, max=math.inf):
-#    repeat = True
-#    while repeat:  
-#        inputted_number = input(prompt)
- #       try:
-  #          converted_float = float(inputted_number) 
-   #     except ValueError:
-    #        print("Not a float!")
-     #   else:
-      #      repeat = False
-       #     if converted_float >= min and converted_float <= max:
-        #        print(converted_float)
-         #   else:
-          #      print("Value should be in [{},{}]".format(min,max))
+def ex5():
+    # Lista de pessoas com nome, peso em kg, altura em metro.
+    people = [("John", 64.5, 1.757),
+        ("Berta", 64.0, 1.612),
+        ("Maria", 45.1, 1.715),
+        ("Andy", 98.3, 1.81),
+        ("Lisa", 46.8, 1.622),
+        ("Kelly", 83.2, 1.78)]
 
+    # Imprime os dados numa tabela com 4 colunas: nome, peso, altura e IMC.
+    printTable(people)
+    
+    # Pede e devolve um valor, mas só aceita se estiver no intervalo certo.
+    limit = inputBetween("altura minima? ", 1.1, 2.5)
+    
+    # Extrai uma lista de pessoas com altura superior a limit.
+    tallpeople = selectTaller(people, limit)
+    
+    # Mostra uma tabela só com as pessoas altas.
+    printTable(tallpeople)
 
-# Exercise 6 - Write a function compareFiles that verifies whether two given binary mode files are the same, reading and comparing in blocks of 1KiB at a time, and terminating as soon as it finds a difference
-def compareFiles(filename1, filename2):
-    try:
-        f1 = open(filename1, 'rb')
-        f2 = open(filename2, 'rb')
-    except IOError:
-        print("ERROR: Invalid filename(s)!")
-        return None
-    else:
-        while ((kib1 := f1.read(1024)) and (kib2 := f2.read(1024))):
-            if kib1 != kib2:
-                return False
-        
-        f1.close()
-        f2.close()
-        return True
-
-
-# Test the function in a program that receives the names of the files as arguments
-def ex6():
-    pass
-#    if len(sys.argv) != 3:
-#        print("ERROR: Invalid Arguments during Program Call")
-#    else:
-#        print("Are {} and {} equal files? {}".format(sys.argv[1], sys.argv[2],compareFiles(sys.argv[1], sys.argv[2])))
-
-
-# Exercise 7 - Create a function that goes through a directory (with os.listdir) and shows the size of each file
-def directorysFileSizes(dir):
-    pass
-#    try:
-#        directorys_content = os.listdir(dir)
-#    except FileNotFoundError:
-#        print("ERROR: Invalid directory name")
-#    else:
-#        for item in directorys_content:
-#
-#            if not os.path.isfile(item):
-#                print(item + ": " + str(os.stat(dir+'/'+item).st_size))
 
 ##################MAIN#####################
 
@@ -239,8 +206,6 @@ def print_menu():
     print("3. Exercise 3")
     print("4. Exercise 4")
     print("5. Exercise 5")
-    print("6. Exercise 6")
-    print("7. Exercise 7")
     print("0. Exit")
     print(67 * "-")
 
@@ -268,20 +233,7 @@ def main():
             ex4()
         elif choice==5:     
             print("Exercise 5: \n")
-            user_input = input("Min,Max? ").split(",")
-            #if len(user_input) != 2:
-            #    floatInputOptionallyInRange("val? ")
-            #else:
-             #   min = float(user_input[0])
-              #  max = float(user_input[1])
-               # floatInputOptionallyInRange("val? ", min, max)
-        elif choice==6:
-            print("Exercise 6: \n")
-            ex6()
-        elif choice==7:
-            print("Exercise 7: \n")
-            directory_name = input("dir name? ")
-            directorysFileSizes(directory_name)
+            ex5()
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False

@@ -18,7 +18,7 @@
 
 5.  The `main` function in the `imctable.py` program defines a list with weights and heights of several people and invokes several functions to process and show that data. Analise the program and complete the missing functions in order to make the program work correctly.
 
-   a) The `printTable` function must print a table with four columns: name, weight, height and body mass index (BMI). The BMI can be calculated by weight/height. The numeric columns should appear aligned to the right and with a fixed number of decimals, as seen below
+   a) The `printTable` function must print a table with four columns: name, weight, height and body mass index (BMI). The BMI can be calculated by weight/(height**2). The numeric columns should appear aligned to the right and with a fixed number of decimals, as seen below.
 
    b) The `inputBetween` function must ask for and return a value introduced by the user, but only if is between the established limits. Otherwise, it must warn the user and ask for the value again until it falls under the acceptable range.
 
