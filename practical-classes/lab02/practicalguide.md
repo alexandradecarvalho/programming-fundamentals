@@ -1,4 +1,4 @@
-## Class 02 - RESOLVED
+## **Programming** Fundamentals, Class 02
 
 ### The Python language
 
