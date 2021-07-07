@@ -111,28 +111,62 @@ def ex3():
             print("Not implemented!")
 
 
-# Exercise 4 - Alter the previous program to save the final table in a text file, using the write method or the print function with the file= argument
-def printOrSavePauta(lst, filename="InvalidFilename"):
-    if filename == "InvalidFilename":
-        print("{:<10}{:^60}{:<10}".format("Number", "Name", "Grade"))
-        for student_record in lst:
-            print("{:<10}{:^60}{:<10.2f}".format(student_record[0], student_record[1], notaFinal(student_record)))
-    else:
-        f = open(filename, 'w')
-        f.write("{:<10}{:^60}{:<10}".format("Number", "Name", "Grade"))
-        for student_record in lst:
-            f.write("{:<10}{:^60}{:<10.2f}".format(student_record[0], student_record[1], notaFinal(student_record)))
-        f.close()
+# Exercise 4 - Adapt the previous program to allow associating an address to a contact
+def listContactsWithAddress(dic):
+    """Print the contents of the dictionary as a table, one item per row."""
+    print("{:>12s} : {:^27s} : {:<20s}".format("Numero", "Nome","Morada"))
+    for num, contact in dic.items():
+        print("{:>12s} : {:^27s} : {:<20s} ".format(num, contact[0], contact[1]))
 
+def addContactWithAddress(dic):
+    name = input("Name: ")
+    number = input("Number: ")
+    address = input("Address: ")
+    dic[number] = (name,address)
+    print("Contact added!")
+
+def filterPartNameWithAddress(contacts, partName):
+    """Returns a new dict with the contacts whose names contain partName."""
+    possible_contacts = {}
+    for number,name_address in contacts.items():
+        if partName.lower() in name_address[0].lower():
+            possible_contacts[number] = name_address
+    return possible_contacts
 
 def ex4():
-    filename = 'school.csv'
-    student_records = loadFile(filename)
-    filename = input("Insert filename: ")
-    if filename:
-        printOrSavePauta(student_records, filename)
-    else:
-        printOrSavePauta(student_records)
+    """This is the main function containing the main loop."""
+
+    # The list of contacts (it's actually a dictionary!):
+    contactos_w_address = {"234370200": ("Universidade de Aveiro","Santiago, Aveiro"),
+        "727392822": ("Cristiano Aveiro","Funchal"),
+        "387719992": ("Maria Matos","Aveiro"),
+        "887555987": ("Marta Maia","Coimbra"),
+        "876111333": ("Carlos Martins","Porto"),
+        "433162999": ("Ana Bacalhau","Lisboa")
+        }
+
+    op = ""
+    while op != "T":
+        op = menu()
+        if op == "T":
+            print("Fim")
+        elif op == "L":
+            print("Contacts:")
+            listContactsWithAddress(contactos_w_address)
+        elif op == "A":
+            addContactWithAddress(contactos_w_address)
+            listContactsWithAddress(contactos_w_address)
+        elif op == "R":
+            removeContact(contactos_w_address)
+            listContactsWithAddress(contactos_w_address)
+        elif op == "N":
+            print("Contact found: {}".format(findNumber(contactos_w_address)))
+        elif op == "P":
+            partName = input("Search: ")
+            print("Matching Contacts: ")
+            listContactsWithAddress(filterPartNameWithAddress(contactos_w_address,partName))
+        else:
+            print("Not implemented!")
 
 
 # Exercise 5a) - To deal with the problem of a user inputting a text that generates a ValueError during conversion, create a floatInput(prompt) function that reads and validates user input: it asks for a value, tries to convert it and, if it fails, warns the user and repeats everything
