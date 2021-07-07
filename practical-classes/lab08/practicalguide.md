@@ -15,7 +15,7 @@
    shop	# compare results!
    {'sugar':1,'eggs':6} == shop
    type(shop)
-   le(shop)
+   len(shop)
    shop[0]
    shop['eggs']
    'eggs' in shop
@@ -27,7 +27,6 @@
    shop.append('beer')
    shop['beer'] = 6*0.33
    shop	# compare results!
-   shop
    len(shop)
    shop['beer'] += 0.33
    shop
