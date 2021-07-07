@@ -4,7 +4,7 @@
 import sys
 
 
-# Exercise 1 - Write a program that determines the frequency of the occurrence of all letters from a text file whose name should be passed as a command line argument, not distinguishing upper and lower cases, and showing the results in alphabetical order
+# Exercise 2 - Write a program that determines the frequency of the occurrence of all letters from a text file whose name should be passed as a command line argument, not distinguishing upper and lower cases, and showing the results in alphabetical order
 def frequencyOfLetters(filename):
     frequency_results = {}
     try:
@@ -18,59 +18,97 @@ def frequencyOfLetters(filename):
                     frequency_results[character.lower()] = frequency_results.get(character.lower(),0) + 1
     return frequency_results 
 
-def ex1():
+def ex2():
     file = sys.argv[1]
     results = frequencyOfLetters(file)
 
     for letter in sorted(results.keys()):
         print(letter,results[letter]) 
 
-# Exercise 2 - Complete the program turtledraw.py to read the instructions off of a file and use the turtle to draw
-def turtledraw():
-    pass
 
-# Exercise 3a) - Complete the loadFile(fname) function so that, given a file name with the right format, reads its content and returns a list of a tuple (number, name, grade1, grade2, grade3) by student
-def loadFile(fname):
-    lst = []
+# Exercise 3a) - Add the "add contact" operation that asks for a name and a number and adds it to the dictionary
+def menu():
+    """Shows the menu and gets user option."""
+    print()
+    print("(L)ist contacts")
+    print("(A)dd contact")
+    print("(R)emove contact")
+    print("Search (N)umber")
+    print("Search (P)art of name")
+    print("(T)erminate\n")
+    op = input("option? ").upper()   # converts to uppercase...
+    return op
 
-    try:
-        f = open(fname, 'r')
-    except IOError:
-        print('ERROR: File not found')
+def listContacts(dic):
+    """Print the contents of the dictionary as a table, one item per row."""
+    print("{:>12s} : {}".format("Numero", "Nome"))
+    for num in dic:
+        print("{:>12s} : {}".format(num, dic[num]))
+
+def addContact(dic):
+    name = input("Name: ")
+    number = input("Number: ")
+    dic[number] = name
+    print("Contact added!")
+
+# Exercise 3b) - Add the "remove contact" operation that asks for the number and deletes the correspondent item
+def removeContact(dic):
+    number = input("Number to delete: ")
+    if number in dic:
+        del dic[number]
+    print("Contact removed!")
+
+# Exercise 3c) - Add the "find number" operation  that asks for a number and shows the correspondent name, if it exists, or the number itself otherwise
+def findNumber(dic):
+    number = input("Number to find: ")
+    if number in dic:
+        return dic[number]
     else:
-        for line in f:
-            if line != "Numero\tNome\tCurso\tRegime\tDataInscricao\tnota1\tnota2\tnota3\n": # ignoring header line
-                line_content_list = line.strip("\n").split("\t")
-                try:
-                    student_number = int(line_content_list[0])
-                    student_grade1 = float(line_content_list[5])
-                    student_grade2 = float(line_content_list[6])
-                    student_grade3 = float(line_content_list[7])
-                except ValueError:
-                    print("ERROR: Invalid values")
-                else:
-                    lst.append(tuple([student_number, line_content_list[1], student_grade1, student_grade2, student_grade3]))
-        f.close()
-    return lst
+        return number
 
+# Exercise 3d) - Complete the filterPartName function, which given a string, should return a dictionary with the contacts (name: number) whose names include that string, which should be used to implement the "search part of the name" operation, asking for a partial name and listing all contacts who contain it
+def filterPartName(contacts, partName):
+    """Returns a new dict with the contacts whose names contain partName."""
+    possible_contacts = {}
+    for number,name in contacts.items():
+        if partName.lower() in name.lower():
+            possible_contacts[name] = number
+    return possible_contacts
 
-# Exercise 3b) - Create a notaFinal(reg) that, given a tuple with the record of a student, calculates and returns their final grade, the average of the three scores in the record
-def notaFinal(reg):
-    return (reg[2] + reg[3] + reg[4])/3
-    
-
-# Exercise 3c) - Create a printPauta(lst) function that, given a list of student records, shows a table with their names, numbers and final grades, formatted and with the name appearing centered and the number and grade appearing aligned to the right
-def printPauta(lst):
-    print("{:<10}{:^60}{:<10}".format("Number", "Name", "Grade"))
-    for student_record in lst:
-        print("{:<10}{:^60}{:<10.2f}".format(student_record[0], student_record[1], notaFinal(student_record)))
-
-
-# Exercise 3d) - Using the functions above, complete the main function to read the file, sort the list with the .sort() method and show the final table
 def ex3():
-    filename = 'school.csv'
-    student_records = loadFile(filename)
-    printPauta(student_records)
+    """This is the main function containing the main loop."""
+
+    # The list of contacts (it's actually a dictionary!):
+    contactos = {"234370200": "Universidade de Aveiro",
+        "727392822": "Cristiano Aveiro",
+        "387719992": "Maria Matos",
+        "887555987": "Marta Maia",
+        "876111333": "Carlos Martins",
+        "433162999": "Ana Bacalhau"
+        }
+
+    op = ""
+    while op != "T":
+        op = menu()
+        if op == "T":
+            print("Fim")
+        elif op == "L":
+            print("Contacts:")
+            listContacts(contactos)
+        elif op == "A":
+            addContact(contactos)
+            listContacts(contactos)
+        elif op == "R":
+            removeContact(contactos)
+            listContacts(contactos)
+        elif op == "N":
+            print("Contact found: {}".format(findNumber(contactos)))
+        elif op == "P":
+            partName = input("Search: ")
+            print("Matching Contacts: ")
+            listContacts(filterPartName(contactos,partName))
+        else:
+            print("Not implemented!")
 
 
 # Exercise 4 - Alter the previous program to save the final table in a text file, using the write method or the print function with the file= argument
@@ -179,7 +217,6 @@ def directorysFileSizes(dir):
 
 def print_menu():
     print(30 * "-" , "MENU" , 30 * "-")
-    print("1. Exercise 1")
     print("2. Exercise 2")
     print("3. Exercise 3")
     print("4. Exercise 4")
@@ -199,12 +236,9 @@ def main():
         except:
             choice = 222    # Invalid option
         
-        if choice==1:     
-            print("Exercise 1: \n")
-            ex1()
-        elif choice==2:     
+        if choice==2:     
             print("Exercise 2: \n")
-            turtledraw()
+            ex2()
         elif choice==3:     
             print("Exercise 3: \n")
             ex3()
