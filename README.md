@@ -24,6 +24,8 @@ This Curricular Unit provides students the ability to solve small and medium siz
 
 **Lab07x: ** [Complementary Exercises](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab07x)
 
+**Lab08: ** [Dictionaries](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab08)
+
 
 
 [Theoretical Classes](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes):
@@ -41,4 +43,6 @@ This Curricular Unit provides students the ability to solve small and medium siz
 **Class06: ** [Lists, Tuples and Strings](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class06)
 
 **Class07: ** [Files, Command-Line Arguments and Exceptions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class07)
+
+**Class08: ** [Dictionaries](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class08)
 

@@ -1,6 +1,6 @@
 ## **Programming** Fundamentals, Class 08
 
-### Exceptions
+### Dictionaries
 
 ###### this is an adaptation of the practical guide provided by Professor João Manuel de Oliveira e Silva Rodrigues
 
