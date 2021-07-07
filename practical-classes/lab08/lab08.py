@@ -1,68 +1,33 @@
 # Alexandra de Carvalho, 07 jul 2021
 
 
-import os
-import turtle
-import math
 import sys
 
 
-# Exercise 1 - Create a program that calculates the sum of a list of values, stored in a inputted file with only one value per line
-def sumOfValuesOfAFile():
-    inputted_filename = input("Please, introduce a file.")
-    sum_of_values = 0
-    try:
-        f = open(inputted_filename, 'r')
-    except IOError:
-        print('ERROR: File not found')
-    else:
-        for line in f:
-            try:
-                number = float(line)
-            except ValueError:
-                print('ERROR: file has invalid elements')
-            else:
-                sum_of_values += number
-        f.close()
-        
-        print("Sum of values: {}".format(sum_of_values))
-
-
-# Exercise 2 - Complete the program turtledraw.py to read the instructions off of a file and use the turtle to draw
-def turtledraw():
-    # Exercise 5 on "How to think...", ch. 11.
-
-    t = turtle.Turtle()
-    filename = 'mystery.txt'
-
+# Exercise 1 - Write a program that determines the frequency of the occurrence of all letters from a text file whose name should be passed as a command line argument, not distinguishing upper and lower cases, and showing the results in alphabetical order
+def frequencyOfLetters(filename):
+    frequency_results = {}
     try:
         f = open(filename, 'r')
     except IOError:
         print('ERROR: File not found')
     else:
         for line in f:
-            if line == 'UP\n':
-                t.up()
-            elif line == 'DOWN\n':
-                t.down()
-            else:
-                coordinates = line.split(" ")
-                if len(coordinates) != 2:
-                    print('ERROR: File has invalid instructions')
-                else:
-                    try:
-                        x_value = float(coordinates[0])
-                        y_value = float(coordinates[1])
-                    except ValueError:
-                        print('ERROR: file has invalid instructions')
-                    else:
-                        t.goto(x_value,y_value)
-        f.close()
+            for character in line:
+                if character.isalpha():
+                    frequency_results[character.lower()] = frequency_results.get(character.lower(),0) + 1
+    return frequency_results 
 
-    # wait 
-    turtle.Screen().exitonclick()
-    turtle.TurtleScreen._RUNNING = True # not to throw Terminator error
+def ex1():
+    file = sys.argv[1]
+    results = frequencyOfLetters(file)
 
+    for letter in sorted(results.keys()):
+        print(letter,results[letter]) 
+
+# Exercise 2 - Complete the program turtledraw.py to read the instructions off of a file and use the turtle to draw
+def turtledraw():
+    pass
 
 # Exercise 3a) - Complete the loadFile(fname) function so that, given a file name with the right format, reads its content and returns a list of a tuple (number, name, grade1, grade2, grade3) by student
 def loadFile(fname):
@@ -164,7 +129,7 @@ def isFloatInputInRange(prompt, min, max):
 
 
 # Exercise 5c) - Make the min and max arguments optional so that, when omitted, the function accepts any real value
-def floatInputOptionallyInRange(prompt, min=-math.inf, max=math.inf):
+def floatInputOptionallyInRange(prompt):
     repeat = True
     while repeat:  
         inputted_number = input(prompt)
@@ -208,15 +173,7 @@ def ex6():
 
 # Exercise 7 - Create a function that goes through a directory (with os.listdir) and shows the size of each file
 def directorysFileSizes(dir):
-    try:
-        directorys_content = os.listdir(dir)
-    except FileNotFoundError:
-        print("ERROR: Invalid directory name")
-    else:
-        for item in directorys_content:
-
-            if not os.path.isfile(item):
-                print(item + ": " + str(os.stat(dir+'/'+item).st_size))
+    pass
 
 ##################MAIN#####################
 
@@ -244,7 +201,7 @@ def main():
         
         if choice==1:     
             print("Exercise 1: \n")
-            sumOfValuesOfAFile()
+            ex1()
         elif choice==2:     
             print("Exercise 2: \n")
             turtledraw()
