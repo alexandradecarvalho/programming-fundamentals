@@ -231,30 +231,126 @@ def ex5():
     for team,scores in table.items():
         ordered_podium += [str(scores[5]) + team]
 
-    print("{:^15s} : {:^10s} : {:^10s} : {:^10s} : {:^15s} : {:^15s} : {:^10s}".format("Team", "Victories","Ties","Losses","Scored Goals","Suffered Goals","Points"))
-    for team in sorted(ordered_podium,reverse=True):
-        score = table[team[1:]]
-        print("{:^15s} : {:^10d} : {:^10d} : {:^10d} : {:^15d} : {:^15d} : {:^10d}".format(team[1:], score[0], score[1], score[2], score[3],score[4],score[5]))
-    
-    # Exercise 5f) - presenting the winner team!
-    winner = sorted(ordered_podium,reverse=True)[0][1:]
-    winner_score = table[winner]
-    best_rate = winner_score[3] - winner_score[4]
+    if table:
+        print("{:^15s} : {:^10s} : {:^10s} : {:^10s} : {:^15s} : {:^15s} : {:^10s}".format("Team", "Victories","Ties","Losses","Scored Goals","Suffered Goals","Points"))
+        for team in sorted(ordered_podium,reverse=True):
+            score = table[team[1:]]
+            print("{:^15s} : {:^10d} : {:^10d} : {:^10d} : {:^15d} : {:^15d} : {:^10d}".format(team[1:], score[0], score[1], score[2], score[3],score[4],score[5]))
+        
+        # Exercise 5f) - presenting the winner team!
+        winner = sorted(ordered_podium,reverse=True)[0][1:]
+        winner_score = table[winner]
+        best_rate = winner_score[3] - winner_score[4]
 
-    for team in ordered_podium:
-        team_score = table[team[1:]]
-        if team_score[5] == winner_score[5]:
-            if team_score[3] - team_score[4] > best_rate:
-                best_rate = team_score[3] - team_score[4]
-                winner = team
-        else:
-            break
+        for team in ordered_podium:
+            team_score = table[team[1:]]
+            if team_score[5] == winner_score[5]:
+                if team_score[3] - team_score[4] > best_rate:
+                    best_rate = team_score[3] - team_score[4]
+                    winner = team
+            else:
+                break
 
-    return winner
+        return winner
+    return ""
+
 
 # Exercise 6a) - Determine the most transacted company (with highest total volume) 
+def mostTransactedCompany(filename):
+    transactions = {}
+
+    filename.seek(0)
+    for line in filename:
+        record = line.split(",")
+        transactions[record[0]] = transactions.get(record[0],0) + int(record[-1])
+    
+    highest_transaction = 0
+    most_transacted_company = ""
+    for company,value in transactions.items():
+        if value > highest_transaction:
+            most_transacted_company = company
+
+    return most_transacted_company
+
+# Exercise 6b) - Determine the day and value of each stock to attain the highest value
+def dayAndValueOfHighestStock(filename):
+    transactions = {}
+
+    filename.seek(0)
+    for line in filename:
+        record = line.split(",")
+        company_record = transactions.get(record[0])
+        if not company_record or float(record[3]) > company_record[1]:
+            transactions[record[0]] = (record[1],float(record[3])) 
+
+    return transactions
+
+# Exercise 6c) - Determine the company with biggest daily valuation
+def biggestDailyValuation(filename):
+    transactions = {}
+    number_of_counted_days = {}
+
+    filename.seek(0)
+    for line in filename:
+        record = line.split(",")
+        transactions[record[0]] = transactions.get(record[0],0) + (float(record[-2]) - float(record[2]))
+        number_of_counted_days[record[0]] =number_of_counted_days.get(record[0],0) + 1
+    
+    for company in transactions.keys():
+        transactions[company] = transactions[company] / number_of_counted_days[company]
+
+    highest_valuation = 0
+    most_valued_company = ""
+    for company,valuation in transactions.items():
+        if valuation > highest_valuation:
+            most_valued_company = company
+
+    return most_valued_company
+
+# Exercise 6d) - Determine the company with the biggest valuation during the period in the file
+def biggestValuation(filename):
+    transactions = {}
+
+    filename.seek(0)
+    for line in filename:
+        record = line.split(",")
+        if not transactions.get(record[0]): # new company - lets store the opening value
+            transactions[record[0]] = [record[2]]
+        else:                           # let's replace closing value 
+            transactions[record[0]].insert(1,record[-2])
 
 
+    for company in transactions.keys():
+        transactions[company] = float(transactions[company][1]) - float(transactions[company][0])
+
+    highest_valuation = 0
+    most_valued_company = ""
+    for company,valuation in transactions.items():
+        if valuation > highest_valuation:
+            most_valued_company = company
+
+    return most_valued_company
+
+# Exercise 6e) - Create a function that calculates the valuation of a certain portfolio - a dictionary with the number of actions of each title - in between two given dates 
+def portfolioValuation(filename, portfolio, date1, date2):
+    transactions = {}
+    portfolio_valuation = 0
+
+    filename.seek(0)
+    for line in filename:
+        record = line.split(",")
+        if record[0] in portfolio:  # if i have stocks for this company
+            if not transactions.get(record[0]) and record[1] <= date2:
+                transactions[record[0]] = [record[-2]]
+            elif transactions.get(record[0]) and record[1] >= date1:
+                if len(transactions[record[0]]) > 1:
+                    del transactions[record[0]][1]
+                transactions[record[0]].insert(1,record[2])
+    
+    for company in transactions.keys():
+        portfolio_valuation += ((float(transactions[company][0]) - float(transactions[company][1])) * portfolio[company])
+
+    return portfolio_valuation
 
 def ex6():
     try:
@@ -262,6 +358,17 @@ def ex6():
     except IOError:
         print("ERROR: Can\'t open file")
     else:
+        print("Most transacted company: ",mostTransactedCompany(f))
+        
+        print("Day and value of each highest stock: ")
+        for company,record in dayAndValueOfHighestStock(f).items():
+            print(company,record,sep=": ")
+        
+        print("Most valued daily company: ", biggestDailyValuation(f))
+        print("Most valued company in the recorded period: ", biggestValuation(f))
+        
+        print("Porfolio Valuation between 2015-11-20 and 2015-11-10: ", portfolioValuation(f, {'NFLX': 100, 'CSCO': 80}, '2015-11-10', '2015-11-20'))
+
         f.close()
 
 # Exercise 7 - Create a function that goes through a directory (with os.listdir) and shows the size of each file
