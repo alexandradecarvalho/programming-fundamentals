@@ -2,6 +2,7 @@
 
 
 import sys
+from operator import add
 
 
 # Exercise 2 - Write a program that determines the frequency of the occurrence of all letters from a text file whose name should be passed as a command line argument, not distinguishing upper and lower cases, and showing the results in alphabetical order
@@ -16,6 +17,7 @@ def frequencyOfLetters(filename):
             for character in line:
                 if character.isalpha():
                     frequency_results[character.lower()] = frequency_results.get(character.lower(),0) + 1
+        f.close()
     return frequency_results 
 
 def ex2():
@@ -169,79 +171,98 @@ def ex4():
             print("Not implemented!")
 
 
-# Exercise 5a) - To deal with the problem of a user inputting a text that generates a ValueError during conversion, create a floatInput(prompt) function that reads and validates user input: it asks for a value, tries to convert it and, if it fails, warns the user and repeats everything
-def floatInput(prompt):
+# Exercise 5a) - The program should ask the user the names of the teams and store them in a list
+def getTeamNames():
+    teams = []
     repeat = True
     while repeat:  
-        inputted_number = input(prompt)
-        try:
-            converted_float = float(inputted_number) 
-        except ValueError:
-            print("Not a float!")
+        team = input("Team Name (empty to quit): ")
+        if team:
+            teams += [team]
         else:
             repeat = False
-            print(converted_float)
+    return teams
 
+# Exercise 5b) - Use the function created in lab06 for exercise 4 to generate a list of all games - pairs (team1,team2)
+def footbal_matches(lst):
+    matches = []
+    for team1 in lst:
+        for team2 in lst[-1::-1]:
+            if team1 != team2:
+                matches.append(tuple([team1, team2]))
+    return matches
 
-# Exercise 5b) - Add two arguments min and max, validate if the inputted value is inside the interval [min,max] and warn the user and repeat everything if it isn't
-def isFloatInputInRange(prompt, min, max):
-    repeat = True
-    while repeat:  
-        inputted_number = input(prompt)
+# Exercise 5c) - The program should ask the user the result of each game (goals per team) and register that information in a dictionary indexed by game
+def getGamesResults(matches):
+    result = {}
+    for match in matches:
+        scores = input("In the game {} vs {}, how many goals did they score? (please use the notation: goals0,goals1)".format(match[0], match[1])).split(",")
+        while len(scores) != 2:
+            print("ERROR: Please ensure you enter the results with the right format")
+            scores = input("In the game {} vs {}, how many goals did they score? (please use the notation: goals0,goals1)".format(match[0], match[1])).split(",")
+
         try:
-            converted_float = float(inputted_number) 
+            score0 = int(scores[0])
+            score1 = int(scores[1])
         except ValueError:
-            print("Not a float!")
+            print("ERROR: Inserted values are not valid")
         else:
-            repeat = False
-            if converted_float >= min and converted_float <= max:
-                print(converted_float)
-            else:
-                print("Value should be in [{},{}]".format(min,max))
+            result[match] = (score0,score1)
+    
+    return result
 
+# Exercise 5d) - The program should keep a table with the record of number of wins, ties and losses, total of scored and suffered goals, and the points of each team, uptadet with the result of each game
+def updateTable():
+    table = {}
+    matches = footbal_matches(getTeamNames())
+    game_results = getGamesResults(matches)
 
-# Exercise 5c) - Make the min and max arguments optional so that, when omitted, the function accepts any real value
-def floatInputOptionallyInRange(prompt):
-    repeat = True
-    while repeat:  
-        inputted_number = input(prompt)
-        try:
-            converted_float = float(inputted_number) 
-        except ValueError:
-            print("Not a float!")
+    for match,score in game_results.items():
+        table[match[0]] = list( map(add, table.get(match[0], [0,0,0,0,0,0]), [1 if score[0] > score[1] else 0, 1 if score[0] == score[1] else 0, 1 if score[0] < score[1] else 0, score[0], score[1], (2 if score[0] > score[1] else 0) if not score[0] == score[1] else 1]))
+        table[match[1]] = list( map(add, table.get(match[1], [0,0,0,0,0,0]), [1 if score[1] > score[0] else 0, 1 if score[0] == score[1] else 0, 1 if score[1] < score[0] else 0, score[1], score[0], (2 if score[1] > score[0] else 0) if not score[0] == score[1] else 1]))
+
+    return table
+
+# Exercise 5e) - Show the scores table with the following columns: team, victories, ties, losses, scored goals, suffered goals, and points
+def ex5():
+    ordered_podium = []
+
+    table = updateTable()
+    for team,scores in table.items():
+        ordered_podium += [str(scores[5]) + team]
+
+    print("{:^15s} : {:^10s} : {:^10s} : {:^10s} : {:^15s} : {:^15s} : {:^10s}".format("Team", "Victories","Ties","Losses","Scored Goals","Suffered Goals","Points"))
+    for team in sorted(ordered_podium,reverse=True):
+        score = table[team[1:]]
+        print("{:^15s} : {:^10d} : {:^10d} : {:^10d} : {:^15d} : {:^15d} : {:^10d}".format(team[1:], score[0], score[1], score[2], score[3],score[4],score[5]))
+    
+    # Exercise 5f) - presenting the winner team!
+    winner = sorted(ordered_podium,reverse=True)[0][1:]
+    winner_score = table[winner]
+    best_rate = winner_score[3] - winner_score[4]
+
+    for team in ordered_podium:
+        team_score = table[team[1:]]
+        if team_score[5] == winner_score[5]:
+            if team_score[3] - team_score[4] > best_rate:
+                best_rate = team_score[3] - team_score[4]
+                winner = team
         else:
-            repeat = False
-            if converted_float >= min and converted_float <= max:
-                print(converted_float)
-            else:
-                print("Value should be in [{},{}]".format(min,max))
+            break
+
+    return winner
+
+# Exercise 6a) - Determine the most transacted company (with highest total volume) 
 
 
-# Exercise 6 - Write a function compareFiles that verifies whether two given binary mode files are the same, reading and comparing in blocks of 1KiB at a time, and terminating as soon as it finds a difference
-def compareFiles(filename1, filename2):
-    try:
-        f1 = open(filename1, 'rb')
-        f2 = open(filename2, 'rb')
-    except IOError:
-        print("ERROR: Invalid filename(s)!")
-        return None
-    else:
-        while ((kib1 := f1.read(1024)) and (kib2 := f2.read(1024))):
-            if kib1 != kib2:
-                return False
-        
-        f1.close()
-        f2.close()
-        return True
 
-
-# Test the function in a program that receives the names of the files as arguments
 def ex6():
-    if len(sys.argv) != 3:
-        print("ERROR: Invalid Arguments during Program Call")
+    try:
+        f = open("stocks.csv", 'r')
+    except IOError:
+        print("ERROR: Can\'t open file")
     else:
-        print("Are {} and {} equal files? {}".format(sys.argv[1], sys.argv[2],compareFiles(sys.argv[1], sys.argv[2])))
-
+        f.close()
 
 # Exercise 7 - Create a function that goes through a directory (with os.listdir) and shows the size of each file
 def directorysFileSizes(dir):
@@ -280,14 +301,7 @@ def main():
             print("Exercise 4: \n")
             ex4()
         elif choice==5:     
-            print("Exercise 5: \n")
-            user_input = input("Min,Max? ").split(",")
-            if len(user_input) != 2:
-                floatInputOptionallyInRange("val? ")
-            else:
-                min = float(user_input[0])
-                max = float(user_input[1])
-                floatInputOptionallyInRange("val? ", min, max)
+            print("!"*20 + ex5() + "!"*20)
         elif choice==6:
             print("Exercise 6: \n")
             ex6()

@@ -85,6 +85,7 @@ def findLinesWithDoubles(fname):
         for word in f:
             if containsDoubles(word):
                 words_with_duplicated_sequencial_characters += [word]
+        f.close()
     return words_with_duplicated_sequencial_characters
 
 def ex3():
