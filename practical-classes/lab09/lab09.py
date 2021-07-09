@@ -1,31 +1,38 @@
-# Alexandra de Carvalho, 07 jul 2021
-
-
-import sys
-from operator import add
+# Alexandra de Carvalho, 09 jul 2021
 
 
 # Exercise 2 - Write a program that determines the frequency of the occurrence of all letters from a text file whose name should be passed as a command line argument, not distinguishing upper and lower cases, and showing the results in alphabetical order
-def frequencyOfLetters(filename):
-    frequency_results = {}
-    try:
-        f = open(filename, 'r')
-    except IOError:
-        print('ERROR: File not found')
-    else:
-        for line in f:
-            for character in line:
-                if character.isalpha():
-                    frequency_results[character.lower()] = frequency_results.get(character.lower(),0) + 1
-        f.close()
-    return frequency_results 
+def imc(w, h):
+    return w/h**2
 
 def ex2():
-    file = sys.argv[1]
-    results = frequencyOfLetters(file)
+    # Lista de pessoas com nome, peso em kg, altura em metro.
+    people = [("John", 64.5, 1.757),
+        ("Berta", 64.0, 1.612),
+        ("Maria", 45.1, 1.715),
+        ("Andy", 98.3, 1.81),
+        ("Lisa", 46.8, 1.622),
+        ("Kelly", 83.2, 1.78)]
 
-    for letter in sorted(results.keys()):
-        print(letter,results[letter]) 
+    print("People:", people)
+
+    # Esta comprehension define uma lista dos nomes das pessoas em people
+    names = [n for n,w,h in people]
+        # = [p[0] for p in people]  # equivalente
+    print("Names:", names)
+    
+    # Usando list comprehensions, obtenha: 
+    # a) Uma lista com os valores de imc de todas as pessoas.
+    imcs = [imc(person[1],person[2]) for person in people]
+    print("IMCs:", imcs)
+
+    # b) Uma lista dos tuplos de pessoas com altura superior a 1.7m.
+    tallpeople = [person for person in people if person[2]>1.7]
+    print("Tall people:", tallpeople)    
+
+    # c) Uma lista de nomes das pessoas com IMC entre 18 e 25.
+    midimc = [person for person in people if imc(person[1],person[2]) > 18 and imc(person[1],person[2]) < 25]
+    print("Mid-IMC:", midimc)
 
 
 # Exercise 3a) - Add the "add contact" operation that asks for a name and a number and adds it to the dictionary
