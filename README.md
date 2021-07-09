@@ -26,6 +26,8 @@ This Curricular Unit provides students the ability to solve small and medium siz
 
 **Lab08: ** [Dictionaries](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab08)
 
+**Lab09: ** [Sets, Comprehensions and Generators](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab09)
+
 
 
 [Theoretical Classes](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes):

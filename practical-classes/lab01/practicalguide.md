@@ -8,9 +8,9 @@
 
 #### Topics
 
-● Introduction to Python.
-● Interactive and script modes.
-● Editing and executing Python programs.
+*  Introduction to Python.
+* Interactive and script modes.
+* Editing and executing Python programs.
 
 #### Exercises
 
