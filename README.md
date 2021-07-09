@@ -46,3 +46,7 @@ This Curricular Unit provides students the ability to solve small and medium siz
 
 **Class08: ** [Dictionaries](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class08)
 
+**Class09: ** [Sets](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class09)
+
+**Class10: ** [List, Dictionaries and Set Comprehensions and Generator Expressions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class10)
+
