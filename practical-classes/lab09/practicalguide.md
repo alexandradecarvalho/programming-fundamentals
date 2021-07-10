@@ -33,7 +33,8 @@
    a) A list of BMI values of each person
    b) A list of tuples of people higher than 1.7m
    c) A list of names of the people with BMI between 18 and 25
-
+   
+   
 3. The **[names.txt](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab09/names.txt)** files has a list of full names of people, with a name per line. Write a program that shows, to each last name, the set of other names found on the list, **without repetitions**. The excerpt below is an example of the wanted result. **Hint:** build a dictionary with key = last name and add the first names to the set associated with each key. This is a problem hardly reduced to a comprehension list.
 
    > INACIO : {'ROMEU'}

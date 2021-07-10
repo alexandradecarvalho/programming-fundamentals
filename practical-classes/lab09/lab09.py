@@ -35,147 +35,38 @@ def ex2():
     print("Mid-IMC:", midimc)
 
 
-# Exercise 3a) - Add the "add contact" operation that asks for a name and a number and adds it to the dictionary
-def menu():
-    """Shows the menu and gets user option."""
-    print()
-    print("(L)ist contacts")
-    print("(A)dd contact")
-    print("(R)emove contact")
-    print("Search (N)umber")
-    print("Search (P)art of name")
-    print("(T)erminate\n")
-    op = input("option? ").upper()   # converts to uppercase...
-    return op
-
-def listContacts(dic):
-    """Print the contents of the dictionary as a table, one item per row."""
-    print("{:>12s} : {}".format("Numero", "Nome"))
-    for num in dic:
-        print("{:>12s} : {}".format(num, dic[num]))
-
-def addContact(dic):
-    name = input("Name: ")
-    number = input("Number: ")
-    dic[number] = name
-    print("Contact added!")
-
-# Exercise 3b) - Add the "remove contact" operation that asks for the number and deletes the correspondent item
-def removeContact(dic):
-    number = input("Number to delete: ")
-    if number in dic:
-        del dic[number]
-    print("Contact removed!")
-
-# Exercise 3c) - Add the "find number" operation  that asks for a number and shows the correspondent name, if it exists, or the number itself otherwise
-def findNumber(dic):
-    number = input("Number to find: ")
-    if number in dic:
-        return dic[number]
-    else:
-        return number
-
-# Exercise 3d) - Complete the filterPartName function, which given a string, should return a dictionary with the contacts (name: number) whose names include that string, which should be used to implement the "search part of the name" operation, asking for a partial name and listing all contacts who contain it
-def filterPartName(contacts, partName):
-    """Returns a new dict with the contacts whose names contain partName."""
-    possible_contacts = {}
-    for number,name in contacts.items():
-        if partName.lower() in name.lower():
-            possible_contacts[name] = number
-    return possible_contacts
-
+# Exercise 3 - Write a program that shows, to each last name, the set of other names found on the list, without repetitions
 def ex3():
-    """This is the main function containing the main loop."""
-
-    # The list of contacts (it's actually a dictionary!):
-    contactos = {"234370200": "Universidade de Aveiro",
-        "727392822": "Cristiano Aveiro",
-        "387719992": "Maria Matos",
-        "887555987": "Marta Maia",
-        "876111333": "Carlos Martins",
-        "433162999": "Ana Bacalhau"
-        }
-
-    op = ""
-    while op != "T":
-        op = menu()
-        if op == "T":
-            print("Fim")
-        elif op == "L":
-            print("Contacts:")
-            listContacts(contactos)
-        elif op == "A":
-            addContact(contactos)
-            listContacts(contactos)
-        elif op == "R":
-            removeContact(contactos)
-            listContacts(contactos)
-        elif op == "N":
-            print("Contact found: {}".format(findNumber(contactos)))
-        elif op == "P":
-            partName = input("Search: ")
-            print("Matching Contacts: ")
-            listContacts(filterPartName(contactos,partName))
-        else:
-            print("Not implemented!")
+    first_names = {}
+    try:
+        f = open('names.txt','r')
+    except IOError:
+        print("ERROR: Can\'t find file!")
+    else:
+        for line in f:
+            if len(line.split(" ")) > 1:    # exclude header
+                first_names[line.replace("\n","").split(" ")[-1]] = {name for name in line.split(" ")[:-1]}
+        
+        f.close()
+        return first_names
 
 
-# Exercise 4 - Adapt the previous program to allow associating an address to a contact
-def listContactsWithAddress(dic):
-    """Print the contents of the dictionary as a table, one item per row."""
-    print("{:>12s} : {:^27s} : {:<20s}".format("Numero", "Nome","Morada"))
-    for num, contact in dic.items():
-        print("{:>12s} : {:^27s} : {:<20s} ".format(num, contact[0], contact[1]))
-
-def addContactWithAddress(dic):
-    name = input("Name: ")
-    number = input("Number: ")
-    address = input("Address: ")
-    dic[number] = (name,address)
-    print("Contact added!")
-
-def filterPartNameWithAddress(contacts, partName):
-    """Returns a new dict with the contacts whose names contain partName."""
-    possible_contacts = {}
-    for number,name_address in contacts.items():
-        if partName.lower() in name_address[0].lower():
-            possible_contacts[number] = name_address
-    return possible_contacts
+# Exercise 4 - Create a primesUpTo(n) function that returns a set with all prime numbers until n, using the Sieve of Eratosthenes algorithm: start with the set {2,3,...,n}, then delete the multiples of 2, starting with 2², then the multiples of 3, starting with 3², and you can jump 4 because it has already been deleted (as with all its multiples), then continue eliminating the multiples of each number still in the set
+def primesUpTo(n):
+    starting_list = {number for number in range(2,n+1)}
+    starting_list -= {number*power for number in range(2,n+1) for power in range(2, n+1)}
+    return starting_list
 
 def ex4():
-    """This is the main function containing the main loop."""
+    s = primesUpTo(1000)
+    print(s)
 
-    # The list of contacts (it's actually a dictionary!):
-    contactos_w_address = {"234370200": ("Universidade de Aveiro","Santiago, Aveiro"),
-        "727392822": ("Cristiano Aveiro","Funchal"),
-        "387719992": ("Maria Matos","Aveiro"),
-        "887555987": ("Marta Maia","Coimbra"),
-        "876111333": ("Carlos Martins","Porto"),
-        "433162999": ("Ana Bacalhau","Lisboa")
-        }
-
-    op = ""
-    while op != "T":
-        op = menu()
-        if op == "T":
-            print("Fim")
-        elif op == "L":
-            print("Contacts:")
-            listContactsWithAddress(contactos_w_address)
-        elif op == "A":
-            addContactWithAddress(contactos_w_address)
-            listContactsWithAddress(contactos_w_address)
-        elif op == "R":
-            removeContact(contactos_w_address)
-            listContactsWithAddress(contactos_w_address)
-        elif op == "N":
-            print("Contact found: {}".format(findNumber(contactos_w_address)))
-        elif op == "P":
-            partName = input("Search: ")
-            print("Matching Contacts: ")
-            listContactsWithAddress(filterPartNameWithAddress(contactos_w_address,partName))
-        else:
-            print("Not implemented!")
+    # Do some checks:
+    assert primesUpTo(30) == {2,3,5,7,11,13,17,19,23,29}
+    assert len(primesUpTo(1000)) == 168
+    assert len(primesUpTo(7918)) == 999
+    assert len(primesUpTo(7919)) == 1000
+    print("All tests passed!")
 
 
 # Exercise 5a) - The program should ask the user the names of the teams and store them in a list
@@ -504,7 +395,7 @@ def main():
             ex2()
         elif choice==3:     
             print("Exercise 3: \n")
-            ex3()
+            print(ex3())
         elif choice==4:
             print("Exercise 4: \n")
             ex4()
