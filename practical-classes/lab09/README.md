@@ -6,5 +6,5 @@ In this lab, we will answer the questions in **[practicalguide.md](https://githu
 
 
 
-For exercise 2, it was needed the already provided **[imctable2.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab09/imctable2.py)** file. For exercise 3, it was needed the already provided [**names.txt**](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab09/names.txt) file, and for exercise 5 it was needed the already provided **[interests.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab09/interests.py)**.
+For exercise 2, it was needed the already provided **[tabelaFutebol.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab10/tabelaFutebol.py)** file. For exercise 3, it was needed the already provided [**names.txt**](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab09/names.txt) file, and for exercise 5 it was needed the already provided **[interests.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab09/interests.py)**.
 
