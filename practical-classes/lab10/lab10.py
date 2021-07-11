@@ -3,6 +3,8 @@
 
 import sys
 import bisect
+import math
+import numpy
 
 
 # Exercise 2 - Make a new version of the program that lists the result decreasingly by occurrence, using the sorted method with the key= and reverse= arguments to sort the key-value (items) pairs sequence
@@ -130,17 +132,123 @@ def ex5():
 
 # Exercise 6 - Write a function that shows all letters that can come after a given prefix
 def autoComplete(prefix):
-    return "cenas: " + prefix
+    try:
+        f = open('/usr/share/dict/words','r')
+    except IOError:
+        print("ERROR: Suggestions file not found")
+    else:
+        lst = [word.replace("\n","") for word in f]
+        first_index = bisect.bisect_right(lst,prefix)
+        last_index = bisect.bisect_right(lst,prefix[:-1]+chr(ord(prefix[-1])+1))
+        [print(word) for word in lst[first_index:last_index]]
 
 def ex6():
     prefix = ""
     while True:
         if p:=input(">> " + prefix):
             prefix += p
-            print(autoComplete(prefix))
+            autoComplete(prefix)
         else:
             break
 
+
+# Exercise 7 - Modify the insertionSort.py program so that it takes an optional argument key= which does the same thing as it does in the pre-built function sorted
+def insertionSort(lst, key=str):
+    i = 1   # i = index of element to insert next = end of sorted part
+    while i < len(lst):
+        x = lst[i]    # x is the element to insert
+        # insert x into lst[:i]
+        k = i-1
+        while k >= 0 and key(lst[k]) > key(x):
+            lst[k+1] = lst[k]
+            k -= 1
+        lst[k+1] = x
+        i += 1
+
+def ex7():
+    # Original list
+    lst0 = ["paulo", "augusto", "maria", "paula", "bernardo", "tito"]
+    print("lst0", lst0)
+
+    # sort in lexicographic order:
+    lst = lst0.copy()
+    insertionSort(lst)
+    print("lst1", lst)
+    assert lst == sorted(lst0)
+
+    # sort by length (requires key= argument):
+    lst = lst0.copy()
+    insertionSort(lst, key=len)
+    print("lst2", lst)
+    assert lst == sorted(lst0, key=len)
+
+    # sort by length, than lexicographic order:
+    myorder = lambda s:(len(s), s)
+    lst = lst0.copy()
+    insertionSort(lst, key=myorder)
+    print("lst3", lst)
+    assert lst == sorted(lst0, key=myorder)
+    
+    print("All tests OK!")
+
+
+# Exercise 8 - Implement a function that creates an arbitrary second-degree polynomial
+def polynomial2(a, b, c):
+    return lambda x: a*x**2 + b*x + c
+
+def ex8():
+    xx = [0, 1, 2, 3]   # Values to test
+
+    p = polynomial2(1, 2, 3)    # creates p(x)=x²+2x+3
+    print([p(x) for x in xx])   # [3, 6, 11, 18]
+
+    q = polynomial2(2, 0, -2)   # creates q(x)=2x²-2
+    print([q(x) for x in xx])   # [-2, 0, 6, 16]
+
+    # EXTRA CHALLENGE:
+    # Create a general version that creates polynomials of any degree
+
+    # polynomial(a), where a=[a0, a1, ..., an], should return a function f such that
+    # f(x) is a0*x**n + a1*x**(n-1) + ... + an.
+    def polynomial(coefs):
+        def funct(x):
+            result = 0
+            exp = len(coefs) - 1
+            for coeficient in coefs:
+                result += coeficient*x**exp
+                exp -= 1
+            return result
+        return funct
+
+
+    # Tests:
+    r = polynomial([1, 2, 3])   # same as p(x)
+    print([r(x) for x in xx])   # [3, 6, 11, 18]
+
+    s = polynomial([1, -1, 0, 100])     # creates s(x)=x³-x²+100
+    print([s(x) for x in xx])           # [100, 100, 104, 118]
+
+
+# Exercise 9 - Find a function's roots within an interval using the bisect method
+def bisectMethod(f, interval):
+    if interval[-1] - interval[0] < 0.01:
+        return round((interval[0]+interval[-1])/2,2)
+    else:
+        mid = round((interval[0]+interval[-1])/2,2)
+        if f(mid) == 0:
+            return mid
+        elif (f(interval[0])>0 and f(mid) > 0) or (f(interval[0])<0 and f(mid) < 0):
+            return bisectMethod(f, [mid,interval[-1]])
+        elif (f(interval[0])>0 and f(mid) < 0) or (f(interval[0])<0 and f(mid) > 0):
+            return bisectMethod(f,[interval[0],mid])
+        else:
+            return None
+    
+
+def ex9():
+    f = lambda x: x + math.sin(10*x)
+    print(bisectMethod(f,[0.2,0.4]))
+    print(bisectMethod(f,[0.4,0.6]))
 
 
 ##################MAIN#####################
@@ -152,6 +260,9 @@ def print_menu():
     print("4. Exercise 4")
     print("5. Exercise 5")
     print("6. Exercise 6")
+    print("7. Exercise 7")
+    print("8. Exercise 8")
+    print("9. Exercise 9")
     print("0. Exit")
     print(67 * "-")
 
@@ -180,6 +291,15 @@ def main():
         elif choice==6:    
             print("Exercise 6: \n") 
             ex6()
+        elif choice==7:    
+            print("Exercise 7: \n") 
+            ex7()
+        elif choice==8:    
+            print("Exercise 8: \n") 
+            ex8()
+        elif choice==9:    
+            print("Exercise 9: \n") 
+            ex9()
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
