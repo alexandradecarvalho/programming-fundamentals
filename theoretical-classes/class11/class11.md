@@ -59,7 +59,7 @@ def seqSearch(lst,x):
 def binSearchExact(lst,x):
     """Find k such that x == lst[k] (or None if no such k)."""
     first = 0			# first index that could be solution
-    last = len(first)	# first index that cannot be solution
+    last = len(lst)		# first index that cannot be solution
     while first < last:
         mid = (first+last)//2
         if x < lst[mid]:
