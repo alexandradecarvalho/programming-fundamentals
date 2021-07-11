@@ -28,6 +28,10 @@ This Curricular Unit provides students the ability to solve small and medium siz
 
 **Lab09: ** [Sets, Comprehensions and Generators](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab09)
 
+**Lab10: ** [Search, Sorting and Lambda Expressions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/lab10)
+
+**Lab11: ** [Recursion](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/lab11)
+
 
 
 [Theoretical Classes](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes):
@@ -51,4 +55,8 @@ This Curricular Unit provides students the ability to solve small and medium siz
 **Class09: ** [Sets](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class09)
 
 **Class10: ** [List, Dictionaries and Set Comprehensions and Generator Expressions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class10)
+
+**Class11: ** [Sequential and Binary Search, Sorting and Lambda Expressions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class11)
+
+**Class12: ** [Recursive Functions](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/theoretical-classes/class12)
 

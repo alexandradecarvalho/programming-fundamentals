@@ -1,6 +1,6 @@
 ## **Programming** Fundamentals, Class 10
 
-### Sets, Comprehensions and Generators
+### Search, Sorting and Lambda Expressions
 
 ###### this is an adaptation of the practical guide provided by Professor João Manuel de Oliveira e Silva Rodrigues
 
@@ -39,7 +39,6 @@
 
 2. In **[lab08](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab08)** we made a program that counts letter occurrences in a text file. Make a new version of that program that lists the result decreasingly by occurrence. Use the `sorted` method with the `key=` and `reverse=` arguments to sort the key-value (`items`) pairs sequence.<br><img src="../../img/countLetters2.png">
    
-
 3. The **[tabelaFutebol.py](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/lab10/tabelaFutebol.py)** file has a list of classifications for a football tournament. Each list element is a tuple with the name of the team, number of victories, number of ties, number of losses, scored goals and suffered goals. The program already has a function to show the formatted table and a function, defined by a lambda expression, that determines the number of games made by each team. Complete the program in the appropriate places to solve each of the following problems:
    a) Complete the **lambda expressions** to define the `pontos` function that, given a team record, returns the number of points of that team (each victory is worth 3 points while each tie is only worth 1 point). 
    b) Add the adequate arguments to the `sorted` function to get an ordered table by decreasing points.
