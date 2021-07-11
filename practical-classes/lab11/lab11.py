@@ -1,33 +1,48 @@
-# Alexandra de Carvalho, 10 jul 2021
+# Alexandra de Carvalho, 12 jul 2021
 
 
-import sys
-import bisect
-import math
-import numpy
-
-
-# Exercise 2 - Make a new version of the program that lists the result decreasingly by occurrence, using the sorted method with the key= and reverse= arguments to sort the key-value (items) pairs sequence
-def countLetters2(filename):
-    frequency_results = {}
-    try:
-        f = open(filename, 'r')
-    except IOError:
-        print('ERROR: File not found')
+# Exercise 1 - Try to detect the cause of the errors in recErrors.py and fix the mistakes
+def fact(n):                # n! = n*(n-1)!
+    if n == 1:
+        return 1
     else:
-        for line in f:
-            for character in line:
-                if character.isalpha():
-                    frequency_results[character.lower()] = frequency_results.get(character.lower(),0) + 1
-        f.close()
-    return dict(sorted(frequency_results.items(),key=lambda item : item[1],reverse=True)) 
+        return n*fact(n-1)
+
+def gcd(b, a):              # Euclidean Algorithm
+    if b == 0:
+        return a
+    return gcd(a%b, b)
+
+def ex1():
+    print( fact(4) )        # 24
+    print( fact(5) )        # 120
+
+    x = 2*27*53*61
+    y = 2*2*17*23*53
+    print(x, y, gcd(x, y))
+    assert gcd(x, y) == 2*53
+    print("Asserted gdc! Well done!")
+
+
+# Exercise 2 - Write a general function, genWords, that generates all words of length n, getting a list of words of size n-1 and, to each of them, adding each symbol of the alphabet. What will the base case be? And what is its result?
+def genWords3(symbols): # Generates all length-3 words with symbols taken from the given alphabet
+    return [ x+y+z for x in symbols for y in symbols for z in symbols ]
+
+def genWords(symbols, n):   # Generates all length-n words with symbols taken from the given alphabet
+    if n > 1:
+        return [word+suffix for word in genWords(symbols,n-1) for suffix in symbols]
+    return symbols
 
 def ex2():
-    file = sys.argv[1]
-    results = countLetters2(file)
+    lstA = genWords3("abc")
+    print(lstA)
 
-    for letter in results.keys():
-        print(letter,results[letter]) 
+    lstB = genWords("abc", 3)  # should return the same words, maybe in other order
+    print(lstB)
+    assert sorted(lstA) == sorted(lstB)
+
+    lstC = genWords("01", 4)  # should return all length-4 binary words
+    print(lstC)
 
 
 # Exercise 3 - Write a program that shows, to each last name, the set of other names found on the list, without repetitions
@@ -255,14 +270,9 @@ def ex9():
 
 def print_menu():
     print(30 * "-" , "MENU" , 30 * "-")
+    print("1. Exercise 1")
     print("2. Exercise 2")
     print("3. Exercise 3")
-    print("4. Exercise 4")
-    print("5. Exercise 5")
-    print("6. Exercise 6")
-    print("7. Exercise 7")
-    print("8. Exercise 8")
-    print("9. Exercise 9")
     print("0. Exit")
     print(67 * "-")
 
@@ -276,30 +286,15 @@ def main():
         except:
             choice = 222    # Invalid option
         
-        if choice==2:     
+        if choice==1:
+            print("Exercise 2: \n")
+            ex1()
+        elif choice==2:     
             print("Exercise 2: \n")
             ex2()
         elif choice==3:     
             print("Exercise 3: \n")
             print(ex3())
-        elif choice==4:
-            print("Exercise 4: \n")
-            ex4()
-        elif choice==5:    
-            print("Exercise 5: \n") 
-            ex5()
-        elif choice==6:    
-            print("Exercise 6: \n") 
-            ex6()
-        elif choice==7:    
-            print("Exercise 7: \n") 
-            ex7()
-        elif choice==8:    
-            print("Exercise 8: \n") 
-            ex8()
-        elif choice==9:    
-            print("Exercise 9: \n") 
-            ex9()
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
