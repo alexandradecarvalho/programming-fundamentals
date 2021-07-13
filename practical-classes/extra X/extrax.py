@@ -44,6 +44,20 @@ def registerCall():
         else:
             break
 
+# Exercise 1d) - Develop an option to read a file of calls that, in each call, is registered 3 "words" separated by white spaces: the origin number, the destiny number and the duration in seconds
+def read_file(fname):
+    calls = []
+    try:
+        f = open(fname,'r')
+    except IOError:
+        print("ERROR while opening file "+fname)
+    else:
+        for line in f:
+            call = tuple(line.replace("\n","").split("\t"))
+            calls += [call]
+        f.close()
+    return calls
+
 def ex1():
     register_loop = True
     while register_loop:
@@ -56,7 +70,8 @@ def ex1():
         if option==1:
             registerCall()
         elif option==2:     
-            print("Read File: \n")
+            print(read_file('chamadas1.txt'))
+            print(read_file('chamadas2.txt'))
         elif option==3:     
             print("List Clients: \n")
         elif option==4:     
