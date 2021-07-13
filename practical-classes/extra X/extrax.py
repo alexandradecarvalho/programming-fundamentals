@@ -11,6 +11,23 @@ def print_menu():
     print("5) Exit")
     print("Option? ")
 
+# Exercise 1b) - Write a function to validate a phone number - a string with at least 3 digits (0-9), optionally with a '+' symbol in the beginning
+def isValidPhone(phone_number):
+    if phone_number[0] == '+':
+        phone_number = phone_number[1:]
+    
+    if len(phone_number) < 3:
+        return False
+    
+    try:
+        phone_number = int(phone_number)
+    except ValueError:
+        return False
+    else:
+        return True
+
+# Exercise 1c) - 
+
 def ex1():
     loop = True
     while loop:
