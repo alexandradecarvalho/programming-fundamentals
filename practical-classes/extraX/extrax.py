@@ -58,6 +58,12 @@ def read_file(fname):
         f.close()
     return calls
 
+# Exercise 1e) - The "List Clients" option should show an ordered list of the clients who made calls, without repetitions
+def list_clients(reg):
+    origin_numbers = set([call[0] for call in reg])
+    print(sorted(list(origin_numbers)))
+    
+
 def ex1():
     register_loop = True
     while register_loop:
@@ -73,7 +79,8 @@ def ex1():
             print(read_file('chamadas1.txt'))
             print(read_file('chamadas2.txt'))
         elif option==3:     
-            print("List Clients: \n")
+            list_clients(read_file('chamadas1.txt'))
+            list_clients(read_file('chamadas2.txt'))
         elif option==4:     
             print("Bill: \n")
         elif option==5:     
