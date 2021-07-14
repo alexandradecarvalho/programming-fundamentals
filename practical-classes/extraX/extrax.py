@@ -8,7 +8,7 @@ def print_menu_ex1():
     print("2) Read file")
     print("3) List clients")
     print("4) Bill")
-    print("5) Exit")
+    print("0) Exit")
 
 # Exercise 1b) - Write a function to validate a phone number - a string with at least 3 digits (0-9), optionally with a '+' symbol in the beginning
 def isValidPhone(phone_number):
@@ -63,6 +63,36 @@ def list_clients(reg):
     origin_numbers = set([call[0] for call in reg])
     print(sorted(list(origin_numbers)))
     
+# Exercise 1f) - Develop an option to produce a detailed invoice, asking the client number and listing all the calls made, their duration and cost, as well as the total cost
+def billing():
+    client = input("Please insert your number: ")
+    while not isValidPhone(client):
+        print("ERROR: Invalid phone number")
+        client = input("Please insert your number: ")
+    
+    reg = read_file('chamadas1.txt')
+    total_price = 0
+    print("Invoice for client ",client)
+    print("{:<15s}   {:>8s}  {:>8s}".format("Destiny","Duration","Cost"))
+    
+    for call in reg:
+        if call[0] == client:
+            if call[1][0] == "2":
+                tarif = 0.02
+            elif call[1][0] == "+":
+                tarif = 0.8
+            elif call[1][:2] == client[:2]:
+                tarif = 0.04
+            else:
+                tarif = 0.1
+            
+            duration = call[2]
+            cost = tarif / 60 * int(duration)
+            total_price += cost
+            print("{:<15s}   {:>8s}  {:>8.2f}".format(call[1],duration,cost))
+    
+    print("{:<15s}   {:>8s}  {:>8.2f}".format("","Total:",total_price))
+            
 
 def ex1():
     register_loop = True
@@ -80,10 +110,9 @@ def ex1():
             print(read_file('chamadas2.txt'))
         elif option==3:     
             list_clients(read_file('chamadas1.txt'))
-            list_clients(read_file('chamadas2.txt'))
         elif option==4:     
-            print("Bill: \n")
-        elif option==5:     
+            billing()
+        elif option==0:     
             print("Goodbye")
             register_loop=False # This will make the while loop to end as not value of loop is set to False
         else:
