@@ -2,6 +2,9 @@
 
 
 # Exercise 1a) - The program must present a menu and process each chosen option
+from typing import IO
+
+
 def print_menu_ex1():
     print(30 * "-" , "MENU" , 30 * "-")
     print("1) Register call")
@@ -93,7 +96,6 @@ def billing():
     
     print("{:<15s}   {:>8s}  {:>8.2f}".format("","Total:",total_price))
             
-
 def ex1():
     register_loop = True
     while register_loop:
@@ -120,11 +122,56 @@ def ex1():
             print("Wrong option selection. Enter any key to try again..")
 
 
+# Exercise 2a) - Create an interface with the player that registers the bets to each tournament game: the user introduces the tournament number and then the bet to each game, which is asked by the program, that then validates the tournament's number (it has to be in the Jornadas.txt file) and each bet (only 1,X,2 allowed) and stores a file with the name of the tournament with all bets made, one per line
+def register_bet():
+    looping = True
+    while looping:
+        tournament = input("Tournament? ")
+        try:
+            tournament = int(tournament)
+        except ValueError:
+            print("ERROR: Invalid tournament number!")
+        else:
+            try:
+                f = open('Jornadas.csv','r')
+            except IOError:
+                print("ERROR: Missing file Jornadas.txt")
+            else:
+                for line in f:
+                    if int(line.replace("\n","").split(",")[0]) == tournament:
+                        looping = False
+                        break
+                
+                if looping:
+                    print("ERROR: Invalid tournament number!")
+
+    counter = 1
+    j = open('jornadas'+str(tournament)+'.csv','w')
+
+    for line in f:
+        game = line.replace("\n","").split(",")
+        if int(game[0]) == tournament:
+            prompt = str(counter)+" "+game[1]+" vs "+game[2]+": "
+            bet = input(prompt)
+
+            while bet.lower() not in ["1","2","x"]:
+                print("Invalid Bet!")
+                bet = input(prompt)
+            
+            print(str(counter)+","+bet, file=j)
+            counter += 1
+        
+    f.close()
+    j.close()
+    
+
+
 ##################MAIN#####################
 
 def print_menu():
     print(30 * "-" , "MENU" , 30 * "-")
     print("1. Exercise 1")
+    print("2. Exercise 2")
     print("0. Exit")
     print(67 * "-")
 
@@ -141,6 +188,8 @@ def main():
         if choice==1:
             print("Exercise 1: \n")
             ex1()
+        elif choice==2:
+            register_bet()
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
