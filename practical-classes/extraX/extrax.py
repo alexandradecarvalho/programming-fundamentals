@@ -1,6 +1,9 @@
 # Alexandra de Carvalho, 13 jul 2021
 
 
+import time
+
+
 # Exercise 1a) - The program must present a menu and process each chosen option
 def print_menu_ex1():
     print(30 * "-" , "MENU" , 30 * "-")
@@ -210,6 +213,7 @@ def show_bulletin_results(tournament, matches, bets):
             
                     print("{:<2d} {:>15s} {:>2s}-{:<2s} {:<15s} : {:^3s} ({:<5s})".format(count, game[1],game[3],game[4].replace("\n",""),game[2],element,result))
                     count +=1
+        results_file.close()
     return prize(rights, total)
 
 # Exercise 2c) - Indicate the number of right bets and if the player got the first prize (all bets right), the second prize (8 bets right), the third prize (7 bets right), or if they don't get a prize                
@@ -228,7 +232,7 @@ def prize(rights, total):
     print(string)
     return string, total
 
-# Exercise 3d) - Repeat the game until the user answers zero to the "Tournament? " question and, since each bulletin costs 0.40 euros, the first prize is 5000€, the second prize 1000€ and the third prize 100€, calculate the balance of the player at the end of each bulletin. The initial balance is 0, so if a player fills in a bulletin they're automatically at a negative balance of -0.40€
+# Exercise 2d) - Repeat the game until the user answers zero to the "Tournament? " question and, since each bulletin costs 0.40 euros, the first prize is 5000€, the second prize 1000€ and the third prize 100€, calculate the balance of the player at the end of each bulletin. The initial balance is 0, so if a player fills in a bulletin they're automatically at a negative balance of -0.40€
 def ex2():
     while True:
         result,total = register_bet()
@@ -250,12 +254,12 @@ def ex2():
 
 # Exercise 3a) - In the "insert items" option, the program should ask for the product code and calculate the final price, printing something in the screen
 def codeToProduct():
+    sales = []
     try:
         f = open('hipermercado.txt','r')
     except IOError: 
         print("ERROR: DataBase File Not Found!")
     else:
-
         while True:
             try:
                 code = int(input("code: "))
@@ -269,7 +273,29 @@ def codeToProduct():
                     for line in f:
                         product = line.split(";")
                         if int(product[0]) == code:
-                            print(product[1]+": "+product[3]+"€")
+                            sales += [code]
+                            price = float(product[3])+ (float(product[3])*(int(product[4].replace("%",""))/100))
+                            print("{}: {:.2f}€".format(product[1],price))
+        f.close()
+    return sales
+
+def register(sales):
+    try:
+        codes = open("hipermercado.txt",'r')
+    except IOError:
+        print("ERROR while opening file hipermercado.txt")
+    else:
+        price = 0
+        for line in codes:
+            product = line.split(";")
+            if int(product[0]) in sales:
+                price += float(product[3])+ (float(product[3])*(int(product[4].replace("%",""))/100))
+        codes.close()
+
+        f = open("sales.txt","a")
+        print("{}: {:.2f}".format(time.strftime('%d/%m/%Y %H:%M'),price), file=f)
+        f.close()   
+
 
 def print_menu_ex3():
     print(30 * "-" , "MENU" , 30 * "-")
@@ -279,15 +305,17 @@ def print_menu_ex3():
 
 def ex3():
     loop3 = True
+    sales = []
     while loop3:
         print_menu_ex3()
         option = input("Option? ")
-
+        
         if option=="I":
-            codeToProduct()
+            sales += codeToProduct()
         elif option=="B":     
             pass
-        elif option=="L":     
+        elif option=="L":
+            register(sales)     
             print("Goodbye")
             loop3=False # This will make the while loop to end as not value of loop is set to False
         else:
