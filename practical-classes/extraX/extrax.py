@@ -178,6 +178,7 @@ def show_bulletin_results(tournament, matches, bets):
     else:
         print("Tournament ",str(tournament))
         count = 1
+        rights = 0
         for line in results_file:
             game = line.split(",")
             players = tuple([game[1],game[2]])
@@ -185,18 +186,34 @@ def show_bulletin_results(tournament, matches, bets):
                 idx = matches.index(players)
                 bet = bets[idx]
                 if int(game[3]) < int(game[4]) and bet == "2":
+                    rights += 1
                     result = "RIGHT"
                 elif int(game[3]) > int(game[4]) and bet == "1":
+                    rights += 1
                     result = "RIGHT"
                 elif int(game[3]) == int(game[4]) and bet.lower() == "x":
+                    rights += 1
                     result = "RIGHT"
                 else:
                     result = "WRONG"
             
                 print("{:<2d} {:>15s} {:>2s}-{:<2s} {:<15s} : {:1s} ({:<5s})".format(count, game[1],game[3],game[4].replace("\n",""),game[2],bet,result))
                 count +=1
+                prize(rights)
 
-                
+# Exercise 2c) - Indicate the number of right bets and if the player got the first prize (all bets right), the second prize (8 bets right), the third prize (7 bets right), or if they don't get a prize                
+def prize(rights):
+    string = "You got {} answers right.".format(rights)
+    if rights == 9:
+        string +=" FIRST PRIZE."
+    elif rights == 8:
+        string +=" FIRST PRIZE."
+    elif rights == 7:
+        string +=" THIRD PRIZE."
+    else:
+        string +=" NO PRIZE."
+    
+    print(string)
 
 
 ##################MAIN#####################
