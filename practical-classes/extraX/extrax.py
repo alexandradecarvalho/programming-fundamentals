@@ -2,9 +2,6 @@
 
 
 # Exercise 1a) - The program must present a menu and process each chosen option
-from typing import IO
-
-
 def print_menu_ex1():
     print(30 * "-" , "MENU" , 30 * "-")
     print("1) Register call")
@@ -251,12 +248,60 @@ def ex2():
         print("balance: "+str(balance)+" euro") 
 
 
+# Exercise 3a) - In the "insert items" option, the program should ask for the product code and calculate the final price, printing something in the screen
+def codeToProduct():
+    try:
+        f = open('hipermercado.txt','r')
+    except IOError: 
+        print("ERROR: DataBase File Not Found!")
+    else:
+
+        while True:
+            try:
+                code = int(input("code: "))
+            except ValueError:
+                print("ERROR: Invalid code")
+            else:
+                if code == 0:
+                    break
+                else:
+                    f.seek(0)
+                    for line in f:
+                        product = line.split(";")
+                        if int(product[0]) == code:
+                            print(product[1]+": "+product[3]+"€")
+
+def print_menu_ex3():
+    print(30 * "-" , "MENU" , 30 * "-")
+    print("(I)nsert Items")
+    print("(B)illing")
+    print("(L)eave")
+
+def ex3():
+    loop3 = True
+    while loop3:
+        print_menu_ex3()
+        option = input("Option? ")
+
+        if option=="I":
+            codeToProduct()
+        elif option=="B":     
+            pass
+        elif option=="L":     
+            print("Goodbye")
+            loop3=False # This will make the while loop to end as not value of loop is set to False
+        else:
+            # Any integer inputs other than values 1-5 we print an error message
+            print("Wrong option selection. Enter a valid key to try again..")
+
+
 ##################MAIN#####################
 
 def print_menu():
     print(30 * "-" , "MENU" , 30 * "-")
     print("1. Exercise 1")
     print("2. Exercise 2")
+    print("3. Exercise 3")
     print("0. Exit")
     print(67 * "-")
 
@@ -275,6 +320,8 @@ def main():
             ex1()
         elif choice==2:
             ex2()
+        elif choice==3:
+            ex3()
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False

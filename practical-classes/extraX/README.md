@@ -6,5 +6,7 @@ In this lab, we will answer the questions in **[practicalguide.md](https://githu
 
 For exercise 1, we used the already provided **[chamadas1.txt](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/extrax/chamadas1.txt)** and **[chamadas2.txt](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/extrax/chamadas2.txt)** files.
 
-For exercise 2, it was needed the already provided **[Jornadas.cvs](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/extrax/Jornadas.csv)** file and the output of exercise 2a) was stored in **[jornadas1.csv](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/extrax/jornadas1.csv)** file.
+For exercise 2, it was needed the already provided **[Jornadas.cvs](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/extrax/Jornadas.csv)** file and the **[Jogos.csv](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/extrax/Jogos.csv)** file, and the output of exercise 2a) was stored in **[jornadas1.csv](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/extrax/jornadas1.csv)** and **[jornadas13.csv](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/extrax/jornadas13.csv)** files.
+
+For exercise 3, it was needed the already provided **[hipermercado.txt](https://github.com/alexandradecarvalho/programming-fundamentals/blob/main/practical-classes/extrax/hipermercado.txt)** file.
 
