@@ -308,6 +308,34 @@ def stockOut(sales):
         print("{:d}; {:d}".format(code,stockout), file=f)
     f.close()  
 
+# Exercise 3d) - When the user asks for the invoice, the program should print one with all products organized by section and sorted by name
+def billing2(sales):
+    store = {}
+    try:
+        products = open("hipermercado.txt",'r')
+    except IOError:
+        print("ERROR while opening file hipermercado.txt")
+    else:
+        stock = {}
+        for line in products:
+            product = line.split(";")
+            stock[int(product[0])] = [product[1],product[2],product[3],product[4]]  # code : [name,category,price,tax]
+            
+        for code in sales:
+            product = stock[int(code)]   # [name,category,price,tax]
+            if product[1] not in store.keys():
+                store[product[1]] = {}
+
+            if product[0] not in store[product[1]]:
+                store[product[1]][product[0]] = [0,"",""]
+            
+            store[product[1]][product[0]] = [store[product[1]][product[0]][0] + 1, product[-1], product[2]] # category : {name : [quantity,tax,price]}
+
+        for category in store.keys():
+            print(category+":")
+            for name, infos in store[category].items():
+                print("{:>3d} {:<18s} (IVA {:<s})  {:<.2f}€".format(infos[0], name, infos[1].replace("\n",""), float(infos[2])+(float(infos[2]))*float(infos[1].replace("\n","").replace("%",""))/100))
+
 def print_menu_ex3():
     print(30 * "-" , "MENU" , 30 * "-")
     print("(I)nsert Items")
@@ -324,7 +352,7 @@ def ex3():
         if option=="I":
             sales += codeToProduct()
         elif option=="B":     
-            pass
+            billing2(sales)
         elif option=="L":
             register(sales)
             stockOut(sales)     
