@@ -132,6 +132,8 @@ def register_bet():
         except ValueError:
             print("ERROR: Invalid tournament number!")
         else:
+            if tournament == 0:
+                return "EXIT",{}
             try:
                 f = open('Jornadas.csv','r')
             except IOError:
@@ -158,7 +160,8 @@ def register_bet():
         prompt = str(counter)+" "+game[0]+" vs "+game[1]+": "
         bet = input(prompt)
 
-        while bet.lower() not in ["1","2","x"]:
+        # Exercise 3e) - Add the possibility of multiple bets, letting the user introduce a double (1X,X2,12) or triple (1X2) bet in each game and, in the end, calculating the equivalent number of bets and its cost
+        while bet.lower() not in ["1","2","x","12","21","1x","x1","2x","x2","12x","1x2","21x","2x1","x12","x21"]:
             print("Invalid Bet!")
             bet = input(prompt)
         
@@ -166,8 +169,8 @@ def register_bet():
         print(str(counter)+","+bet, file=j)
         counter += 1
     
-    show_bulletin_results(tournament, tournament_matches, bets)
     j.close()
+    return show_bulletin_results(tournament, tournament_matches, bets)
 
 # Exercise 2b) - Alter the program so that, immediately after a player has filled its bulletin, presents a table with games from that tournament, its results, bets, and indicate which were right/wrong  
 def show_bulletin_results(tournament, matches, bets):
@@ -179,41 +182,73 @@ def show_bulletin_results(tournament, matches, bets):
         print("Tournament ",str(tournament))
         count = 1
         rights = 0
+        total = {"simple":0,"double":0,"triple":0}
+        
         for line in results_file:
             game = line.split(",")
             players = tuple([game[1],game[2]])
+            
             if players in matches:
                 idx = matches.index(players)
                 bet = bets[idx]
-                if int(game[3]) < int(game[4]) and bet == "2":
-                    rights += 1
-                    result = "RIGHT"
-                elif int(game[3]) > int(game[4]) and bet == "1":
-                    rights += 1
-                    result = "RIGHT"
-                elif int(game[3]) == int(game[4]) and bet.lower() == "x":
-                    rights += 1
-                    result = "RIGHT"
-                else:
-                    result = "WRONG"
+                if len(bet) == 1:
+                    total["simple"] += 1
+                elif len(bet) == 2:
+                    total["double"] += 1
+                elif len(bet) == 3:
+                    total["triple"] += 1
+
+                for element in bet:
+                    if int(game[3]) < int(game[4]) and element == "2":
+                        rights += 1
+                        result = "RIGHT"
+                    elif int(game[3]) > int(game[4]) and element == "1":
+                        rights += 1
+                        result = "RIGHT"
+                    elif int(game[3]) == int(game[4]) and element.lower() == "x":
+                        rights += 1
+                        result = "RIGHT"
+                    else:
+                        result = "WRONG"
             
-                print("{:<2d} {:>15s} {:>2s}-{:<2s} {:<15s} : {:1s} ({:<5s})".format(count, game[1],game[3],game[4].replace("\n",""),game[2],bet,result))
-                count +=1
-                prize(rights)
+                    print("{:<2d} {:>15s} {:>2s}-{:<2s} {:<15s} : {:^3s} ({:<5s})".format(count, game[1],game[3],game[4].replace("\n",""),game[2],element,result))
+                    count +=1
+    return prize(rights, total)
 
 # Exercise 2c) - Indicate the number of right bets and if the player got the first prize (all bets right), the second prize (8 bets right), the third prize (7 bets right), or if they don't get a prize                
-def prize(rights):
+def prize(rights, total):
     string = "You got {} answers right.".format(rights)
-    if rights == 9:
+    t = total["simple"] + total["double"] + total["triple"]
+    if rights == t:
         string +=" FIRST PRIZE."
-    elif rights == 8:
-        string +=" FIRST PRIZE."
-    elif rights == 7:
+    elif rights == (t-1):
+        string +=" SECOND PRIZE."
+    elif rights == (t-2):
         string +=" THIRD PRIZE."
     else:
         string +=" NO PRIZE."
     
     print(string)
+    return string, total
+
+# Exercise 3d) - Repeat the game until the user answers zero to the "Tournament? " question and, since each bulletin costs 0.40 euros, the first prize is 5000€, the second prize 1000€ and the third prize 100€, calculate the balance of the player at the end of each bulletin. The initial balance is 0, so if a player fills in a bulletin they're automatically at a negative balance of -0.40€
+def ex2():
+    while True:
+        result,total = register_bet()
+        if result == "EXIT":
+            break
+        
+        balance = 1**total["simple"] * 2**total["double"] * 3**total["triple"]
+
+        place = result.split(".")[1]
+        if place == "  FIRST PRIZE":
+            balance += 5000
+        elif place == "  SECOND PRIZE":
+            balance += 1000
+        elif place == "  THIRD PRIZE":
+            balance += 100
+        
+        print("balance: "+str(balance)+" euro") 
 
 
 ##################MAIN#####################
@@ -239,7 +274,7 @@ def main():
             print("Exercise 1: \n")
             ex1()
         elif choice==2:
-            register_bet()
+            ex2()
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
