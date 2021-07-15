@@ -137,33 +137,66 @@ def register_bet():
             except IOError:
                 print("ERROR: Missing file Jornadas.txt")
             else:
+                tournament_matches = []
+                f.seek(0)
                 for line in f:
-                    if int(line.replace("\n","").split(",")[0]) == tournament:
+                    game = line.replace("\n","").split(",")
+                    if int(game[0]) == tournament:
                         looping = False
-                        break
+                        tournament_matches += [tuple([game[1],game[2]])]
                 
                 if looping:
                     print("ERROR: Invalid tournament number!")
+                else:
+                    f.close()
 
     counter = 1
     j = open('jornadas'+str(tournament)+'.csv','w')
 
-    for line in f:
-        game = line.replace("\n","").split(",")
-        if int(game[0]) == tournament:
-            prompt = str(counter)+" "+game[1]+" vs "+game[2]+": "
-            bet = input(prompt)
+    bets = []
+    for game in tournament_matches:
+        prompt = str(counter)+" "+game[0]+" vs "+game[1]+": "
+        bet = input(prompt)
 
-            while bet.lower() not in ["1","2","x"]:
-                print("Invalid Bet!")
-                bet = input(prompt)
-            
-            print(str(counter)+","+bet, file=j)
-            counter += 1
+        while bet.lower() not in ["1","2","x"]:
+            print("Invalid Bet!")
+            bet = input(prompt)
         
-    f.close()
-    j.close()
+        bets.append(bet)
+        print(str(counter)+","+bet, file=j)
+        counter += 1
     
+    show_bulletin_results(tournament, tournament_matches, bets)
+    j.close()
+
+# Exercise 2b) - Alter the program so that, immediately after a player has filled its bulletin, presents a table with games from that tournament, its results, bets, and indicate which were right/wrong  
+def show_bulletin_results(tournament, matches, bets):
+    try:
+        results_file = open('Jogos.csv','r')
+    except IOError:
+        print("ERROR: Couldn\'t find Jogos.csv file")
+    else:
+        print("Tournament ",str(tournament))
+        count = 1
+        for line in results_file:
+            game = line.split(",")
+            players = tuple([game[1],game[2]])
+            if players in matches:
+                idx = matches.index(players)
+                bet = bets[idx]
+                if int(game[3]) < int(game[4]) and bet == "2":
+                    result = "RIGHT"
+                elif int(game[3]) > int(game[4]) and bet == "1":
+                    result = "RIGHT"
+                elif int(game[3]) == int(game[4]) and bet.lower() == "x":
+                    result = "RIGHT"
+                else:
+                    result = "WRONG"
+            
+                print("{:<2d} {:>15s} {:>2s}-{:<2s} {:<15s} : {:1s} ({:<5s})".format(count, game[1],game[3],game[4].replace("\n",""),game[2],bet,result))
+                count +=1
+
+                
 
 
 ##################MAIN#####################
