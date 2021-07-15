@@ -279,6 +279,7 @@ def codeToProduct():
         f.close()
     return sales
 
+# Exercise 3b) - When the user choses to leave, the program should record, in a file, all the products sold
 def register(sales):
     try:
         codes = open("hipermercado.txt",'r')
@@ -296,6 +297,16 @@ def register(sales):
         print("{}: {:.2f}".format(time.strftime('%d/%m/%Y %H:%M'),price), file=f)
         f.close()   
 
+# Exercise 3c) - When the user choses to leave, the program should record, in another file, the sold stock - one product code and total number of sold items per line
+def stockOut(sales):
+    stock = {}
+    for code in sales:
+        stock[code] = stock.get(code,0) + 1
+
+    f = open("StockOut.txt","a")
+    for code, stockout in stock.items():
+        print("{:d}; {:d}".format(code,stockout), file=f)
+    f.close()  
 
 def print_menu_ex3():
     print(30 * "-" , "MENU" , 30 * "-")
@@ -315,7 +326,8 @@ def ex3():
         elif option=="B":     
             pass
         elif option=="L":
-            register(sales)     
+            register(sales)
+            stockOut(sales)     
             print("Goodbye")
             loop3=False # This will make the while loop to end as not value of loop is set to False
         else:
