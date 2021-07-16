@@ -6,13 +6,20 @@ def printStocks(stocks):
     for stock in stocks:
         print("{:<7s} {:<15s} {:>7.2f} {:>8.2f} {:>10d} {:>7.1f}%".format(stock[0],stock[1],stock[2],stock[3],stock[4], (stock[3]-stock[2])*100/stock[2]))
 
-# Exercise 1c) - Add the option to register a new call (from the keyboard) using the previous function in order to validate the origin and destiny phone numbers
-def registerCall():
-    pass
-
-# Exercise 1d) - Develop an option to read a file of calls that, in each call, is registered 3 "words" separated by white spaces: the origin number, the destiny number and the duration in seconds
-def read_file(fname):
-    pass
+# Exercise 1d) - Create a load function to read the stocks.txt file and return a list of tuples similar to the stocks variable
+def load(fname):
+    stocks = []
+    try:
+        f = open(fname, 'r')
+    except:
+        print("ERROR while opening " + fname + " file")
+    else:
+        for line in f:
+            stock = line.replace("\n","").split("\t")
+            stocks += [tuple([stock[0], stock[1], float(stock[2]), float(stock[3]), int(stock[4])])]
+        
+        f.close()
+    return stocks
 
 def ex1():
     stocks = [
@@ -39,14 +46,15 @@ def ex1():
     printStocks(stocks3)
 
     print("\nd)")
-    #stocks4 = load("stocks.txt")
-    #printStocks(stocks4)
-    # As condições seguintes devem ser verdadeiras
-    #assert type(stocks4)==list
-    #assert type(stocks4[0])==tuple
-    #assert len(stocks4[0])==5
-    #assert type(stocks4[0][2])==float
-    #assert type(stocks4[0][4])==int
+    stocks4 = load("stocks.txt")
+    printStocks(stocks4)
+    
+    # The following conditions must be true
+    assert type(stocks4)==list
+    assert type(stocks4[0])==tuple
+    assert len(stocks4[0])==5
+    assert type(stocks4[0][2])==float
+    assert type(stocks4[0][4])==int
     print("FIM")
 
 
@@ -209,21 +217,7 @@ def codeToProduct():
 
 # Exercise 3b) - When the user choses to leave, the program should record, in a file, all the products sold
 def register(sales):
-    try:
-        codes = open("hipermercado.txt",'r')
-    except IOError:
-        print("ERROR while opening file hipermercado.txt")
-    else:
-        price = 0
-        for line in codes:
-            product = line.split(";")
-            if int(product[0]) in sales:
-                price += float(product[3])+ (float(product[3])*(int(product[4].replace("%",""))/100))
-        codes.close()
-
-        f = open("sales.txt","a")
-        print("{}: {:.2f}".format(time.strftime('%d/%m/%Y %H:%M'),price), file=f)
-        f.close()   
+    pass
 
 # Exercise 3c) - When the user choses to leave, the program should record, in another file, the sold stock - one product code and total number of sold items per line
 def stockOut(sales):
@@ -329,17 +323,7 @@ def histogram(tweets):
        print("{:<30s} ({:>3d}) {:<18s}".format(tag, percentage, plusses))
 
 def ex4():
-    with open("twitter.json", encoding="utf8") as f:
-        tweets = json.load(f)
-    
-    print(type(tweets))       # should be a list!
-    print(type(tweets[0]))    # each element is a dict
-    print(tweets[0].keys())   # shows keys of the first element
-
-    print(tweets[0]["text"])  # each element has a message associated with "text"
-    print(tweets[880]["text"]) # some messages have hashtags!
-
-    histogram(tweets)
+    pass
 
 
 ##################MAIN#####################
