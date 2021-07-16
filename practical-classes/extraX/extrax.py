@@ -2,6 +2,7 @@
 
 
 import time
+import json
 
 
 # Exercise 1a) - The program must present a menu and process each chosen option
@@ -363,6 +364,57 @@ def ex3():
             print("Wrong option selection. Enter a valid key to try again..")
 
 
+# Exercise 4a) - Create a list of all mentioned words ('text')
+def listOfWords(tweets):
+    all_words = []
+    for tweet in tweets:
+        all_words += tweet["text"].split()
+    return sortedlistOfWords(all_words)
+
+# Exercise 4b) - Sort that list by number of times the word is mentioned (using Python's sorting methods)
+def sortedlistOfWords(all_words):
+    ocurrences = {}
+    for word in all_words:
+        ocurrences[word] = ocurrences.get(word,0) + 1
+
+    return sorted(ocurrences.keys(),key=lambda k: ocurrences[k], reverse=True)
+
+# Exercise 4c) - Create a new list sorted by the hashtags (words starting with "#")
+def sortedHashtags(tweets):
+    return [word for word in listOfWords(tweets) if word[0] == "#"]
+    
+# Exercise 4d) - Create a histogram with maximum score 18 for the most popular hashtags
+def histogram(tweets):
+    #hashtags = sortedHashtags(tweets)
+    ocurrences = {}
+    for tweet in tweets:
+        message = tweet["text"].split()
+        for word in message:
+            if word[0] == "#":
+                ocurrences[word] = ocurrences.get(word,0) + 1
+
+    ordered_tags = sorted(ocurrences.keys(), key=lambda k: ocurrences[k], reverse=True)
+    total = ocurrences[ordered_tags[0]]
+    
+    for tag in ordered_tags:
+       percentage = round(ocurrences[tag]*100/total)
+       plusses = "+" * round(18*ocurrences[tag]/total)
+       print("{:<30s} ({:>3d}) {:<18s}".format(tag, percentage, plusses))
+
+def ex4():
+    with open("twitter.json", encoding="utf8") as f:
+        tweets = json.load(f)
+    
+    print(type(tweets))       # should be a list!
+    print(type(tweets[0]))    # each element is a dict
+    print(tweets[0].keys())   # shows keys of the first element
+
+    print(tweets[0]["text"])  # each element has a message associated with "text"
+    print(tweets[880]["text"]) # some messages have hashtags!
+
+    histogram(tweets)
+
+
 ##################MAIN#####################
 
 def print_menu():
@@ -370,6 +422,7 @@ def print_menu():
     print("1. Exercise 1")
     print("2. Exercise 2")
     print("3. Exercise 3")
+    print("4. Exercise 4")
     print("0. Exit")
     print(67 * "-")
 
@@ -390,6 +443,8 @@ def main():
             ex2()
         elif choice==3:
             ex3()
+        elif choice==4:
+            ex4()
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
