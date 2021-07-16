@@ -1,6 +1,9 @@
 # Alexandra de Carvalho, 16 jul 2021
 
 
+import random
+
+
 # Exercise 1a) - Alter the printStocks function to show the table with aligned and formatted columns, with an extra column with the valuation of the stock, in percentage
 def printStocks(stocks):
     for stock in stocks:
@@ -74,102 +77,74 @@ def ex2():
     assert arranjos(10,3) == 720
     print("ALL TESTS PASSED")
 
-# Exercise 3a) - In the "insert items" option, the program should ask for the product code and calculate the final price, printing something in the screen
-def codeToProduct():
-    sales = []
-    try:
-        f = open('hipermercado.txt','r')
-    except IOError: 
-        print("ERROR: DataBase File Not Found!")
-    else:
-        while True:
-            try:
-                code = int(input("code: "))
-            except ValueError:
-                print("ERROR: Invalid code")
-            else:
-                if code == 0:
-                    break
-                else:
-                    f.seek(0)
-                    for line in f:
-                        product = line.split(";")
-                        if int(product[0]) == code:
-                            sales += [code]
-                            price = float(product[3])+ (float(product[3])*(int(product[4].replace("%",""))/100))
-                            print("{}: {:.2f}€".format(product[1],price))
-        f.close()
-    return sales
 
-# Exercise 3b) - When the user choses to leave, the program should record, in a file, all the products sold
-def register(sales):
+# Creates a random train
+def randomTrain(a, b=0):
+    Qmax = 60
+    types = ["coal", "iron", "sand", "salt", "sugar", "rice"]
+    n = a if a>b else random.randint(a, b)
+    train = []
+    for i in range(n):
+        wagon = [random.choice(types), random.randint(1, Qmax)]
+        train.append(wagon)
+    return train
+
+# Exercise 3a) - This function should return the total quantity of products of type m in a given t train
+def quantityOf(t, m):
+    """Quantidade total de mercadoria de tipo m no comboio t."""
+    total = 0
+    for wagon in t:
+        if wagon[0] == m:
+            total += wagon[1]
+    return total
+
+# Exercise 3b)
+def unload(t, m, q):
+    """Descarrega quantidade q de mercadoria de tipo m."""
     pass
 
-# Exercise 3c) - When the user choses to leave, the program should record, in another file, the sold stock - one product code and total number of sold items per line
-def stockOut(sales):
-    stock = {}
-    for code in sales:
-        stock[code] = stock.get(code,0) + 1
+# Exercise 3c)
+def merchandise(t):
+    """Devolve tabela com a quantidade de cada mercadoria no comboio t."""
+    pass
 
-    f = open("StockOut.txt","a")
-    for code, stockout in stock.items():
-        print("{:d}; {:d}".format(code,stockout), file=f)
-    f.close()  
-
-# Exercise 3d) - When the user asks for the invoice, the program should print one with all products organized by section and sorted by name
-def billing2(sales):
-    store = {}
-    try:
-        products = open("hipermercado.txt",'r')
-    except IOError:
-        print("ERROR while opening file hipermercado.txt")
-    else:
-        stock = {}
-        for line in products:
-            product = line.split(";")
-            stock[int(product[0])] = [product[1],product[2],product[3],product[4]]  # code : [name,category,price,tax]
-            
-        for code in sales:
-            product = stock[int(code)]   # [name,category,price,tax]
-            if product[1] not in store.keys():
-                store[product[1]] = {}
-
-            if product[0] not in store[product[1]]:
-                store[product[1]][product[0]] = [0,"",""]
-            
-            store[product[1]][product[0]] = [store[product[1]][product[0]][0] + 1, product[-1], product[2]] # category : {name : [quantity,tax,price]}
-
-        for category in store.keys():
-            print(category+":")
-            for name, infos in store[category].items():
-                print("{:>3d} {:<18s} (IVA {:<s})  {:<.2f}€".format(infos[0], name, infos[1].replace("\n",""), float(infos[2])+(float(infos[2]))*float(infos[1].replace("\n","").replace("%",""))/100))
-
-def print_menu_ex3():
-    print(30 * "-" , "MENU" , 30 * "-")
-    print("(I)nsert Items")
-    print("(B)illing")
-    print("(L)eave")
+# Exercise 3d)
+def trainsPerMerchandise(trains):
+    pass
 
 def ex3():
-    loop3 = True
-    sales = []
-    while loop3:
-        print_menu_ex3()
-        option = input("Option? ")
-        
-        if option=="I":
-            sales += codeToProduct()
-        elif option=="B":     
-            billing2(sales)
-        elif option=="L":
-            register(sales)
-            stockOut(sales)     
-            print("Goodbye")
-            loop3=False # This will make the while loop to end as not value of loop is set to False
-        else:
-            # Any integer inputs other than values 1-5 we print an error message
-            print("Wrong option selection. Enter a valid key to try again..")
+    random.seed("abc") # Altering the argument results in different trains
 
+    t = [['coal', 30], ['rice', 50], ['iron', 5], ['rice', 42], ['coal', 45]]
+    #t = randomTrain(5)  # uncomment to get a random train
+    print("t:", t)
+    
+    print("\na)")
+    print(quantityOf(t, 'rice'),    # 92
+          quantityOf(t, 'iron'),    # 5
+          quantityOf(t, 'coal'),    # 75
+          quantityOf(t, 'salt'))    # 0
+
+    print("\nb)")
+    q = unload(t, 'rice', 40)
+    print("unload(t, 'rice', 40) ->", q)
+    print("t:", t)
+    q =unload(t, 'coal', 50)
+    print("unload(t, 'coal', 50) ->", q)
+    print("t:", t)
+    q =unload(t, 'iron', 20)
+    print("unload(t, 'iron', 20) ->", q)
+    print("t:", t)
+
+    print("\nc)")
+    print(merchandise(t))
+    print("t:", t)
+
+    print("\nd)")
+    trains = { tid: randomTrain(1,5) for tid in ['T1', 'T2', 'T3', 'T4'] }
+    print("trains:", trains)
+    trainsPerM = trainsPerMerchandise(trains)
+    print(trainsPerM)
 
 ##################MAIN#####################
 
