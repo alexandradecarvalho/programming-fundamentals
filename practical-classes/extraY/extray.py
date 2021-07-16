@@ -98,10 +98,26 @@ def quantityOf(t, m):
             total += wagon[1]
     return total
 
-# Exercise 3b)
+# Exercise 3b) - This function should unload from a train t a quantity q of produce of type m by going through each wagon and, from the last one, unload totally or partially the wagons that have the wanted product, until the unloaded quantity suffices - returning the missing quantity
 def unload(t, m, q):
     """Descarrega quantidade q de mercadoria de tipo m."""
-    pass
+    for i in range(len(t)-1,-1,-1):
+        wagon = t[i]
+        if wagon[0] == m:
+            sub = q if wagon[1] >= q else wagon[1]
+            wagon[1] -= sub
+            q -= sub
+            if wagon[1] == 0:
+                del t[i]
+            
+            if q == 0:
+                return 0
+            else:
+                return unload(t,m,q)
+
+        if i == 0:
+            return q
+        
 
 # Exercise 3c)
 def merchandise(t):
