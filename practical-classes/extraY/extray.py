@@ -32,8 +32,9 @@ def ex1():
     stocks2 = sorted(stocks, key=lambda stock : (stock[0],-stock[4]))
     printStocks(stocks2)
 
+# Exercise 1c) - Alter the program to add to stocks3 a list only with the stocks from the Paris market
     print("\nc)")
-    stocks3 = [ ]
+    stocks3 = [stock for stock in stocks if stock[1] == "Paris"]
     
     printStocks(stocks3)
 
