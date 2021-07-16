@@ -32,9 +32,9 @@ This Curricular Unit provides students the ability to solve small and medium siz
 
 **Lab11: ** [Recursion](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/lab11)
 
-**Extra X: ** [Extra Exercises](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/extrax)
+**Extra X: ** [Extra Exercises](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/extraX)
 
-**Extra Y: ** [Training Exercises](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/extray)
+**Extra Y: ** [Training Exercises](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/practical-classes/extraY)
 
 
 
