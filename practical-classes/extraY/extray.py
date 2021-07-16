@@ -58,135 +58,21 @@ def ex1():
     print("FIM")
 
 
-# Exercise 2a) - Create an interface with the player that registers the bets to each tournament game: the user introduces the tournament number and then the bet to each game, which is asked by the program, that then validates the tournament's number (it has to be in the Jornadas.txt file) and each bet (only 1,X,2 allowed) and stores a file with the name of the tournament with all bets made, one per line
-def register_bet():
-    looping = True
-    while looping:
-        tournament = input("Tournament? ")
-        try:
-            tournament = int(tournament)
-        except ValueError:
-            print("ERROR: Invalid tournament number!")
-        else:
-            if tournament == 0:
-                return "EXIT",{}
-            try:
-                f = open('Jornadas.csv','r')
-            except IOError:
-                print("ERROR: Missing file Jornadas.txt")
-            else:
-                tournament_matches = []
-                f.seek(0)
-                for line in f:
-                    game = line.replace("\n","").split(",")
-                    if int(game[0]) == tournament:
-                        looping = False
-                        tournament_matches += [tuple([game[1],game[2]])]
-                
-                if looping:
-                    print("ERROR: Invalid tournament number!")
-                else:
-                    f.close()
-
-    counter = 1
-    j = open('jornadas'+str(tournament)+'.csv','w')
-
-    bets = []
-    for game in tournament_matches:
-        prompt = str(counter)+" "+game[0]+" vs "+game[1]+": "
-        bet = input(prompt)
-
-        # Exercise 3e) - Add the possibility of multiple bets, letting the user introduce a double (1X,X2,12) or triple (1X2) bet in each game and, in the end, calculating the equivalent number of bets and its cost
-        while bet.lower() not in ["1","2","x","12","21","1x","x1","2x","x2","12x","1x2","21x","2x1","x12","x21"]:
-            print("Invalid Bet!")
-            bet = input(prompt)
-        
-        bets.append(bet)
-        print(str(counter)+","+bet, file=j)
-        counter += 1
-    
-    j.close()
-    return show_bulletin_results(tournament, tournament_matches, bets)
-
-# Exercise 2b) - Alter the program so that, immediately after a player has filled its bulletin, presents a table with games from that tournament, its results, bets, and indicate which were right/wrong  
-def show_bulletin_results(tournament, matches, bets):
-    try:
-        results_file = open('Jogos.csv','r')
-    except IOError:
-        print("ERROR: Couldn\'t find Jogos.csv file")
+# Exercise 2 - Implement the combinations function provided and test it, calling it with some n and k values, such as A(2,1) = 2; A(5,2) = 20; A(5,3) = 60; A(10,3) = 720
+def arranjos(n,k):
+    if k == 0:
+        return 1
+    elif k > 0 and k <= n:
+        return n*arranjos(n-1,k-1)
     else:
-        print("Tournament ",str(tournament))
-        count = 1
-        rights = 0
-        total = {"simple":0,"double":0,"triple":0}
-        
-        for line in results_file:
-            game = line.split(",")
-            players = tuple([game[1],game[2]])
-            
-            if players in matches:
-                idx = matches.index(players)
-                bet = bets[idx]
-                if len(bet) == 1:
-                    total["simple"] += 1
-                elif len(bet) == 2:
-                    total["double"] += 1
-                elif len(bet) == 3:
-                    total["triple"] += 1
+        return None
 
-                for element in bet:
-                    if int(game[3]) < int(game[4]) and element == "2":
-                        rights += 1
-                        result = "RIGHT"
-                    elif int(game[3]) > int(game[4]) and element == "1":
-                        rights += 1
-                        result = "RIGHT"
-                    elif int(game[3]) == int(game[4]) and element.lower() == "x":
-                        rights += 1
-                        result = "RIGHT"
-                    else:
-                        result = "WRONG"
-            
-                    print("{:<2d} {:>15s} {:>2s}-{:<2s} {:<15s} : {:^3s} ({:<5s})".format(count, game[1],game[3],game[4].replace("\n",""),game[2],element,result))
-                    count +=1
-        results_file.close()
-    return prize(rights, total)
-
-# Exercise 2c) - Indicate the number of right bets and if the player got the first prize (all bets right), the second prize (8 bets right), the third prize (7 bets right), or if they don't get a prize                
-def prize(rights, total):
-    string = "You got {} answers right.".format(rights)
-    t = total["simple"] + total["double"] + total["triple"]
-    if rights == t:
-        string +=" FIRST PRIZE."
-    elif rights == (t-1):
-        string +=" SECOND PRIZE."
-    elif rights == (t-2):
-        string +=" THIRD PRIZE."
-    else:
-        string +=" NO PRIZE."
-    
-    print(string)
-    return string, total
-
-# Exercise 2d) - Repeat the game until the user answers zero to the "Tournament? " question and, since each bulletin costs 0.40 euros, the first prize is 5000€, the second prize 1000€ and the third prize 100€, calculate the balance of the player at the end of each bulletin. The initial balance is 0, so if a player fills in a bulletin they're automatically at a negative balance of -0.40€
 def ex2():
-    while True:
-        result,total = register_bet()
-        if result == "EXIT":
-            break
-        
-        balance = 1**total["simple"] * 2**total["double"] * 3**total["triple"]
-
-        place = result.split(".")[1]
-        if place == "  FIRST PRIZE":
-            balance += 5000
-        elif place == "  SECOND PRIZE":
-            balance += 1000
-        elif place == "  THIRD PRIZE":
-            balance += 100
-        
-        print("balance: "+str(balance)+" euro") 
-
+    assert arranjos(2,1) == 2
+    assert arranjos(5,2) == 20
+    assert arranjos(5,3) == 60
+    assert arranjos(10,3) == 720
+    print("ALL TESTS PASSED")
 
 # Exercise 3a) - In the "insert items" option, the program should ask for the product code and calculate the final price, printing something in the screen
 def codeToProduct():
@@ -285,47 +171,6 @@ def ex3():
             print("Wrong option selection. Enter a valid key to try again..")
 
 
-# Exercise 4a) - Create a list of all mentioned words ('text')
-def listOfWords(tweets):
-    all_words = []
-    for tweet in tweets:
-        all_words += tweet["text"].split()
-    return sortedlistOfWords(all_words)
-
-# Exercise 4b) - Sort that list by number of times the word is mentioned (using Python's sorting methods)
-def sortedlistOfWords(all_words):
-    ocurrences = {}
-    for word in all_words:
-        ocurrences[word] = ocurrences.get(word,0) + 1
-
-    return sorted(ocurrences.keys(),key=lambda k: ocurrences[k], reverse=True)
-
-# Exercise 4c) - Create a new list sorted by the hashtags (words starting with "#")
-def sortedHashtags(tweets):
-    return [word for word in listOfWords(tweets) if word[0] == "#"]
-    
-# Exercise 4d) - Create a histogram with maximum score 18 for the most popular hashtags
-def histogram(tweets):
-    #hashtags = sortedHashtags(tweets)
-    ocurrences = {}
-    for tweet in tweets:
-        message = tweet["text"].split()
-        for word in message:
-            if word[0] == "#":
-                ocurrences[word] = ocurrences.get(word,0) + 1
-
-    ordered_tags = sorted(ocurrences.keys(), key=lambda k: ocurrences[k], reverse=True)
-    total = ocurrences[ordered_tags[0]]
-    
-    for tag in ordered_tags:
-       percentage = round(ocurrences[tag]*100/total)
-       plusses = "+" * round(18*ocurrences[tag]/total)
-       print("{:<30s} ({:>3d}) {:<18s}".format(tag, percentage, plusses))
-
-def ex4():
-    pass
-
-
 ##################MAIN#####################
 
 def print_menu():
@@ -333,7 +178,6 @@ def print_menu():
     print("1. Exercise 1")
     print("2. Exercise 2")
     print("3. Exercise 3")
-    print("4. Exercise 4")
     print("0. Exit")
     print(67 * "-")
 
@@ -354,8 +198,6 @@ def main():
             ex2()
         elif choice==3:
             ex3()
-        elif choice==4:
-            ex4()
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
