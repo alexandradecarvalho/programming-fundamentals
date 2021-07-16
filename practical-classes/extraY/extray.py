@@ -6,10 +6,6 @@ def printStocks(stocks):
     for stock in stocks:
         print("{:<7s} {:<15s} {:>7.2f} {:>8.2f} {:>10d} {:>7.1f}%".format(stock[0],stock[1],stock[2],stock[3],stock[4], (stock[3]-stock[2])*100/stock[2]))
 
-# Exercise 1b) - Write a function to validate a phone number - a string with at least 3 digits (0-9), optionally with a '+' symbol in the beginning
-def isValidPhone(phone_number):
-    pass
-
 # Exercise 1c) - Add the option to register a new call (from the keyboard) using the previous function in order to validate the origin and destiny phone numbers
 def registerCall():
     pass
@@ -31,8 +27,9 @@ def ex1():
     print("\na)")
     printStocks(stocks)
 
+# Exercise 1b) - Add the right arguments to the sorted function in order to get an ordered table by the company name and, for the same company, by decreasing transacted volume
     print("\nb)")
-    stocks2 = sorted(stocks  )
+    stocks2 = sorted(stocks, key=lambda stock : (stock[0],-stock[4]))
     printStocks(stocks2)
 
     print("\nc)")
