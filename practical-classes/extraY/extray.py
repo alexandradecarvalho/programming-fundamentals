@@ -119,12 +119,15 @@ def unload(t, m, q):
             return q
         
 
-# Exercise 3c)
+# Exercise 3c) - This function should return a dictionary d with the total quantity of products of each type in train t, which must not be altered
 def merchandise(t):
     """Devolve tabela com a quantidade de cada mercadoria no comboio t."""
-    pass
+    d = {}
+    for wagon in t:
+        d[wagon[0]] = d.get(wagon[0],0) + wagon[1]
+    return d
 
-# Exercise 3d)
+# Exercise 3d) - Complete the trainsPerMerchandise(trains) function to create a dictionary that, to each type of product, associates the names of the trains that transport them, without repetitions
 def trainsPerMerchandise(trains):
     pass
 
