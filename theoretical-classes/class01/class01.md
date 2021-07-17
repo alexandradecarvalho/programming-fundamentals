@@ -19,8 +19,8 @@
   * CPU, GPU
 * Storage Units
   * Volatile: RAM
-  * Persistent: Disck/SSD, CDROM
-* Comunication Units
+  * Persistent: Disk/SSD, CDROM
+* Communication Units
   * Wireless Cards, Ethernet, Bluetooth
 * Motherboard
   * Connects all components

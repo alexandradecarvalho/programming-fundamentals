@@ -129,7 +129,11 @@ def merchandise(t):
 
 # Exercise 3d) - Complete the trainsPerMerchandise(trains) function to create a dictionary that, to each type of product, associates the names of the trains that transport them, without repetitions
 def trainsPerMerchandise(trains):
-    pass
+    d = {}
+    for name,train in trains.items():
+        for wagon in train:
+            d[wagon[0]] = d.get(wagon[0],set()) | {name}
+    return d
 
 def ex3():
     random.seed("abc") # Altering the argument results in different trains
