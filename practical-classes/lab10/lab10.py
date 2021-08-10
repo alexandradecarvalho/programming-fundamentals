@@ -272,7 +272,7 @@ def main():
     while loop:
         print_menu()
         try:
-            choice = int(input("Enter your choice [5-9] or 0 to quit: "))
+            choice = int(input("Enter your choice [2-9] or 0 to quit: "))
         except:
             choice = 222    # Invalid option
         
