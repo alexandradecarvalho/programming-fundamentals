@@ -347,3 +347,73 @@ As an alternative, one can import an object directly from a module: `from math i
 
 This way the code can be more concise, but be careful of naming conflicts between imported objects' names and the names of variables/functions in the program.
 
+
+
+### Case study: interface design
+
+
+
+#### 1. Turtle
+
+Turtle is a module that provides a set of functions for drawing lines around the screen. It can be used by importing it: `from turtle import *`. Then, we need to create an **instance** of a Turtle to guide around, and assign it to the variable "bob": `bob = Turtle()` . An instance means a member of a set of objects of the same type - in this case, the type Turtle.
+
+
+
+#### 2. Simple repetition
+
+A turtle can, for example, draw a square. One can do this by inserting a statement which makes the turtle draw forward - `bob.forward(100)` - and a statement to turn the turtle around in a square angle - `bob.left(90)` - in a `for` **loop**. It is called a loop because the flow of execution runs through the body of this statement and then loops back to the top and runs it again until the initial conditions aren't met.
+
+
+
+#### 3. Encapsulation
+
+Wrapping a piece of code in a function is called **encapsulation**. This allows the naming of a block of code, which can be re-use, making the code more concise than writing the code twice.
+
+
+
+#### 4. Generalization
+
+Adapting a function to receive more parameters makes it more general, that's why it's called **generalization**. Because a function with many arguments can become confusing, it is legal and sometimes helpful for readability to include the names of the arguments in the function call. In that case, they are called keyword arguments, and the syntax is as follows: `polygon(bob, n=7, length=70)`.
+
+
+
+#### 5. Interface design
+
+The **interface** of a function is a summary of how it is used: what are the parameters? What
+does the function do? And what is the return value? An interface is “clean” if it is “as
+simple as possible, but not simpler. (Einstein)”
+
+
+
+#### 6. Refactoring
+
+**Refactoring** is the process of rearranging a program to improve function interfaces and facilitate reutilization of the code. This often happens because problem comprehension increases while developing a problem and the solution one saw fitted at the beginning may not be considered the best one after getting to know the problem better.
+
+
+
+#### 7. A development plan
+
+A **development plan** is the process of writing programs. One of the processes is often "encapsulation and generalization".  The steps are:
+
+1. Start by writing a small program with no function definitions.
+2. Once you get the program working, encapsulate it in a function and give it a name.
+3. Generalize the function by adding appropriate parameters.
+4. Repeat steps 1–3 until you have a set of working functions. Copy and paste working code to avoid retyping (and re-debugging).
+5. Look for opportunities to improve the program by refactoring. For example, if you have similar code in several places, consider factoring it into an appropriately general function.
+
+Despite its drawbacks, this process can be useful by allowing the programmer to design the program while coding it.
+
+
+
+#### 8. docstring
+
+A **development plan** is the process of writing programs. One of the processes is often "encapsulation and generalization".  The steps are:
+
+
+
+docstring - 9
+
+precondition - debugging 
+
+postcondition - debugging
+

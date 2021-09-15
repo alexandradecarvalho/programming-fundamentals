@@ -2,6 +2,7 @@
 
 
 import turtle
+import math
 
 
 # Exercise 2.1 - Now put the same statements into a script and run it. What is the output?
@@ -77,11 +78,65 @@ def draw_grid():
 
 # Page 53
 def turtleworld():
-    bob = turtle.Turtle()
-    print(bob)
-    bob.(bob, 100)
-    lt(bob)
-    fd(bob, 100)
+    bob = turtle.Turtle()    
+    bob.forward(100)
+    bob.left(90)
+    bob.forward(100)
+    turtle.exitonclick()
+    turtle.TurtleScreen._RUNNING = True # not to throw Terminator error
+
+
+# Exercise 4.1 - Write a function that takes a turtle as a parameter and uses it to draw a square
+def square(bob):
+    for times in range(4):
+        bob.left(90)
+        bob.forward(100)
+    turtle.exitonclick()
+    turtle.TurtleScreen._RUNNING = True # not to throw Terminator error
+
+# Exercise 4.2 - Add a length parameter to the square function, that indicates the square's sides' length
+def square_with_length(bob, length):
+    for times in range(4):
+        bob.left(90)
+        bob.forward(length)
+    turtle.exitonclick()
+    turtle.TurtleScreen._RUNNING = True # not to throw Terminator error
+
+# Exercise 4.3 - Write a function that draws a an n-sided regular polygon
+def polygon(bob, n_sides, length=100):
+    angle = 360/n_sides
+    for times in range(n_sides):
+        bob.left(angle)
+        bob.forward(length)
+    turtle.exitonclick()
+    turtle.TurtleScreen._RUNNING = True # not to throw Terminator error
+
+# Exercise 4.4 - Write a function that draws a circle of radius r by invoking the polygon function
+def circle(bob, r=50):
+    circumference = 2 * math.pi * r
+    bob.delay = 0.01
+    n = int((circumference/3)+1)    # this way the sides of the polygon are small enough for it to look like a circle but big enough so that it isn't too much time consuming - tip from the book
+    l = circumference/n   # l * n = 2 x pi() x r <=> l =2 x pi() x r / n
+    polygon(bob, n, l)
+
+# Exercise 4.5 - Write a function that takes an angle parameter to determine which fraction of the a circle to draw
+def arc(bob, angle):
+    bob.delay = 0.01
+    r = 50 # rand
+    
+    circumference = 2 * math.pi * r
+    arc_len = circumference * angle/360 # rule of three
+    n = int((arc_len/3)+1)    # this way the sides of the polygon are small enough for it to look like a circle but big enough so that it isn't too much time consuming - tip from the book
+    
+    l = arc_len / n   # l * n = 2 x pi() x r <=> l =2 x pi() x r / n
+    angle = angle / n
+    
+    for times in range(n):
+        bob.left(angle)
+        bob.forward(l)
+
+    turtle.exitonclick()
+    turtle.TurtleScreen._RUNNING = True # not to throw Terminator error
 
 ##################MAIN#####################
 
@@ -91,7 +146,12 @@ def print_menu():
     print("2. Exercise 3.3")
     print("3. Exercise 3.4")
     print("4. Exercise 3.5")
-    print("5. Exercise from page 53")
+    print("5. Exercises from page 53")
+    print("6. Exercise 4.1")
+    print("7. Exercise 4.2")
+    print("8. Exercise 4.3")
+    print("9. Exercise 4.4")
+    print("10. Exercise 4.5")
     print("0. Exit")
     print(67 * "-")
 
@@ -101,7 +161,7 @@ def main():
     while loop:
         print_menu()
         try:
-            choice = int(input("Enter your choice [1-1] or 0 to quit: "))
+            choice = int(input("Enter your choice [1-10] or 0 to quit: "))
         except:
             choice = 222    # Invalid option
         
@@ -116,6 +176,41 @@ def main():
             draw_grid()
         elif choice==5:
             turtleworld()
+        elif choice==6:
+            bob = turtle.Turtle()
+            square(bob)
+        elif choice==7:
+            try:
+                length = float(input("Square length? "))
+            except ValueError:
+                print("ERROR: Invalid values")
+            else:
+                bob = turtle.Turtle()
+                square_with_length(bob,length)
+        elif choice==8:
+            try:
+                n_sides = int(input("Number of sides of the polygon? "))
+            except ValueError:
+                print("ERROR: Invalid value")
+            else:
+                bob = turtle.Turtle()
+                polygon(bob, n_sides)
+        elif choice==9:
+            try:
+                r = float(input("Circle radius? "))
+            except ValueError:
+                print("ERROR: Invalid value")
+            else:
+                bob = turtle.Turtle()
+                circle(bob, r)
+        elif choice==10:
+            try:
+                fraction = float(input("Fraction of the arc? "))
+            except ValueError:
+                print("ERROR: Invalid value")
+            else:
+                bob = turtle.Turtle()
+                arc(bob, fraction)
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
