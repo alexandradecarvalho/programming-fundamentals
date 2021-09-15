@@ -2,7 +2,7 @@
 
 
 
-### The way of the Program
+### :computer: The way of the Program :computer:
 
 
 
@@ -78,7 +78,7 @@ The **print statement** is a function that displays a value on the screen. The q
 
 
 
-### Variables, expressions and statements
+### :mega: Variables, expressions and statements :mega:
 
 
 
@@ -243,7 +243,7 @@ delimiter * 5	# '.....' type str
 
 
 
-### Functions
+### :red_circle: Functions :red_circle:
 
 
 
@@ -349,7 +349,7 @@ This way the code can be more concise, but be careful of naming conflicts betwee
 
 
 
-### Case study: interface design
+### :mag: Case study: interface design :mag:
 
 
 
@@ -407,13 +407,20 @@ Despite its drawbacks, this process can be useful by allowing the programmer to 
 
 #### 8. docstring
 
-A **development plan** is the process of writing programs. One of the processes is often "encapsulation and generalization".  The steps are:
+A **docstring** is a string at the beginning of a function that explains the interface (“doc” is short for “documentation”). In Python, for this we use multiline strings (triple quotes), with a concise explanation of the function's behaviour and its parameters. This kind of documentation is important because if an interface design is hard to explain, it probably needs improving.
 
+​     
 
+#### 9. Exercises
 
-docstring - 9
+##### Exercise 4.2 - Write an appropriately general set of functions that can draw flowers as in the following figure:
 
-precondition - debugging 
+<img src="../img/flowers.png">
 
-postcondition - debugging
+```python
+Traceback (most recent call last):
+  File "think-python.py", line 14, in <module>
+    repeat_lyrics()
+NameError: name 'repeat_lyrics' is not defined
+```
 
