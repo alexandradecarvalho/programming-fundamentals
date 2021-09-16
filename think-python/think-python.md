@@ -2,7 +2,7 @@
 
 
 
-### :computer: The way of the Program :computer:
+### :computer: The way of the program :computer:
 
 
 
@@ -479,4 +479,34 @@ If a recursion never reaches a base case, it keeps on making recursive calls for
 #### 11. Keyboard input
 
 Python3 provides a function so that the function can get input from the keyboard. This function, called `input`, stops the flow of execution until the user types something and presses `Enter`. on never reaches a base case, it keeps on making recursive calls forever, so the program never terminates. This is known as **infinite recursion**, and it is generally not a good idea. 
+
+
+
+### :apple: Fruitful functions :pear:
+
+
+
+#### 1. Return values
+
+Fruitful functions have a return value, because they have a return statement, which is the `return` keyword followed by an expression or a **temporary variable** created inside the function. Sometimes it is useful to have multiple return statements, one in each branch of a conditional statement.
+
+Fruitful functions have a return value, because they have a return statement, which is the `return` keyword followed by an expression or a **temporary variable** created inside the function. When a function has many branches of a conditional statement, it is a good idea to guarantee that each of them has a `return` statement. In that case, since they are in an alternative conditional, only one will be executed. As soon as a return statement executes, the function terminates without executing any subsequent statements, which, because of never being executed, are called **dead code**.
+
+
+
+#### 2. Incremental development
+
+As a program has more and more functions, which in turn become more and more complex, debugging can become hard. One process that can avoid long debugging is **incremental development**, which consists in adding and debugging a small amount of code at a time. To debug a fragment of code built, sometimes, it is needed additional code, like `print` statements, that will later be removed. Using helpful code that is not part of the program is also called **scaffolding**.
+
+
+
+#### 3. Composition
+
+Composition is the ability of calling one function inside another.
+
+
+
+#### 4. Boolean function
+
+Functions can also return *booleans*, which is often convenient for hiding complicated tests inside functions.
 
