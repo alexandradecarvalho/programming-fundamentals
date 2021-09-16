@@ -411,16 +411,72 @@ A **docstring** is a string at the beginning of a function that explains the int
 
 ​     
 
-#### 9. Exercises
+###  :twisted_rightwards_arrows: Conditionals and recursion :repeat:
 
-##### Exercise 4.2 - Write an appropriately general set of functions that can draw flowers as in the following figure:
 
-<img src="../img/flowers.png">
 
-```python
-Traceback (most recent call last):
-  File "think-python.py", line 14, in <module>
-    repeat_lyrics()
-NameError: name 'repeat_lyrics' is not defined
-```
+#### 1. Modulus operator
+
+The **modulus operator** works on integers and takes the value of the remainder when the first operand is divided by the second. In Python, it is represented as a percentage sign (%) and it is used between the two integers. 
+
+
+
+#### 2. Boolean expressions
+
+A ***boolean* expression** is an expression that takes the values of either `True` or `False`, special values that belong to the type `bool`. These values result, for example, of **relational operators**, like `==`, which compare values. 
+
+
+
+#### 3. Logical operators
+
+There are three **logical operators**: `and`, `or` and `not`. `and` is true only if both evaluated conditions are true. `or` is true if either one of the conditions is true. `not` takes the opposite value of the evaluated *boolean* expression.
+
+
+
+#### 4. Conditional execution
+
+**Conditional statements** allow the program to change its behaviour depending on some evaluated **condition(s)**. The simplest form of doing this is the `if` statement. This statement has a header (if + condition + semicolon) followed by an indented body. Statements like this are also called **compound statements**. There is no limit for the number of statements in the body, but there has to be at least one. If we have nothing to write there (yet), we can use the `pass` statement.
+
+
+
+#### 5. Alternative execution
+
+The if statement can also have a second possible behaviour, in case the first condition is false. This is called **alternative execution** and uses the `else:` syntax. One of the two alternatives (**branches**) is always going to be executed.
+
+
+
+#### 6. Chained conditionals
+
+If there are more than two possibilities, more than two branches are needed. So, it is used the **chained conditional** `elif`, which is an abbreviation of "else, if". After `elif`, there is another expression to be evaluated, and then an indented body. There can be unlimited `elif` statements, and the optional `else` statement should always appear at the end. Even if more than one condition is true, only the first true branch executes.
+
+
+
+#### 7. Nested conditionals
+
+A conditional statement can be nested inside another. The outer condition contains, then, several branches. In turn, each of these branches could contain other conditional statements. Even though the indentation helps, **nested conditionals** can become hard to read, so they should be avoided. Sometimes they can be avoided by logical operators.
+
+
+
+#### 8. Recursion
+
+Just like one function can call another, one function can call itself. This process is called **recursion**. 
+
+
+
+#### 9. Stack diagrams for recursive functions
+
+The bottom of the stack, where n=0, is called the **base case** because it does not make a recursive call, so there are no
+more frames.
+
+<img src="../img/recursivestack.png">
+
+#### 10. Infinite recursion
+
+If a recursion never reaches a base case, it keeps on making recursive calls forever, so the program never terminates. This is known as **infinite recursion**, and it is generally not a good idea. 
+
+
+
+#### 11. Keyboard input
+
+Python3 provides a function so that the function can get input from the keyboard. This function, called `input`, stops the flow of execution until the user types something and presses `Enter`. on never reaches a base case, it keeps on making recursive calls forever, so the program never terminates. This is known as **infinite recursion**, and it is generally not a good idea. 
 

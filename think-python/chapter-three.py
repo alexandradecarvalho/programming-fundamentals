@@ -89,7 +89,7 @@ def main():
     while loop:
         print_menu()
         try:
-            choice = int(input("Enter your choice [2-5] or 0 to quit: "))
+            choice = int(input("Enter your choice [2-6] or 0 to quit: "))
         except:
             choice = 222    # Invalid option
         
