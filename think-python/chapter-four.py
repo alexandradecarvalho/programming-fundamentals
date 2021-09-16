@@ -10,16 +10,14 @@ def square(bob):
     for times in range(4):
         bob.left(90)
         bob.forward(100)
-    turtle.exitonclick()
-    turtle.TurtleScreen._RUNNING = True # not to throw Terminator error
+
 
 # Exercise 4.2 - Add a length parameter to the square function, that indicates the square's sides' length
 def square_with_length(bob, length):
     for times in range(4):
         bob.left(90)
         bob.forward(length)
-    turtle.exitonclick()
-    turtle.TurtleScreen._RUNNING = True # not to throw Terminator error
+
 
 # Exercise 4.3 - Write a function that draws a an n-sided regular polygon
 def polygon(bob, n_sides, length=100):
@@ -31,8 +29,7 @@ def polygon(bob, n_sides, length=100):
     for times in range(n_sides):
         bob.left(angle)
         bob.forward(length)
-    turtle.exitonclick()
-    turtle.TurtleScreen._RUNNING = True # not to throw Terminator error
+
 
 # Exercise 4.4 - Write a function that draws a circle of radius r by invoking the polygon function
 def circle(bob, r=50):
@@ -65,25 +62,52 @@ def arc(bob, angle, r=50):
         bob.left(angle)
         bob.forward(l)
 
-    turtle.exitonclick()
-    turtle.TurtleScreen._RUNNING = True # not to throw Terminator error
-
 
 # Exercise 4.2 - Write an appropriately general set of functions that can draw flowers
-def petal(t, r, angle):
+def petal(bob, r, angle):
+    a = 180 - angle
     for i in range(2):
-        arc(t, angle, r)
-        t.left(180-angle)
+        arc(bob, angle, r)
+        bob.left(a)
 
-def flower(t, n, r, angle):
+def flower(bob, n, r, angle):
     for i in range(n):
-        petal(t, r, angle)
+        petal(bob, r, angle)
         t.left(360.0/n)
 
-def move(t, length):
-    t.up()
-    t.forward(length)
-    t.down()
+def move(bob, length):
+    bob.up()
+    bob.forward(length)
+    bob.down()
+
+def ex42(bob, n_petals, arc_r, angle):
+    flower(bob, n_petals, arc_r, angle)
+    move(bob, 100)
+
+
+# Exercise 4.3 - Write an appropriately general set of functions that can draw shapes
+def triangle(bob, r, angle):
+    y = r * math.sin(angle * math.pi / 180)
+
+    bob.right(angle)
+    bob.forward(r)
+    bob.left(90+angle)
+    bob.forward(2*y)
+    bob.left(90+angle)
+    bob.forward(r)
+    bob.left(180-angle)
+
+def ex43(bob, n_triangles, r):
+    angle = 360.0 / n_triangles
+    for i in range(n_triangles):
+        triangle(bob, r, angle/2)
+        bob.left(angle)
+    move(bob, 100)
+
+
+def exit():
+    turtle.exitonclick()
+    turtle.TurtleScreen._RUNNING = True # not to throw Terminator error    
 
 
 ##################MAIN#####################
@@ -96,6 +120,7 @@ def print_menu():
     print("4. Exercise 4.4")
     print("5. Exercise 4.5")
     print("6. Exercise 4.2")
+    print("7. Exercise 4.3")
     print("0. Exit")
     print(67 * "-")
 
@@ -112,6 +137,7 @@ def main():
         if choice==1:
             bob = turtle.Turtle()
             square(bob)
+            exit()
         elif choice==2:
             try:
                 length = float(input("Square length? "))
@@ -120,6 +146,7 @@ def main():
             else:
                 bob = turtle.Turtle()
                 square_with_length(bob,length)
+                exit()
         elif choice==3:
             try:
                 n_sides = int(input("Number of sides of the polygon? "))
@@ -128,6 +155,7 @@ def main():
             else:
                 bob = turtle.Turtle()
                 polygon(bob, n_sides)
+                exit()
         elif choice==4:
             try:
                 r = float(input("Circle radius? "))
@@ -136,6 +164,7 @@ def main():
             else:
                 bob = turtle.Turtle()
                 circle(bob, r)
+                exit()
         elif choice==5:
             try:
                 fraction = float(input("Fraction of the arc? "))
@@ -144,19 +173,20 @@ def main():
             else:
                 bob = turtle.Turtle()
                 arc(bob, fraction)
+                exit()
         elif choice==6:
             bob = turtle.Turtle()
-            move(bob, 100)
-            flower(bob, 7, 60.0, 60.0)
-
-            move(bob, 100)
-            flower(bob, 10, 40.0, 80.0)
-
-            move(bob, 100)
-            flower(bob, 20, 140.0, 20.0)
-
-            turtle.exitonclick()
-            turtle.TurtleScreen._RUNNING = True # not to throw Terminator error           
+            ex42(bob, 7, 60.0, 60.0)
+            ex42(bob, 10, 40.0, 80.0)
+            ex42(bob, 20, 140.0, 20.0)
+            exit()   
+        elif choice==7:
+            bob = turtle.Turtle()
+            ex43(bob, 5, 40)
+            ex43(bob, 6, 40)
+            ex43(bob, 7, 40)
+            ex43(bob, 8, 40)
+            exit()          
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
