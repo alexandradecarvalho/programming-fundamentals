@@ -510,3 +510,15 @@ Composition is the ability of calling one function inside another.
 
 Functions can also return *booleans*, which is often convenient for hiding complicated tests inside functions.
 
+
+
+#### 5. Leap of faith
+
+An alternative to following the flow of execution is what the author calls the "leap of faith" - given a function call, we assume that the function works correctly and returns the right result. This is already done when we use built-in functions. 
+
+
+
+#### 6. Checking types
+
+The built-in `isinstance` function verifies the type of its argument. Functions like these work as a **guardian**.  This is a programming pattern that uses a conditional statement to check for, and handle, circumstances that might cause an error.
+
