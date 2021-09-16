@@ -522,3 +522,19 @@ An alternative to following the flow of execution is what the author calls the "
 
 The built-in `isinstance` function verifies the type of its argument. Functions like these work as a **guardian**.  This is a programming pattern that uses a conditional statement to check for, and handle, circumstances that might cause an error.
 
+
+
+#### 7. Solved Exercises
+
+##### Exercise 6.5 - What happens for larger values of m and n?
+
+```python
+RecursionError: maximum recursion depth exceeded in comparison 
+```
+
+
+
+##### Exercise 6.6 - What happens if you call `middle` with a string with two letters? One letter? What about the empty string,
+which is written ''and contains no letters?
+
+In all of the above cases, it is returned an empty string.

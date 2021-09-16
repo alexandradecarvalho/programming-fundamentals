@@ -30,6 +30,53 @@ def is_between(x, y, z):
         return False 
 
 
+# Exercise 6.5 - Write a function that evaluates Ackermann’s function 
+def ack(m,n):
+    if m == 0:
+        return n+1
+    elif m > 0 and n == 0:
+        return ack(m-1,1)
+    elif m > 0 and n > 0:
+        return ack(m-1, ack(m,n-1))
+
+
+# Exercise 6.6
+def first(word):
+    return word[0]
+
+def last(word):
+    return word[-1]
+
+def middle(word):
+    return word[1:-1]
+
+# Exercise 6.6 - Write a function called is_palindrome that takes a string argument and returns True if it is a palindrome and False otherwise
+def is_palindrome(word):
+    if len(word) > 2:
+        if first(word) == last(word):
+            return is_palindrome(word[1:-1])
+        else:
+            return False
+    return True
+
+
+# Exercise 6.7 - Write a function that takes parameters a and b and returns True if a is a power of b
+def is_power(a,b):
+    if a == b or  a == 1:
+        return True
+        
+    return a%b == 0 and is_power(a/b, b)
+
+
+# Exercise 6.8 - Write a function that takes parameters a and b and returns their greatest common divisor
+def gcd(a,b):
+    if b == 0:
+        return a
+
+    r = a%b
+    return gcd(b,r)
+
+
 ##################MAIN#####################
 
 def print_menu():
@@ -37,7 +84,6 @@ def print_menu():
     print("1. Exercise 6.1")
     print("2. Exercise 6.2")
     print("3. Exercise 6.3")
-    print("4. Exercise 6.4")
     print("5. Exercise 6.5")
     print("6. Exercise 6.6")
     print("7. Exercise 6.7")
@@ -51,7 +97,7 @@ def main():
     while loop:
         print_menu()
         try:
-            choice = int(input("Enter your choice [2-5] or 0 to quit: "))
+            choice = int(input("Enter your choice [1-3,5-8] or 0 to quit: "))
         except:
             choice = 222    # Invalid option
         
@@ -86,32 +132,37 @@ def main():
                 else:
                     break
             print(is_between(x,y,z))
-        elif choice==4:
-            get_stick_lengths()
         elif choice==5:
+            print(ack(3,4)) # should be 125
+            #print(ack(130,140)) - max recursion depth exceeded error
+        elif choice==6:
+            print(middle('abc'))
+            print(middle('ab'))
+            print(middle('a'))
+            print(middle(''))
+
+            word = input("introduce word: ")
+            print(is_palindrome(word))
+        elif choice==7:
             while True:
                 try:
-                    length = int(input("length? "))
-                    n = int(input("n? "))
+                    a = int(input("a? "))
+                    b = int(input("b? "))
                 except ValueError:
                     print("I'm sorry, the values you introduced seemed to be invalid. Please try again")
                 else:
                     break
-            
-            bob = turtle.Turtle()
-            draw(bob, length, n)
-            exit() 
-        elif choice==6:
+            print(is_power(a,b))
+        elif choice==8:
             while True:
                 try:
-                    length = int(input("length? "))
+                    a = int(input("a? "))
+                    b = int(input("b? "))
                 except ValueError:
-                    print("I'm sorry, the length you introduced seemed to be invalid. Please try again")
+                    print("I'm sorry, the values you introduced seemed to be invalid. Please try again")
                 else:
                     break
-            bob = turtle.Turtle()
-            snowflake(bob, length)
-            exit()
+            print(gcd(a,b))
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
