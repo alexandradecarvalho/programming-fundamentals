@@ -67,7 +67,12 @@ def rotate_word(string, rotation):
         new = alphabet.find(character.lower()) + rotation
         if new > len(alphabet)-1:
             new = new - len(alphabet)
-        result += alphabet[new]
+        
+        appending_letter = alphabet[new]
+        if character.isupper():
+            appending_letter = appending_letter.upper()
+        
+        result += appending_letter
     
     return result
 
