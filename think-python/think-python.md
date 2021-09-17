@@ -697,3 +697,20 @@ def any_lowercase5(s):	# this function determines if all the characters in the s
                 return False
         return True
 ```
+
+
+
+### :mag: Case study: word play :mag:
+
+
+
+#### 1. Reading word lists
+
+For this chapter we will use the [words.txt](https://github.com/alexandradecarvalho/programming-fundamentals/tree/main/think-python/words.txt) file, which contains a list of 113 809 official crosswords. Python has a built-in function open that takes the name of a file as a parameter and opens it, returning a **file object**. There are several modes for opening files: `'r'` is for reading the file, `'w'` is for writing.
+
+
+
+problem recognition -3
+
+special case -5
+
