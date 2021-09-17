@@ -655,3 +655,45 @@ The relational operators work on strings. In Python, all the uppercase letters c
 
 
 
+#### 11. Solved Exercises
+
+
+
+##### Exercise 8.11 -  For each function below, describe what the function actually does
+
+```python
+def any_lowercase1(s): # this function determines whether the first character is lowercase
+	for c in s:
+		if c.islower():
+			return True
+		else:
+			return False
+        
+
+def any_lowercase2(s):	# this function always returns True
+	for c in s:
+		if 'c'.islower():
+			return 'True'
+		else:
+			return 'False'
+        
+        
+def any_lowercase3(s):	# this function determines whether the last character is lowercase
+	for c in s:
+		flag = c.islower()
+	return flag
+
+
+def any_lowercase4(s):	# this function evaluates if the string contains any lowercase character
+	flag = False
+	for c in s:
+		flag = flag or c.islower()
+	return flag
+
+
+def any_lowercase5(s):	# this function determines if all the characters in the string are lowercase
+        for c in s:
+            if not c.islower():
+                return False
+        return True
+```

@@ -54,6 +54,23 @@ def count_with_find(word, wanted_letter):
     print(count)
 
 
+# Exercise 8.10 - Write a one-line version of is_palindrome from chapter 6
+def is_palindrome(word):
+    return word == word[::-1]
+
+
+# Exercise 8.12 - Write a function that takes a string and an integer as parameters, and that returns a new string that contains the letters from the original string “rotated” by the given amoun
+def rotate_word(string, rotation):
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    result = ''
+    for character in string:
+        new = alphabet.find(character.lower()) + rotation
+        if new > len(alphabet)-1:
+            new = new - len(alphabet)
+        result += alphabet[new]
+    
+    return result
+
 
 ##################MAIN#####################
 
@@ -65,9 +82,7 @@ def print_menu():
     print("5. Exercise 8.5")
     print("6. Exercise 8.6")
     print("7. Exercise 8.7")
-    print("9. Exercise 8.9")
     print("10. Exercise 8.10")
-    print("11. Exercise 8.11")
     print("12. Exercise 8.12")
     print("0. Exit")
     print(67 * "-")
@@ -78,7 +93,7 @@ def main():
     while loop:
         print_menu()
         try:
-            choice = int(input('Enter your choice [1-2,4-7,9-12] or 0 to quit: '))
+            choice = int(input('Enter your choice [1-2,4-7,1012] or 0 to quit: '))
         except:
             choice = 222    # Invalid option
         
@@ -110,6 +125,19 @@ def main():
             # Exercise 8.7 - Write an invocation of the method count that counts the number of a's in 'banana'
             word = 'banana'
             print(word.count('a'))
+        elif choice==10:
+            word = input('word: ')
+            print(is_palindrome(word))
+        elif choice==12:
+            word = input('word: ')
+            while True:
+                try:
+                    rotation = int(input("rotation? "))
+                except ValueError:
+                    print("I'm sorry, the rotation value seems to be invalid. Please try again")
+                else:
+                    break
+            print(rotate_word(word, rotation))
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
