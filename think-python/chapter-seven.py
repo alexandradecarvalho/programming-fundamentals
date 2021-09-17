@@ -1,5 +1,9 @@
 # Alexandra de Carvalho, 17 september 2021
 
+
+import math
+
+
 # Exercise 7.1 - Rewrite the function print_n from Section 5.8 using iteration instead of recursion
 def print_n(s, n):
     while n > 0:
@@ -16,6 +20,22 @@ def square_root(a):
         if y == x:
             break
         x = y
+
+
+# Exercise 7.3 - Write a function that prints a table comparing the square root algorithm above and the math.sqrt results
+def square_root_alg(a):
+    x = a/2
+    while True:
+        y = (x + a/x) / 2
+        if y == x:
+            return x
+        x = y
+
+def test_square_root():
+    for a in range(1,10):
+        alg_result = square_root_alg(a)
+        library_result = math.sqrt(a)
+        print("{:2.1f} {:<12f} {:<12f} {:<12e}".format(float(a), alg_result, library_result, abs(alg_result-library_result)))
 
         
 ##################MAIN#####################
@@ -59,6 +79,8 @@ def main():
                 else:
                     break
             square_root(a)
+        elif choice==3:
+            test_square_root()
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
