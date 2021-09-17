@@ -720,13 +720,16 @@ For this chapter we will use the [words.txt](https://github.com/alexandradecarva
 
 > hello, coach alfa fell of alcohol!
 
-##### Exercise 9.4 - How many words are there that use all the vowels "aeiou"? How about "aeiouy"?
+##### Exercise 9.5 - How many words are there that use all the vowels "aeiou"? How about "aeiouy"?
 
 > 598 words use "aeiou" and 42 words use "aeiouy"
 
+##### Exercise 9.6 - How many abecedarian words are there?
+
+> There are 596 abecedarian words
 
 
-problem recognition -3
 
-special case -5
+#### 3. Search
 
+**Problem recognition** means to recognize a problem as an instance of a previously-solved problem, and applying a previously-developed solution.

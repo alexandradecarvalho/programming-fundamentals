@@ -130,6 +130,20 @@ def main():
         elif choice==6:
             word = input('word: ')
             print(is_abecedarian(word))
+
+            words_abc = 0
+            try:
+                f = open('words.txt', 'r')
+            except IOError:
+                print('ERROR: Words File not found')
+            else:
+                for line in f:
+                    word = line.strip()
+
+                    if is_abecedarian(word):
+                        words_abc += 1
+                f.close()
+            print(words_abc)
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
