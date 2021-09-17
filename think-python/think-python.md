@@ -562,3 +562,21 @@ Repetitions, also called **iterations**, are very common in problem solving and 
 3. If the condition is true, execute the body and then go back to step 1.
 
 This type of flow is called a loop because the third step loops back around to the top. The body of the loop should change the value of one or more variables so that eventually the condition becomes false and the loop terminates. Otherwise the loop will repeat forever, which is called an **infinite loop**. 
+
+
+
+#### 4. `break`
+
+Sometimes, the condition to be evaluated in order to know if the loop must end only appears halfway through the body. In that case, the `break` statement allows the algorithm to leave the loop. This is common within while loops.
+
+
+
+#### 5. Square roots
+
+Loops are often used in programs that compute numerical results by starting with an approximate answer and iteratively improving it. It's the case, for example, of computing square roots with Newton's method. 
+
+
+
+#### 6. Algorithms
+
+Newton's method is an example of an algorithm: it is a mechanical process for solving a category of problems.

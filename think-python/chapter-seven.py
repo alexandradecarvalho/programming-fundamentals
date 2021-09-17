@@ -6,6 +6,17 @@ def print_n(s, n):
         print(s)
         n=n-1
 
+
+# Exercise 7.2 - Encapsulate the Newton's square root method loop in a function that takes a as a parameter, chooses a reasonable value of x, and returns an estimate of the square root of a
+def square_root(a):
+    x = a/2
+    while True:
+        print(x)
+        y = (x + a/x) / 2
+        if y == x:
+            break
+        x = y
+
         
 ##################MAIN#####################
 
@@ -39,6 +50,15 @@ def main():
                 else:
                     break
             print_n(s,n)
+        elif choice==2:
+            while True:
+                try:
+                    a = int(input("a? "))
+                except ValueError:
+                    print("I'm sorry, that value seems to be invalid. Please try again")
+                else:
+                    break
+            square_root(a)
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
