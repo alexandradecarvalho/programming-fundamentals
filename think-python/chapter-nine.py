@@ -66,6 +66,30 @@ def forbid():
     return count
 
 
+# Exercise 9.4 - Write a function that takes a word and a string of letters, and that returns True if the word contains only letters in the list
+def uses_only(word, letters):
+    for letter in word:
+        if letter not in letters:
+            return False
+    return True
+
+
+# Exercise 9.5 - Write a function that takes a word and a string of required letters, and that returns True if the word uses all the required letters at least once
+def uses_all(word, required_letters):
+    for letter in required_letters:
+        if letter not in word:
+            return False
+    return True
+
+
+# Exercise 9.6 - Write a function that returns True if the letters in a word appear in alphabetical order (double letters are ok)
+def is_abecedarian(word):
+    for index in range(len(word)-1):
+        if word[index] > word[index+1]:
+            return False
+    return True
+
+
 ##################MAIN#####################
 
 def print_menu():
@@ -95,6 +119,17 @@ def main():
             print('Percentage of words without e: {}%'.format(words_without_e()*100))
         elif choice==3:
             print('There are {} words without the mentioned forbidden letters.'.format(forbid()))
+        elif choice==4:
+            word = input("word: ")
+            letters = input("letters: ")
+            print(uses_only(word,letters))
+        elif choice==5:
+            word = input("word: ")
+            letters = input("required letters: ")
+            print(uses_all(word,letters))
+        elif choice==6:
+            word = input('word: ')
+            print(is_abecedarian(word))
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False

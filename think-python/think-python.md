@@ -710,6 +710,22 @@ For this chapter we will use the [words.txt](https://github.com/alexandradecarva
 
 
 
+#### 2. Solved Exercises 
+
+##### Exercise 9.3 - Can you find a combination of 5 forbidden letters that excludes the smallest number of words?
+
+> Probably the vowels: a,e,i,o,u
+
+##### Exercise 9.4 - Can you make a sentence using only the letters "acefhlo"? Other than "Hoe alfalfa"?
+
+> hello, coach alfa fell of alcohol!
+
+##### Exercise 9.4 - How many words are there that use all the vowels "aeiou"? How about "aeiouy"?
+
+> 598 words use "aeiou" and 42 words use "aeiouy"
+
+
+
 problem recognition -3
 
 special case -5
