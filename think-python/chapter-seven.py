@@ -37,7 +37,36 @@ def test_square_root():
         library_result = math.sqrt(a)
         print("{:2.1f} {:<12f} {:<12f} {:<12e}".format(float(a), alg_result, library_result, abs(alg_result-library_result)))
 
+
+# Exercise 7.4 - Write a function that iteratively prompts the user, takes the resulting input and evaluates it using eval, and prints the result
+def eval_loop():
+    last_result = ''
+    while True:
+        exp = input('Write something:\n')
+        if exp == 'done':
+            return last_result
+        else:
+            last_result = eval(exp)
+            print(last_result)
+
+
+# Exercise 7.5 - Write a function that uses Srinivasa Ramanujan's infinite series that generate a numerical approximation of 1/π to compute and return an estimate of π
+def estimate_pi():
+    total = 0
+    k = 0
+    constant = (2*math.sqrt(2))/9801
+    while True:
+        inverted_pi = constant * ( (math.factorial(4*k)*(1103+26390*k)) / ((math.factorial(k))**4 * (396**(4*k))) )
+        total += inverted_pi
         
+        if abs(inverted_pi) < 1e-15:
+            break
+
+        k += 1
+
+    return 1/total
+         
+
 ##################MAIN#####################
 
 def print_menu():
@@ -81,6 +110,12 @@ def main():
             square_root(a)
         elif choice==3:
             test_square_root()
+        elif choice==4:
+            last_result = eval_loop()
+            print('Last result was', last_result)
+        elif choice==5:
+            pi = estimate_pi()
+            print('The difference is', abs(pi-math.pi))
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
