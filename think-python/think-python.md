@@ -580,3 +580,52 @@ Loops are often used in programs that compute numerical results by starting with
 #### 6. Algorithms
 
 Newton's method is an example of an algorithm: it is a mechanical process for solving a category of problems.
+
+
+
+### :lips: Strings :lips:
+
+
+
+#### 1. A string is a sequence
+
+A string is a **sequence** of characters, which can be accessed one at a time with the bracket operator. The integer inside the brackets is called an **index** and it indicates which position of the string we want to access (mind that the first position is index 0). Negative indices count backwards (from the last character to the first).
+
+
+
+#### 2. `len`
+
+`len` is a built-in function that returns the number of characters in a string. An empty string has length 0.
+
+
+
+#### 3. Traversal with a `for` loop
+
+Sometimes we might need to compute over all characters of string, one at a time. This process is called **traversal** and can be accomplished with a `while` or a `for` loop. 
+
+
+
+#### 4. String slices
+
+A segment of a string is called a **slice**, and it can be selected with the bracket operator and two indexes separated by a colon. The first index is inclusive but the last one is exclusive. If the first index is omitted the slice starts at index 0 and if the last index is omitted the slice ends at the end of the word. If the first index is greater than or equal to the second the result is an **empty string**, represented by two quotation marks.
+
+
+
+##### Exercise 8.3 - Given that `fruit` is a string, what does fruit[:] mean?
+
+```python
+fruit[:] = fruit
+```
+
+
+
+#### 5. Strings are immutable
+
+Strings are **immutable**, which means we can't assign any new values to its items. An **item** of the string is any of the elements in the sequence of characters.
+
+
+
+#### 6. Searching
+
+A **search** is a pattern of computation that traverses a sequence and returns when it finds what we are looking for.
+
