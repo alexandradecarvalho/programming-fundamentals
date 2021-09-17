@@ -733,3 +733,67 @@ For this chapter we will use the [words.txt](https://github.com/alexandradecarva
 #### 3. Search
 
 **Problem recognition** means to recognize a problem as an instance of a previously-solved problem, and applying a previously-developed solution.
+
+
+
+### :train: Lists :train:
+
+
+
+#### 1. A list is a sequence
+
+A **list** is a sequence of values, called **elements** or items, which can be of any type (including other lists), and can even have different types among them. A list inside a list is a **nested list**. A list that has no elements is called an empty list.
+
+
+
+#### 2. Lists are mutable
+
+Elements of a list can be accessed with the bracket operator, holding inside an expression that specifies the index to be accessed (first index being 0). The relationship between indices and elements is called **mapping**: each index "maps to" one of the list's elements. Accessing an index can also be done to modify the element on that index. This is why lists are mutable, unlike strings. The `in` operator also works on lists.
+
+
+
+#### 3. Traversing a list
+
+The most common way of **traversing a list** is with a `for` loop, just like in strings.
+
+
+
+#### 4. List operations
+
+The `+` operator concatenates lists. Similarly, the `*` operator repeats a list a given number of times.
+
+
+
+#### 5. List slices
+
+The slice operator also works on lists. If the first index is omitted, the slice starts at the beginning of the list. If the second index is omitted, the slice goes to the end of the list. So if both are omitted the slice is a copy of the whole list.
+
+
+
+#### 6. List methods
+
+Python provides methods that operate on lists, such as `appends`, that adds a new element to the end of a list. List methods are all `void`, so they modify the list and return `None`.
+
+
+
+#### 7. Map, filter and reduce
+
+The **augmented assignment** statement is a special and short type of assignment that updates a variable. Sometimes this is used when this variable is used to count the total amount of times some specific case happens. In that case, the variable is called an **accumulator**.  Operations that compute a sequence of elements of a list into a single value is sometimes called **reduce**.
+
+
+
+map
+
+filter
+
+object
+
+equivalent
+
+identical
+
+reference
+
+aliasing
+
+delimenter

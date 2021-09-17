@@ -90,6 +90,50 @@ def is_abecedarian(word):
     return True
 
 
+# Exercise 9.7 - Write a program to find a word with three consecutive double letters
+def three_doubles():
+    doubles = 0
+    try:
+        f = open('words.txt', 'r')
+    except IOError:
+        print('ERROR: Words File not found')
+    else:
+        for line in f:
+            word = line.strip()
+            for index in range(len(word)-1):
+                if word[index] == word[index+1]:
+                    doubles += 1
+            if doubles == 3:
+                print(word)
+            doubles = 0
+        f.close()
+
+
+# Exercise 9.8 - Write a Python program that tests all six-digit numbers and prints any numbers that satisfy the requirements
+def is_palindrome(s):
+    return s[::-1] == s
+
+def get_oddometer():
+    miles = 100000
+    for mile in range(miles,1000000):
+        if is_palindrome(str(mile)[2:]) and is_palindrome(str(mile+1)[1:]) and is_palindrome(str(mile+2)[1:-1]):
+            print(mile)
+
+
+# Exercise 9.9 - Write a Python program that searches for solutions to this Puzzlers
+def get_age():
+    count = 0
+    for daughter_age in range(10,100):
+        mother_age = str(daughter_age)[::-1]
+        if int(mother_age) > daughter_age:
+            for subtracting_years in range(0,daughter_age):
+                if str(daughter_age-subtracting_years) == str(int(mother_age)-subtracting_years)[::-1]:
+                    count += 1
+        
+        if count == 6:
+            print(daughter_age)
+
+
 ##################MAIN#####################
 
 def print_menu():
@@ -100,6 +144,9 @@ def print_menu():
     print("4. Exercise 9.4")
     print("5. Exercise 9.5")
     print("6. Exercise 9.6")
+    print("7. Exercise 9.7")
+    print("8. Exercise 9.8")
+    print("9. Exercise 9.9")
     print("0. Exit")
     print(67 * "-")
 
@@ -109,7 +156,7 @@ def main():
     while loop:
         print_menu()
         try:
-            choice = int(input('Enter your choice [1-6] or 0 to quit: '))
+            choice = int(input('Enter your choice [1-9] or 0 to quit: '))
         except:
             choice = 222    # Invalid option
         
@@ -144,6 +191,12 @@ def main():
                         words_abc += 1
                 f.close()
             print(words_abc)
+        elif choice==7:
+            three_doubles()
+        elif choice==8:
+            get_oddometer()
+        elif choice==9:
+            get_age()
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
