@@ -629,3 +629,29 @@ Strings are **immutable**, which means we can't assign any new values to its ite
 
 A **search** is a pattern of computation that traverses a sequence and returns when it finds what we are looking for.
 
+
+
+#### 7. Looping and counting
+
+**Counter** is another pattern of computation, which counts the total number of occurrences of a given thing, by looping over something and incrementing each time it finds the wanted result.
+
+
+
+#### 8. String methods
+
+A **method** is like a function - it takes arguments and returns a value - but the object we want to apply it to, instead of being an argument inside the brackets, is in the form of dot notation. A method call is called an **invocation**.
+
+
+
+#### 9. The `in` operator
+
+The word `in` is a *boolean* operator that takes two strings and returns `True` if the first appears as a substring in the second.
+
+
+
+#### 10. String comparison
+
+The relational operators work on strings. In Python, all the uppercase letters come before all the lowercase letters.
+
+
+

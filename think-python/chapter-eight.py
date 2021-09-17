@@ -31,6 +31,30 @@ def find(word, letter, start):
     return -1
 
 
+# Exercise 8.5 - Encapsulate the code of page 75 in a function, and generalize it so that it accepts the string and the letter as arguments
+def count(word, wanted_letter):
+    count = 0
+    for letter in word:
+        if letter == wanted_letter:
+            count = count + 1
+    print(count)
+
+
+# Exercise 8.6 - Rewrite the function above so that instead of traversing the string, it uses the three-parameter version of find
+def count_with_find(word, wanted_letter):
+    count = 0
+    start_index = 0
+    while True:
+        result_index = find(word, wanted_letter, start_index)
+        if result_index != -1:
+            count = count + 1
+            start_index = result_index + 1
+        else:
+            break
+    print(count)
+
+
+
 ##################MAIN#####################
 
 def print_menu():
@@ -41,7 +65,6 @@ def print_menu():
     print("5. Exercise 8.5")
     print("6. Exercise 8.6")
     print("7. Exercise 8.7")
-    print("8. Exercise 8.8")
     print("9. Exercise 8.9")
     print("10. Exercise 8.10")
     print("11. Exercise 8.11")
@@ -55,7 +78,7 @@ def main():
     while loop:
         print_menu()
         try:
-            choice = int(input('Enter your choice [1,2,4-12] or 0 to quit: '))
+            choice = int(input('Enter your choice [1-2,4-7,9-12] or 0 to quit: '))
         except:
             choice = 222    # Invalid option
         
@@ -75,6 +98,18 @@ def main():
                 else:
                     break
             print(find(word,letter,start_index))
+        elif choice==5:
+            word = input('word: ')
+            letter = input('searched letter: ')
+            count(word,letter)
+        elif choice==6:
+            word = input('word: ')
+            letter = input('searched letter: ')
+            count_with_find(word,letter)   
+        elif choice==7:
+            # Exercise 8.7 - Write an invocation of the method count that counts the number of a's in 'banana'
+            word = 'banana'
+            print(word.count('a'))
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
