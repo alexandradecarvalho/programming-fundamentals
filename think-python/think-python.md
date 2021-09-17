@@ -534,7 +534,31 @@ RecursionError: maximum recursion depth exceeded in comparison
 
 
 
-##### Exercise 6.6 - What happens if you call `middle` with a string with two letters? One letter? What about the empty string,
-which is written ''and contains no letters?
-
+##### Exercise 6.6 - What happens if you call `middle` with a string with two letters? One letter? What about the empty string, which is written `''` and contains no letters?
 In all of the above cases, it is returned an empty string.
+
+
+
+###  :arrows_counterclockwise: Iteration :arrows_counterclockwise:
+
+
+
+#### 1. Multiple assignment
+
+The same variable can suffer more than one assignment. The new assignment replaces the existing value of that variable for a new one. This is **multiple assignment** and its state diagram can be seen in the following image:<img src="../img/multipleassign.png"> 
+
+#### 2. Updating variables
+
+One of the most common forms of multiple assignment is an **update**, where the new value depends on the old. Before you can update a variable, though, you need to **initialize** it, with a simple assignment. Updating a variable by adding 1 to its old value is called an **increment**, subtracting 1 is called a **decrement**. 
+
+
+
+#### 3. The `while` statement
+
+Repetitions, also called **iterations**, are very common in problem solving and programming. One way to iterate is using a `for` statement. Another is the `while` statement, with the following steps:
+
+1. Evaluate the condition, yielding True or False.
+2. If the condition is false, exit the while statement and continue execution at the next statement.
+3. If the condition is true, execute the body and then go back to step 1.
+
+This type of flow is called a loop because the third step loops back around to the top. The body of the loop should change the value of one or more variables so that eventually the condition becomes false and the loop terminates. Otherwise the loop will repeat forever, which is called an **infinite loop**. 
