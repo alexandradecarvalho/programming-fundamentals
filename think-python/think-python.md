@@ -815,3 +815,19 @@ The association of a variable to an object is called a **reference**. An object 
 #### 12. List arguments
 
 When you pass a list to a function, the function gets a reference to the list. If the function modifies a list parameter, the caller sees the change. It is important to distinguish between operations that modify lists and operations that create new lists.
+
+
+
+### :bookmark_tabs: Dictionaries :bookmark_tabs:
+
+
+
+#### 1. Dictionary as a set of counters
+
+A **dictionary** is a more general list, where the elements aren't accessible through their indices: they can be accessed through anything at all! A dictionary is a mapping between a set of keys and a set of values. Each **key** maps to a **value**. The association of a key and a value is called a **key-value pair** or, sometimes, an **item**.
+
+The `len` function returns the number of key-value pairs in the dictionary, while the `in` evaluates whether something appears as a key in the dictionary. To see whether something appears as a value in a dictionary, one can use the `in` operator over the result of the `values` method, which returns the values of the dictionary in a list. The `in` operator uses an algorithm called **hashtable** to search in dictionaries. This is why the operator takes about the same amount of time no matter how many items there are in the dictionary.
+
+An **implementation** is a way of performing a computation; some implementations are better than others. For example, there are some advantages in using a dictionary as a set of counters - it accommodates all possible letters, but unnecessary records don't take too much space. This represents a **histogram**, which is a statistical term for a set of counters.
+
+

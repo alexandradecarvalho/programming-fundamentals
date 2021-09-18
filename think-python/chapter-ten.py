@@ -111,6 +111,7 @@ def append_word_list():
     else:
         for line in f:
             result.append(line.strip())
+        f.close()
     return result 
 
 # Exercise 10.10 - Write another version of this function, one using not the append method as before but the idiom t = t + [x]
@@ -123,6 +124,7 @@ def add_word_list():
     else:
         for line in f:
             result += [line.strip()]
+        f.close()
     return result 
 
 
@@ -188,6 +190,20 @@ def interlock():
             print(even,odd)
             word_list.remove(even)
             word_list.remove(odd)
+
+# Exercise 10.13 - Can you find any words that are three-way interlocked
+def three_way():
+    word_list = get_words()
+    
+    for word in word_list:
+        first_word = word[::3]
+        second_word = word[1::3]
+        third_word = word[2::3]
+        if exists(word_list,first_word) and exists(word_list, second_word) and exists(word_list, third_word):
+            print(first_word,second_word, third_word)
+            word_list.remove(first_word)
+            word_list.remove(second_word)
+            word_list.remove(third_word)
 
 
 ##################MAIN#####################
@@ -289,6 +305,7 @@ def main():
             reverse_pairs()
         elif choice==13:
             interlock()
+            three_way()
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
