@@ -778,22 +778,40 @@ Python provides methods that operate on lists, such as `appends`, that adds a ne
 
 #### 7. Map, filter and reduce
 
-The **augmented assignment** statement is a special and short type of assignment that updates a variable. Sometimes this is used when this variable is used to count the total amount of times some specific case happens. In that case, the variable is called an **accumulator**.  Operations that compute a sequence of elements of a list into a single value is sometimes called **reduce**.
+The **augmented assignment** statement is a special and short type of assignment that updates a variable. Sometimes this is used when this variable is used to count the total amount of times some specific case happens. In that case, the variable is called an **accumulator**.  Operations that compute a sequence of elements of a list into a single value is sometimes called **reduce**. 
+
+There is a kind of function called a **map**, which "maps" a function onto each of the elements of a sequence. Other operations, called **filters**, select some of the elements and filter out the others. Most common list operations can be expressed as a combination of map, filter and reduce.
 
 
 
-map
+#### 8. Deleting elements
 
-filter
+If the index of an element is known, we can delete it by using `lst.pop(index)`. The `pop` method modifies the list, at the same time as it actually returns a value - the deleted element itself. If knowing the value of that element is not necessary, one can use the operator `del` (as `del lst[index]`), which also removes the element of a given index on a list. `del` also removes more than one element, if used with a slice index.
 
-object
+If the index of the element is not known, but its value is, the method `remove` can be used: `lst.remove('value')`. Here, the return value is `None`.
 
-equivalent
 
-identical
 
-reference
+#### 9. Lists and strings
 
-aliasing
+A string is a sequence of characters and a list is a sequence of values. To convert from a string to a list of characters, one can use the built-in function `list`. To break a string into words, one can use the `split` method. In the latter case, an optional argument called a **delimiter** specifies which characters to use as boundaries.
 
-delimenter
+`join` is a string method invoked at the delimiter that is the inverse of `split`. It takes as argument a list of strings and concatenates the elements.
+
+
+
+#### 10. Objects and values
+
+If we create two different lists and assign each of them to a variable, the two variables will point to different objects, despite these having the same value. This can be checked with the `is` operator. In that case, the two lists are **equivalent**, because they have the same elements, but not **identical, because** they are not the same **object**. 
+
+
+
+#### 11. Aliasing
+
+The association of a variable to an object is called a **reference**. An object with more than one reference has more than one name, so we say that the object is **aliased**. In that case, changes made with one alias affect the other. In general, it is safer to avoid aliasing when working with mutable objects.
+
+
+
+#### 12. List arguments
+
+When you pass a list to a function, the function gets a reference to the list. If the function modifies a list parameter, the caller sees the change. It is important to distinguish between operations that modify lists and operations that create new lists.
