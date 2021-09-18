@@ -40,6 +40,49 @@ def cumulative_sum(numbers):
         result.append(sum(numbers[:i+1]))
     return result
 
+    
+# Exercise 10.4 - Write a function that takes a list and returns a new list that contains all but the first and last elements
+def middle(lst):
+    return lst[1:-1]
+
+
+# Exercise 10.5 - Write a function that takes a list, modifies it by removing the first and last elements, and returns None
+def chop(lst):
+    del lst[0]
+    del lst[-1]
+    return None
+
+
+# Exercise 10.6 - Write a function that takes a list as a parameter and returns True if the list is sorted in ascending order and False otherwise
+def is_sorted(lst):
+    for idx in range(len(lst)-1):
+        if lst[idx] > lst[idx+1]:
+            return False
+    return True
+
+
+# Exercise 10.7 - Write a function that takes two strings and returns True if they are anagrams
+def is_anagram(s1, s2):
+    for letter in s1:
+        if letter not in s2:
+            return False
+
+    for letter in s2:
+        if letter not in s1:
+            return False
+    
+    return True
+
+
+# Exercise 10.8 - Write a function that takes a list and returns True if there is any element that appears more than once
+def has_duplicates(lst):
+    for idx in range(len(lst)):
+        new_list = lst[:]
+        element = new_list.pop(idx)
+        if element in new_list:
+            return True
+    return False
+
 
 ##################MAIN#####################
 
@@ -103,6 +146,25 @@ def main():
                         resultant_list.append(int(inpt[i]))
                     print(cumulative_sum(resultant_list))
                     break
+        elif choice==4:
+            inpt = input("Please insert your list, with its elements separated by commas\n").split(",")
+            print(middle(inpt))
+        elif choice==5:
+            inpt = input("Please insert your list, with its elements separated by commas\n").split(",")
+            res = chop(inpt)
+            print(inpt)
+            print(res)
+        elif choice==6:
+            inpt = input("Please insert your list, with its elements separated by commas\n").split(",")
+            print(is_sorted(inpt))
+        elif choice==7:
+            w1 = input('word 1: ')
+            w2 = input('word 2: ')
+            print(is_anagram(w1,w2))
+        elif choice==8:
+            inpt = input("Please insert your list, with its elements separated by commas\n").split(",")
+            print(has_duplicates(inpt))
+            print(inpt)
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
