@@ -84,6 +84,112 @@ def has_duplicates(lst):
     return False
 
 
+# Exercise 10.9 - Write a function that takes a list and returns a new list with only the unique elements from the original
+def remove_duplicates(lst):
+    full_lst_without_repetitions = []
+    result = []
+
+    for i in range(len(lst)):
+        element = lst[i]
+        if element in full_lst_without_repetitions:
+            if element in result:
+                result.remove(element)
+        else:
+            full_lst_without_repetitions.append(element)
+            result.append(element)
+
+    return result
+
+
+# Exercise 10.10 - Write a function that reads the file words.txt and builds a list with one element per word
+def append_word_list():
+    result = []
+    try:
+        f = open('words.txt', 'r')
+    except IOError:
+        print('ERROR: Words File not found')
+    else:
+        for line in f:
+            result.append(line.strip())
+    return result 
+
+# Exercise 10.10 - Write another version of this function, one using not the append method as before but the idiom t = t + [x]
+def add_word_list():
+    result = []
+    try:
+        f = open('words.txt', 'r')
+    except IOError:
+        print('ERROR: Words File not found')
+    else:
+        for line in f:
+            result += [line.strip()]
+    return result 
+
+
+# Exercise 10.11 - Write a function that takes a sorted list and a target value and returns the index of the value in the list, if it’s there, or None if it’s not
+def bisect(sorted_list, target_value):
+    l = len(sorted_list)
+    if l == 0:
+        return None
+      
+    i = l // 2
+    if sorted_list[i] == target_value:
+        return i
+    elif sorted_list[i] > target_value:
+        return bisect(sorted_list[:i], target_value)
+    else:
+       return bisect(sorted_list[i+1:], target_value)
+
+
+# Exercise 10.12 - Write a program that finds all the reverse pairs in the word list
+def exists(sorted_list, target_value):
+    l = len(sorted_list)
+    if l == 0:
+        return False
+      
+    i = l // 2
+    if sorted_list[i] == target_value:
+        return True
+    elif sorted_list[i] > target_value:
+        return bisect(sorted_list[:i], target_value)
+    else:
+       return bisect(sorted_list[i+1:], target_value)
+
+def get_words():
+    # treating the words file
+    word_list = []
+    try:
+        f = open('words.txt', 'r')
+    except IOError:
+        print('ERROR: Words File not found')
+    else:
+        for line in f:
+            word_list += [line.strip()]
+        f.close()
+    return word_list
+
+def reverse_pairs():
+    word_list = get_words()
+    
+    # finding reverse pairs
+    for word in word_list:
+        if exists(word_list,word[::-1]):
+            print(word,word[::-1])
+
+
+# Exercise 10.13 - Write a program that finds all pairs of words that interlock
+def interlock():
+    word_list = get_words()
+    
+    for word in word_list:
+        even = word[::2]
+        odd = word[1::2]
+        if exists(word_list,even) and exists(word_list, odd):
+            print(even,odd)
+            word_list.remove(even)
+            word_list.remove(odd)
+
+
 ##################MAIN#####################
 
 def print_menu():
@@ -165,6 +271,24 @@ def main():
             inpt = input("Please insert your list, with its elements separated by commas\n").split(",")
             print(has_duplicates(inpt))
             print(inpt)
+        elif choice==9:
+            inpt = input("Please insert your list, with its elements separated by commas\n").split(",")
+            print(remove_duplicates(inpt))
+        elif choice==10:
+            print("Append method: ")
+            print(append_word_list())
+            print("Add method: ")
+            print(add_word_list())
+        elif choice==11:
+            inpt = input("Please insert your list, with its elements separated by commas\n").split(",")
+            w1 = input('word 1: ')
+            inpt.sort()
+            print("sorted:",inpt)
+            print(bisect(inpt,w1))
+        elif choice==12:
+            reverse_pairs()
+        elif choice==13:
+            interlock()
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
