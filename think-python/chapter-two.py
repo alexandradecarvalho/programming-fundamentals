@@ -1,3 +1,6 @@
+# Alexandra de Carvalho, july 2021
+
+
 # Exercise 2.1 - Now put the same statements into a script and run it. What is the output?
 def ex21():
     5

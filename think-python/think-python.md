@@ -831,3 +831,92 @@ The `len` function returns the number of key-value pairs in the dictionary, whil
 An **implementation** is a way of performing a computation; some implementations are better than others. For example, there are some advantages in using a dictionary as a set of counters - it accommodates all possible letters, but unnecessary records don't take too much space. This represents a **histogram**, which is a statistical term for a set of counters.
 
 
+
+#### 2. Looping and dictionaries
+
+A `for` statement over a dictionary traverses its keys. 
+
+
+
+#### 3. Reverse lookup
+
+Finding the value of a given key in a dictionary is called a **lookup**. It works because a key is unique inside the dictionary. To do a **reverse lookup**, find a key using its value in a dictionary, there is no easy syntax, and the code must be handwritten. However, the problem of many keys possibly mapping to the same value must be addressed in the solution.  
+
+
+
+#### 4. Dictionaries and lists
+
+Lists can be empty, can have only one element (**singleton**) or they can contain several elements.
+
+All types of lists can appear in a dictionary as a value but neither can appear as a key. This is because dictionary keys have to be ***hashable***. When a dictionary key is created, Python applies a **hash function** over it, to get a unique integer which represents the key. If the keys were mutable, and if one changed after its creation, the same hash function would return a different result, which would be a problem. *Hashable* and immutable aren't really the same thing, but they are close enough for now.  
+
+
+
+#### 5. Memos
+
+A **call graph** shows a set of function frames, with lines connecting each frame to the frames of the functions it calls. A previously computed value that is stored for later use is called a **memo**, and reduces function calls.
+
+
+
+#### 6. Global variables
+
+Variables created in the main block of the program are sometimes called global because they can be accessed from any function and they don't disappear after the function ends. They are often used as **flags**.
+
+Trying to assign a value to a global variable by doing `global_variable = True` doesn't work, because it creates a new, local variable. To do so, one must **declare** the **global variable** as such, using the keyword `global`. 
+
+
+
+### :dancers: Tuples :dancers:
+
+
+
+#### 1. Tuples are immutable
+
+A **tuple** is a comma-separated sequence of values of any type, indexed by integers. The difference between tuples and lists is that tuples are immutable. It's common to enclose tuples in parentheses. To create a tuple with a single element, it has to include a final comma. Most list operators also work on tuples.
+
+
+
+#### 2. Tuple assignment
+
+An elegant way to assign two variables at once is, sometimes, a **tuple assignment**: a tuple of variables followed by the assignment operator followed by a tuple of values or expressions. This way, the first variable gets the first value/expression, the second variable gets the second value/expression, and so on. The number of variables on the left and the number of values on the right have to be the same.
+
+
+
+#### 3. Tuples as return values
+
+A function can only return one value, but if the value is a tuple, the effect is the same as returning multiple values.
+
+
+
+#### 4. Variable-length argument tuples
+
+A function can take a variable number of arguments. A parameter name that begins with `*` **gathers** arguments into a tuple. Conventionally, this parameter is called `args`. The complement of gather is **scatter**. If we have a tuple and want to pass each element as an individual argument, we can use `*t` to do so. 
+
+
+
+#### 5. Lists and tuples
+
+`zip` is a built-in function that takes two or more sequences and "zips" them into a list of tuples, where each tuple contains one element from each sequence. If the sequences are not the same length, the result has the length of the shorter one. A tuple assignment in a `for` loop can be used to traverse a list of tuples.
+
+
+
+#### 6. Dictionaries and tuples
+
+Dictionaries have a method called `items` that returns a list of tuples in no particular order, where each tuple is a key-value pair. The dictionary method `update` also takes a list of tuples and adds them, as key-value pairs, to an existing dictionary. Because lists can't be used as keys in a dictionary, it is common to use tuples instead.
+
+
+
+#### 7. Comparing tuples
+
+The relational operators work with tuples too. Python starts by comparing the first element from each sequence and, if they are equal, it goes on to the next elements, and so on, until it finds elements that differ. Subsequent elements are not considered (even if they are really big). This feature can implement the **DSU** pattern: <u>Decorate</u> (building a list of tuples with one or more sort keys)  - **Sort** (sorting the list of tuples) - <u>Undecorate</u> (extracting sorted elements of the sequence).
+
+
+
+#### 7. Sequences of sequences
+
+A collection of related values, such as lists, dictionaries or tuples, is often called a **data structure**. **Its shape** is the summary of its type, size and composition. 
+
+In many cases, the different data structures are interchangeable, so the question remains: how to choose what to use?
+
+In most cases, lists are easier to use, because they are mutable. Tuples are advantageous when in a return statement, as a dictionary key, or as an argument to a function. 
+
