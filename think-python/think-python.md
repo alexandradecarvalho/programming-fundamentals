@@ -912,11 +912,156 @@ The relational operators work with tuples too. Python starts by comparing the fi
 
 
 
-#### 7. Sequences of sequences
+#### 8. Sequences of sequences
 
 A collection of related values, such as lists, dictionaries or tuples, is often called a **data structure**. **Its shape** is the summary of its type, size and composition. 
 
 In many cases, the different data structures are interchangeable, so the question remains: how to choose what to use?
 
 In most cases, lists are easier to use, because they are mutable. Tuples are advantageous when in a return statement, as a dictionary key, or as an argument to a function. 
+
+
+
+### :mag: Case study: data structure selection:mag:
+
+
+
+#### 1. Word frequency analysis
+
+We can clean the words from a text file, by separating the words and then removing whitespaces (spaces,tabs,newline,etc.) and punctuation (`string.punctuation` contains a useful list). Then, we can use dictionaries to count how many times each word appears.
+
+
+
+#### 2. Random numbers
+
+Computer programs that, given the same input, always return the same result are called **deterministic**. Most programs are deterministic, but others, like games, need to be unpredictable. Nondeterministic programs are really hard do make, so we can cheat! ;) One way to do this is by using algorithms that generate **pseudorandom** numbers. These are not truly random numbers because they are the result of deterministic computations, but they look random to the human "eye". The `random` module provides functions that generate pseudorandom numbers, like the `random` function which returns a "random" float between 0.0 and 0.(9). The function `randint` takes limit values for this range. To choose a "random" element from a sequence, we can use the `choice` function. 
+
+
+
+#### 3. Word histogram
+
+A word histogram is a dictionary that increments the occurrence value of a key when encountering in the text the word of the key. To count the total number of words in the file, we can add up the values in the histogram. The number of different words is just the number of items in the dictionary.
+
+
+
+#### 4. Most common words
+
+To find the most common words, we can apply the DSU pattern.
+
+
+
+#### 5. Optional parameters
+
+User-defined functions can have optional arguments, as long as they appear at the end of the argument list in the function definition. For this to be possible, we have to assign the variable to a **default value**, that will be taken into account only if no other value is assigned to that variable. If other value is assigned, it **overrides** the default value. If a function has both required and optional parameters, all the required parameters have to come first, followed by the optional ones.
+
+
+
+#### 6. Dictionary subtraction
+
+To find the words that are in one dictionary but aren't in another, one can create a third dictionary and only add a key from the first dictionary if it isn't in the keylist of the second, and so on in a `for` loop. 
+
+
+
+#### 7. Random words
+
+To choose a random word from the histogram, the simplest algorithm is to build a list with multiple copies of each word, according to the observed frequency, and then choose from the list.
+
+
+
+#### 8. Markov analysis
+
+The Markov analysis characterizes, for a given sequence of words, the probability of the word that comes next. Its result is a mapping from each prefix to all possible suffixes, which can be applied combined, linking all the suffixes with their own suffixes. This can work with a prefix of any length, which is called the "order" of the analysis.
+
+
+
+#### 9. Data structures
+
+To choose the adequate structure to represent a collection of data, the programmer has to consider the operations that will be done to the structure, but one other factor is the ease of implementation. One of the most important factors, however, is the run time. Unfortunately, this information is sometimes not known before the implementation. One option is to implement both ways and see which is faster. This approach is called **benchmarking**. A more practical alternative is to chose the simplest implementation.
+
+
+
+### :page_facing_up: Files :page_facing_up:
+
+
+
+#### 1. Persistence
+
+Some programs are transient, as they run for a short period of time, and when they end their data disappears. Other programs are **persistent** as they run for a long time and keep their data in a permanent storage (like a hard drive). One of the simplest ways for programs to maintain their data is by reading and writing text files.
+
+
+
+#### 2. Reading and writing
+
+A text file is a sequence of characters stored on a permanent medium like a hard drive, flash memory, or CD-ROM.
+
+
+
+#### 3. Format operator
+
+The `write` function, to write on files, only accepts strings as arguments. In order to write complex information onto the file, we could use the **format operator**, `%`. Its first operand is the **format string**, which contains one or more **format sequences**, that specify how the second operand is formatted. The result is a string.
+
+
+
+#### 4. Filenames and paths
+
+Files are organized into **directories** ("folders"). Every running program has a "current directory", which is the default directory for most operations. The `os` ("os" for "operating system") module provides functions for working with files and directories. `os.getcwd` returns the name of the current directory. A string that identifies a file is called a **path**. A **relative path** starts from the current directory; an **absolute path** starts from the topmost directory in the file system. `os.listdir` returns a list of the files (and other directories) in the given directory. 
+
+
+
+#### 5. Catching exceptions
+
+If someone tries to open a file that doesn’t exist or to which they don't have permission, an `IOError` gets thrown. To deal with it, we can enclose the file accessing in a `try` statement. If all goes well, the `except` clause is ignored, but if an exception occurs, it is executed. This is called **catching** an exception.
+
+
+
+#### 6. Databases
+
+A **database** is a organized file that stores data. Most databases are organized like a dictionary, as they map keys to values. However, the database is stored on disk (permanent storage). 
+
+
+
+#### 7. Pickling
+
+The `anydbm` module provides an interface for creating and updating a database file. In many ways, it works as a regular Python dictionary. However, its keys and values have to be strings. The `pickle` module can translate any type of object into a string, suitable for storage in a database. Then, it can translate strings back into objects. `pickle.dumps` takes an object as a parameter and returns a string representation. `pickle.loads` reconstitutes the object. 
+
+
+
+#### 8. Pipes
+
+Most operating systems provide a command-line interface, also known as a shell. Shells usually provide commands to navigate the file system and launch applications. Any program that you can launch from the shell can also be launched from Python using a pipe, which is an object that represents a running program.
+
+
+
+#### 9. Writing modules
+
+Any file that contains Python code can be imported as a module. To avoid the `main()` part to run automatically when importing the program as a module, programs often use the following idiom:
+
+```python
+if __name__ == '__main__':
+	print linecount('wc.py')
+```
+
+
+
+### :hammer: Classes and objects :hammer:
+
+
+
+#### 1. User-defined types
+
+Programmers can create new types of objects, called **class**. A class definition has a header, with the keyword "class", the name of that class and the keyword "object" as an argument. The class body is then composed by indented statements, which are mainly variable and function definitions. The **class object** is like a factory for creating objects - to create a new object (a new **instance**) of that type, simply call the class, just like a function.
+
+
+
+#### 2. Attributes
+
+Class variables, also called **attributes**, can be assigned values. A  state diagram that shows an object and its attributes is called an object diagram. An instance, or its attributes in dot notation, can be used in any expression or passed as a function argument.
+
+
+
+
+
+#### 
+
+
 
