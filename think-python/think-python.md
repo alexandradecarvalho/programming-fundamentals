@@ -1055,13 +1055,31 @@ Programmers can create new types of objects, called **class**. A class definitio
 
 #### 2. Attributes
 
-Class variables, also called **attributes**, can be assigned values. A  state diagram that shows an object and its attributes is called an object diagram. An instance, or its attributes in dot notation, can be used in any expression or passed as a function argument.
+Class variables, also called **attributes**, can be assigned values. A state diagram that shows an object and its attributes is called an **object diagram**. An instance, or its attributes in dot notation, can be used in any expression or passed as a function argument.
 
 
 
+#### 3. Rectangles
+
+Choosing what variables will represent a certain class is making a choice in advance. Sometimes, a variable of a user-defined class can be other user-defined class. For example, we can have a class called `Point`, which represents a bi-dimensional point, with two variables (x and y) represented by numbers. Then, we can have a class called `Rectangle` . To represent this class, one could use, for example, four variables of the type `Point`, representing its four vertices. This is called an **embedded object**.
 
 
-#### 
+
+#### 4. Instances as return values
+
+Functions can return instances.
+
+
+
+#### 5. Objects are mutable
+
+The state of an object can be changed, by making an assignment to one of its attributes. There can also be functions that modify the objects. 
+
+
+
+#### 6. Copying
+
+Aliasing can make a program difficult to read because changes in one place might have unexpected effects in another place. Copying an object is often an alternative. The `copy` module contains a function called `copy` that can duplicate any object. This operation is called a **shallow copy** because it copies the object and any references it contains, but not the embedded objects.  The `copy` module also contains a method named `deepcopy`, that copies not only the object but also the objects it refers to. This operation is called a **deep copy**.
 
 
 
