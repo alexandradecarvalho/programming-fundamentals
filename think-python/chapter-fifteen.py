@@ -45,9 +45,9 @@ def new_rectangle(rec,dx,dy):
 
 def print_menu():
     print(30 * "-" , "MENU" , 30 * "-")
-    print("1. Exercise 14.1")
-    print("2. Exercise 14.2")
-    print("3. Exercise 14.3")
+    print("1. Exercise 15.1")
+    print("2. Exercise 15.2")
+    print("3. Exercise 15.3")
     print("0. Exit")
     print(67 * "-")
 

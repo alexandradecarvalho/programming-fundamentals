@@ -1083,3 +1083,29 @@ Aliasing can make a program difficult to read because changes in one place might
 
 
 
+### 🧮 Classes and functions 🧮
+
+
+
+#### 1. Time
+
+One example of a user-defined function is a class called Time, that records the time of the day with its attributes hours, minutes and seconds. 
+
+
+
+#### 2. Pure functions
+
+**Prototype and patch** is what the author called a development plan that helps tackling complex problems by starting with a simple prototype and incrementally dealing with the complications. A pure function is a function that doesn't modify any of the objects passed as arguments, and doesn't have an effect, like displaying a value, other than returning a value.
+
+
+
+#### 3. Modifiers
+
+When a function modifies the objects it gets as a parameter, its changes get visible to the caller. These functions are called **modifiers**. Anything that can be done with modifiers can also be done with pure functions. In fact, some programming languages only allow pure functions, because these tend to be faster to develop and less error-prone. A recommendation is to write pure functions whenever it is reasonable and resort to modifiers only if there is a compelling advantage. This approach might be called a **functional programming style**.
+
+
+
+#### 4. Prototyping versus planning
+
+The "prototype and patch" strategy can generate unnecessarily complicated code. An alternative is **planned development**, which feeds off of a high-level knowledge right from the start. For this to be possible, one must know all the general requirements of the problem, also called as **invariants** because they must always be assured as true.
+
