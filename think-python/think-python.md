@@ -1107,5 +1107,55 @@ When a function modifies the objects it gets as a parameter, its changes get vis
 
 #### 4. Prototyping versus planning
 
-The "prototype and patch" strategy can generate unnecessarily complicated code. An alternative is **planned development**, which feeds off of a high-level knowledge right from the start. For this to be possible, one must know all the general requirements of the problem, also called as **invariants** because they must always be assured as true.
+The "prototype and patch" strategy can generate unnecessarily complicated code. An alternative is **planned development**, which feeds off of a high-level knowledge right from the start. For this to be possible, one must know all the general requirements of the problem, also called as **invariants** because they must always be assured as t
+
+### 🩰 Classes and methods 🩰
+
+
+
+#### 1. Object-oriented features
+
+Python is on **object-oriented programming language**. Object-oriented programming is based on object and function definitions and most of the computations are expressed in terms of operations on objects. These objects usually correspond to real-world objects or concepts, and its functions represent the ways in which they interact in the real-world. Sometimes, we need a set of functions that take an object and operate over it. This is why **methods** exist. Methods are functions associated with a certain class, and are defined inside its definition, just like attributes are variables associated with a class.  
+
+
+
+#### 2. Printing objects
+
+A common example of function methods are functions that print a representation of said object. Methods can be invoked in dot notation upon the instance of a class - with it as the **subject** (just like the subject of a sentence). In this way, the subject is automatically an argument of the function, as self. 
+
+
+
+#### 5. The `init` method
+
+The `init` method (short for "initialization") is a special method invoked when an object is instantiated. It is written `__init__`.  
+
+
+
+#### 6. The `__str__` method
+
+`__str__` is a special method to return a string representation of an object. It is invoked by the `print()` function. 
+
+
+
+#### 7. Operator overloading
+
+There are other special methods, including the ones that define the behaviour of operators on that class. One example is the method `__add__`, which defines the behaviour of the `+` operator. This is called **operator overloading**.
+
+
+
+#### 8. Type-based dispatch
+
+A method, for example `__add__`, might need to have different behaviours based on the type of its argument. This operation is called a **type-based dispatch** because it dispatches the computation to different methods based on the type of the arguments. However, this doesn't solve the problem that adding a user-defined type instance to an integer will throw an exception. The special method `__radd__` stands for "right-side add" and is invoked when an instance of that type appears on the right side of the `+` operator.  
+
+
+
+#### 9. Polymorphism
+
+Even though type-based dispatch can be quite useful, some functions can work with different types of arguments. These functions are called **polymorphic** and can facilitate code reuse. example `__add__`, might need to have different behaviours based on the type of its argument. This operation is called a **type-based dispatch** because it dispatches the computation to different methods based on the type of the arguments. However, this doesn't solve the problem that adding a user-defined type instance to an integer will throw an exception. The special method `__radd__` stands for "right-side add" and is invoked when an instance of that type appears on the right side of the `+` operator.  
+
+
+
+#### 11. Interface and implementation
+
+A design principle that helps keeping programs working even with other parts of the system under maintenance is to keep interfaces separate from implementations. This means that the methods a class provides should not depend on how the attributes are represented. In order to do this, the attributes must be hidden and not directly accessible by other parts of the program. This principle is called **information hiding**.
 
