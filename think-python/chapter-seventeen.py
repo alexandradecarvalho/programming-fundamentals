@@ -81,7 +81,6 @@ def print_menu():
     print("5. Exercise 17.5")
     print("6. Exercise 17.6")
     print("7. Exercise 17.7")
-    print("8. Exercise 17.8")
     print("0. Exit")
     print(67 * "-")
 
@@ -92,7 +91,7 @@ def main():
     while loop:
         print_menu()
         try:
-            choice = int(input('Enter your choice [1,3-8] or 0 to quit: '))
+            choice = int(input('Enter your choice [1,3-7] or 0 to quit: '))
         except:
             choice = 222    # Invalid option
         
@@ -124,41 +123,6 @@ def main():
             kanga.put_in_pouch(roo)
             print(kanga)
             print(roo)
-        elif choice==8:
-            day_of_week()
-            while True:
-                day, month, year = input('DAY-MONTH-YEAR: ').split('-')
-                try:
-                    day = int(day)
-                    month = int(month)
-                    year = int(year)
-                except ValueError:
-                    print("We're sorry! Day, Month and Year must be valid integers! Please, try again.")
-                else:
-                    age(datetime.date(year, month, day))
-                    break
-            birthday1 = datetime.date(year, month, day) 
-            
-            while True:
-                day2, month2, year2 = input('DAY-MONTH-YEAR: ').split('-')
-                try:
-                    day2 = int(day2)
-                    month2 = int(month2)
-                    year2 = int(year2)
-                except ValueError:
-                    print("We're sorry! Day, Month and Year must be valid integers! Please, try again.")
-                else:
-                    birthday2 = datetime.date(year2, month2,day2)
-                    print(double_day(birthday1,birthday2))
-                    while True:
-                        try:
-                            times = int(input('times: '))
-                        except ValueError:
-                            print("We're sorry! times must be valid integers! Please, try again.")
-                        else:
-                            print(n_day(times,birthday1,birthday2))
-                            break
-                    break
         elif choice==0:
             print("Goodbye")
             loop=False # This will make the while loop to end as not value of loop is set to False
