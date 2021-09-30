@@ -1159,3 +1159,69 @@ Even though type-based dispatch can be quite useful, some functions can work wit
 
 A design principle that helps keeping programs working even with other parts of the system under maintenance is to keep interfaces separate from implementations. This means that the methods a class provides should not depend on how the attributes are represented. In order to do this, the attributes must be hidden and not directly accessible by other parts of the program. This principle is called **information hiding**.
 
+
+
+### :older_man: Inheritance :baby:
+
+
+
+#### 1. Card objects
+
+A use case of inheritance could be a game of poker. In card games there are 52 cards in a deck, each with one of four suites (Spades, Hearts, Diamonds, and Clubs) and one of thirteen ranks (Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, and King). 
+
+To represent a game of poker, we could start by defining a new object to represent a playing card. Its attributes should, clearly, be `rank` and `suit`. It is not clear, however, what types the attributes should be. One alternative is to use integers to **encode** ranks and suites. "Encoding" here means to define a mapping between integers and suites, and between numbers and ranks. If this mapping was meant to be secret, it would be "encryption".
+
+
+
+#### 2. Class attributes
+
+When printing a card, we need to detail its rank and suite, but in a way it is understandable for people to read. A natural way to do this is to create an ordered list of strings, with the index representing the integer that maps to the corresponding string. These lists are assigned to what is called **class attributes**, because these variables are placed inside the class but outside any method. On the contrary, variables like `rank` and `suite` are called **instance attributes** because they are differ from instance to instance. Every card has its own `rank` and `suite` but there are only one list of `ranks` and one list of `suites`. gn two variables at once is, sometimes, a **tuple assignment**: a tuple of variables followed by the assignment operator followed by a tuple of values or expressions. This way, the first variable gets the first value/expression, the second variable gets the second value/expression, and so on. The number of variables on the left and the number of values on the right have to be the same.
+
+
+
+#### 3. Comparing cards
+
+For built-in types, there are relational operators that compare two values (>, <, ==). For user-defined types we can override the behaviour of said operators with a method named `__lt__`. It takes two parameters, `self` and `other`, and returns `True` if `self` is less than `other`, and `False` otherwise.
+
+
+
+#### 4. Decks
+
+After creating the `Card` class, we need a `Deck` class. Since a deck is made up of cards, each deck naturally contains a list of cards as attributes. The easiest way to populate the deck is with a nested loop.
+
+
+
+#### 5. Printing the deck
+
+The `__str__` method of the deck must accommodate a large string. One way to do this is by building a list of strings and, in the end, using `join` to put them together. 
+
+
+
+#### 6. Add, remove, shuffle and sort
+
+To deal cards we need to remove a card from the deck and return it. To do this, we can use the list method `pop()`. To add a card, we can use the list method `append()`. A method like this that just calls another function and doesn't do much else is called a **veneer**. To shuffle the cards, there is a function named `shuffle()`, from the `random` module. 
+
+
+
+#### 7. Inheritance
+
+**Inheritance** is the ability to define a new class that is a modified version of an existing class. This new class (**child class**) "inherits" the methods of the existing class (**parent class**).
+
+As an example, we can talk about "hands" in a card game, that is, the set of cards held by one player. In many ways, a hand is similar to a deck: both are made up of cards and require operators to add, remove, shuffle and sort cards. However, a hand needs <u>more</u> operations, often ones that doesn't make sense for a deck. The definition of a child class is the same as the definition of any other class, but with the name of the parent class inside the parentheses. Even though the parent's methods are transferred to the child class, sometimes they are not quite what we want them to do in this child class. In this case, defining the same method overrides the inherited one.
+
+Inheritance is useful as it sometimes avoid code repetition. In some cases, it clearly reflects the natural structure of the problem, which makes it easier to understand. On the other hand, it can make programs difficult to read because the definition of a child class can be scattered among several parent classes.  
+
+
+
+#### 8. Class diagrams
+
+Stack diagrams show the state of a program and object diagrams show the attributes of an object and their values. It's natural for them to change as the program runs. A **class diagram**, present in the Figure below, is a more abstract representation of the structure of a program. It shows classes and the relationships between them. There are different kinds of relationships:
+
+* Objects might reference objects of other classes. For example, a Rectangle might reference four Point objects - its vertices. This relationship is called **HAS-A**, just like "a Rectangle as a Point".
+*  When a class inherits from another, the relationship is called **IS-A**, just like "a Hand is a kind of Deck".
+
+In the class diagram Figure, the star symbol indicates the **multiplicity**: it indicates how many Cards a Deck has.  
+
+#### 9. Data encapsulation
+
+Sometimes it is not obvious what classes we need. We can discover class interfaces by data encapsulation, the same way we discovered function interfaces by encapsulation and generalization. 
